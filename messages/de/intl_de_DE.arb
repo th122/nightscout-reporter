@@ -1,5 +1,5 @@
 {
-    "@@last_modified": "2019-09-12T15:35:00.872072",
+    "@@last_modified": "2019-10-24T13:07:38.299969",
     "Überprüfe Zugriff auf Nightscout ...": "Überprüfe Zugriff auf Nightscout ...",
     "@Überprüfe Zugriff auf Nightscout ...": {
         "type": "text",
@@ -138,6 +138,11 @@
     },
     "Japanisch": "Japanisch",
     "@Japanisch": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "Slowakisch": "Slowakisch",
+    "@Slowakisch": {
         "type": "text",
         "placeholders": {}
     },
@@ -758,6 +763,36 @@
         "type": "text",
         "placeholders": {}
     },
+    "Ausgabe": "Ausgabe",
+    "@Ausgabe": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "Grafik": "Grafik",
+    "@Grafik": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "Tabelle": "Tabelle",
+    "@Tabelle": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "Alles": "Alles",
+    "@Alles": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "Glukose Perzentil Diagramm": "Glukose Perzentil Diagramm",
+    "@Glukose Perzentil Diagramm": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "Stündliche Statistik": "Stündliche Statistik",
+    "@Stündliche Statistik": {
+        "type": "text",
+        "placeholders": {}
+    },
     "Notiz": "Notiz",
     "@Notiz": {
         "type": "text",
@@ -770,6 +805,11 @@
     },
     "Glukose zu niedrig": "Glukose zu niedrig",
     "@Glukose zu niedrig": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "Grafiken pro Seite": "Grafiken pro Seite",
+    "@Grafiken pro Seite": {
         "type": "text",
         "placeholders": {}
     },
@@ -1003,6 +1043,16 @@
     },
     "Standardabweichung": "Standardabweichung",
     "@Standardabweichung": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "Kalibrierung": "Kalibrierung",
+    "@Kalibrierung": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "Wechsel": "Wechsel",
+    "@Wechsel": {
         "type": "text",
         "placeholders": {}
     },
@@ -1361,11 +1411,6 @@
         "type": "text",
         "placeholders": {}
     },
-    "Grafiken pro Seite": "Grafiken pro Seite",
-    "@Grafiken pro Seite": {
-        "type": "text",
-        "placeholders": {}
-    },
     "Legende": "Legende",
     "@Legende": {
         "type": "text",
@@ -1418,6 +1463,11 @@
     },
     "Tagesstartprofil anzeigen": "Tagesstartprofil anzeigen",
     "@Tagesstartprofil anzeigen": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "HTML-Notizen anzeigen": "HTML-Notizen anzeigen",
+    "@HTML-Notizen anzeigen": {
         "type": "text",
         "placeholders": {}
     },
@@ -1506,6 +1556,11 @@
         "type": "text",
         "placeholders": {}
     },
+    "Dauer mit Minutenbruchteil": "Dauer mit Minutenbruchteil",
+    "@Dauer mit Minutenbruchteil": {
+        "type": "text",
+        "placeholders": {}
+    },
     "Tag (08:00 - 18:00)": "Tag (08:00 - 18:00)",
     "@Tag (08:00 - 18:00)": {
         "type": "text",
@@ -1551,6 +1606,11 @@
         "type": "text",
         "placeholders": {}
     },
+    "Batteriewechsel": "Batteriewechsel",
+    "@Batteriewechsel": {
+        "type": "text",
+        "placeholders": {}
+    },
     "msgMBG": "Blutige Messung {gluc} {unit}",
     "@msgMBG": {
         "type": "text",
@@ -1558,6 +1618,16 @@
             "gluc": {},
             "unit": {}
         }
+    },
+    "Tagesprofil": "Tagesprofil",
+    "@Tagesprofil": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "Sekunden anzeigen": "Sekunden anzeigen",
+    "@Sekunden anzeigen": {
+        "type": "text",
+        "placeholders": {}
     },
     "Spalte Messwerte": "Spalte Messwerte",
     "@Spalte Messwerte": {
@@ -1586,11 +1656,6 @@
     },
     "Tagesstatistik": "Tagesstatistik",
     "@Tagesstatistik": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "Glukose Perzentil Diagramm": "Glukose Perzentil Diagramm",
-    "@Glukose Perzentil Diagramm": {
         "type": "text",
         "placeholders": {}
     },
@@ -1937,6 +2002,102 @@
     "Version": "Version",
     "@Version": {
         "description": "version",
+        "type": "text",
+        "placeholders": {}
+    },
+    "1.3.6 - xx.10.2019": "1.3.6 - xx.10.2019",
+    "@1.3.6 - xx.10.2019": {
+        "description": "v136",
+        "type": "text",
+        "placeholders": {}
+    },
+    "In der Tagesgrafik gibt es die Option, HTML-Notizen zu unterdrücken. Manche Uploader schreiben in die Notizen komplette HTML-Seiten rein, was im PDF extrem schlecht darstellbar ist. Deswegen kann man diese mit Setzen der Option ausblenden.": "In der Tagesgrafik gibt es die Option, HTML-Notizen zu unterdrücken. Manche Uploader schreiben in die Notizen komplette HTML-Seiten rein, was im PDF extrem schlecht darstellbar ist. Deswegen kann man diese mit Setzen der Option ausblenden.",
+    "@In der Tagesgrafik gibt es die Option, HTML-Notizen zu unterdrücken. Manche Uploader schreiben in die Notizen komplette HTML-Seiten rein, was im PDF extrem schlecht darstellbar ist. Deswegen kann man diese mit Setzen der Option ausblenden.": {
+        "description": "v136a1",
+        "type": "text",
+        "placeholders": {}
+    },
+    "Die Glucose Perzentil Grafik wurde um die Tabelle \"Stündliche Statistik\" erweitert. Diese listet tabellarisch die Werte des Zeitraums für jede Stunde des Tages auf. Man kann entweder nur die Grafik, nur die Tabelle oder beides zusammen erzeugen lassen.": "Die Glucose Perzentil Grafik wurde um die Tabelle \"Stündliche Statistik\" erweitert. Diese listet tabellarisch die Werte des Zeitraums für jede Stunde des Tages auf. Man kann entweder nur die Grafik, nur die Tabelle oder beides zusammen erzeugen lassen.",
+    "@Die Glucose Perzentil Grafik wurde um die Tabelle \"Stündliche Statistik\" erweitert. Diese listet tabellarisch die Werte des Zeitraums für jede Stunde des Tages auf. Man kann entweder nur die Grafik, nur die Tabelle oder beides zusammen erzeugen lassen.": {
+        "description": "v136a2",
+        "type": "text",
+        "placeholders": {}
+    },
+    "In der Sprachauswahl ist jetzt auch Slowakisch verfügbar.": "In der Sprachauswahl ist jetzt auch Slowakisch verfügbar.",
+    "@In der Sprachauswahl ist jetzt auch Slowakisch verfügbar.": {
+        "description": "v136a3",
+        "type": "text",
+        "placeholders": {}
+    },
+    "Es gibt eine neue PDF-Seite für die Tagesprofile. Darauf ist eine Tabelle zu sehen, die die tatsächliche Basalrate für den Tag zeigt, inklusive aller temporären Anpassungen. Ich brauchte das für Debugzwecke, aber vielleicht findet das der eine oder andere Benutzer auch interessant. Das Profil, das dort angezeigt wird entspricht dem Tagesprofil auf der Seite Tagesgrafik. Beim Loopen können das sehr viele Seiten werden, da dort normalerweise alle paar Minuten Anpassungen an der Basalrate vorgenommen werden. Deswegen wird die Tabelle auch abhängig von der Datenmenge in maximal drei Spalten dargestellt, um die Anzahl an Seiten zu reduzieren.": "Es gibt eine neue PDF-Seite für die Tagesprofile. Darauf ist eine Tabelle zu sehen, die die tatsächliche Basalrate für den Tag zeigt, inklusive aller temporären Anpassungen. Ich brauchte das für Debugzwecke, aber vielleicht findet das der eine oder andere Benutzer auch interessant. Das Profil, das dort angezeigt wird entspricht dem Tagesprofil auf der Seite Tagesgrafik. Beim Loopen können das sehr viele Seiten werden, da dort normalerweise alle paar Minuten Anpassungen an der Basalrate vorgenommen werden. Deswegen wird die Tabelle auch abhängig von der Datenmenge in maximal drei Spalten dargestellt, um die Anzahl an Seiten zu reduzieren.",
+    "@Es gibt eine neue PDF-Seite für die Tagesprofile. Darauf ist eine Tabelle zu sehen, die die tatsächliche Basalrate für den Tag zeigt, inklusive aller temporären Anpassungen. Ich brauchte das für Debugzwecke, aber vielleicht findet das der eine oder andere Benutzer auch interessant. Das Profil, das dort angezeigt wird entspricht dem Tagesprofil auf der Seite Tagesgrafik. Beim Loopen können das sehr viele Seiten werden, da dort normalerweise alle paar Minuten Anpassungen an der Basalrate vorgenommen werden. Deswegen wird die Tabelle auch abhängig von der Datenmenge in maximal drei Spalten dargestellt, um die Anzahl an Seiten zu reduzieren.": {
+        "description": "v136a4",
+        "type": "text",
+        "placeholders": {}
+    },
+    "Im Einstellungsdialog wurden die Zeilen mit den Benutzerangaben und der URL gegeneinander ausgetauscht, um eine sinnvollere Verwaltung zu ermöglichen.": "Im Einstellungsdialog wurden die Zeilen mit den Benutzerangaben und der URL gegeneinander ausgetauscht, um eine sinnvollere Verwaltung zu ermöglichen.",
+    "@Im Einstellungsdialog wurden die Zeilen mit den Benutzerangaben und der URL gegeneinander ausgetauscht, um eine sinnvollere Verwaltung zu ermöglichen.": {
+        "description": "v136c1",
+        "type": "text",
+        "placeholders": {}
+    },
+    "Die Seitenzahlen auf den Kacheln wurden weiter an den unteren Rand verschoben, damit sie immer gut lesbar sind.": "Die Seitenzahlen auf den Kacheln wurden weiter an den unteren Rand verschoben, damit sie immer gut lesbar sind.",
+    "@Die Seitenzahlen auf den Kacheln wurden weiter an den unteren Rand verschoben, damit sie immer gut lesbar sind.": {
+        "description": "v136c2",
+        "type": "text",
+        "placeholders": {}
+    },
+    "Die Profile für den Zeitraum wurden teilweise nicht korrekt identifiziert. Das sollte behoben sein.": "Die Profile für den Zeitraum wurden teilweise nicht korrekt identifiziert. Das sollte behoben sein.",
+    "@Die Profile für den Zeitraum wurden teilweise nicht korrekt identifiziert. Das sollte behoben sein.": {
+        "description": "v136f1",
+        "type": "text",
+        "placeholders": {}
+    },
+    "Die Ermittlung der effektiven täglichen Basalrate wurde umstrukturiert und sollte nun genauere Werte ergeben.": "Die Ermittlung der effektiven täglichen Basalrate wurde umstrukturiert und sollte nun genauere Werte ergeben.",
+    "@Die Ermittlung der effektiven täglichen Basalrate wurde umstrukturiert und sollte nun genauere Werte ergeben.": {
+        "description": "v136f2",
+        "type": "text",
+        "placeholders": {}
+    },
+    "1.3.5 - 23.09.2019": "1.3.5 - 23.09.2019",
+    "@1.3.5 - 23.09.2019": {
+        "description": "v135",
+        "type": "text",
+        "placeholders": {}
+    },
+    "Ein Fehler in der Zahlenformatierung wurde behoben.": "Ein Fehler in der Zahlenformatierung wurde behoben.",
+    "@Ein Fehler in der Zahlenformatierung wurde behoben.": {
+        "description": "v135f1",
+        "type": "text",
+        "placeholders": {}
+    },
+    "Die temporäre Basalrate am Anfang des Tages wurde bisher falsch gesetzt, wenn sie im vorherigen Tag gesetzt wurde. Das wurde behoben.": "Die temporäre Basalrate am Anfang des Tages wurde bisher falsch gesetzt, wenn sie im vorherigen Tag gesetzt wurde. Das wurde behoben.",
+    "@Die temporäre Basalrate am Anfang des Tages wurde bisher falsch gesetzt, wenn sie im vorherigen Tag gesetzt wurde. Das wurde behoben.": {
+        "description": "v135f2",
+        "type": "text",
+        "placeholders": {}
+    },
+    "1.3.4 - 17.09.2019": "1.3.4 - 17.09.2019",
+    "@1.3.4 - 17.09.2019": {
+        "description": "v134",
+        "type": "text",
+        "placeholders": {}
+    },
+    "Im Protokoll können jetzt auch Batteriewechsel der Pumpe angezeigt werden.": "Im Protokoll können jetzt auch Batteriewechsel der Pumpe angezeigt werden.",
+    "@Im Protokoll können jetzt auch Batteriewechsel der Pumpe angezeigt werden.": {
+        "description": "v134a1",
+        "type": "text",
+        "placeholders": {}
+    },
+    "Die einzelne Seite CGP kann jetzt auch im Querformat ausgegeben werden.": "Die einzelne Seite CGP kann jetzt auch im Querformat ausgegeben werden.",
+    "@Die einzelne Seite CGP kann jetzt auch im Querformat ausgegeben werden.": {
+        "description": "v134a2",
+        "type": "text",
+        "placeholders": {}
+    },
+    "Die Aufsummierung der Werte in der Analyse wurde korrigiert.": "Die Aufsummierung der Werte in der Analyse wurde korrigiert.",
+    "@Die Aufsummierung der Werte in der Analyse wurde korrigiert.": {
+        "description": "v134f1",
         "type": "text",
         "placeholders": {}
     },
