@@ -30,133 +30,139 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static m5(value) => "血糖変動係数${value}%]";
 
-  static m6(value) => "食事ボーラス(${value})";
+  static m6(scale, intercept, slope) => "Calibration (scale ${scale} / intercept ${intercept} / slope ${slope})";
 
-  static m7(value) => "炭水化物(${value}g)";
+  static m7(value) => "食事ボーラス(${value})";
 
-  static m8(count, txt) => "${Intl.plural(count, zero: '', one: '(${txt} 日間/カニューレ)', other: '(${txt} 日間/カニューレ)')}";
+  static m8(value) => "炭水化物(${value}g)";
 
-  static m9(name, from, to) => "${name} ${from} => ${to}";
+  static m9(count, txt) => "${Intl.plural(count, zero: '', one: '(${txt} 日間/カニューレ)', other: '(${txt} 日間/カニューレ)')}";
 
-  static m10(url) => "${url} へのアクセスを確認しています…";
+  static m10(name, from, to) => "${name} ${from} => ${to}";
 
-  static m11(value) => "補正ボーラス(${value})";
+  static m11(url) => "${url} へのアクセスを確認しています…";
 
-  static m12(value) => "${Intl.plural(value, zero: '値無し', one: '1個', other: '${value} 個')}";
+  static m12(value) => "補正ボーラス(${value})";
 
-  static m13(value) => "${value} 日";
+  static m13(value) => "${Intl.plural(value, zero: '値無し', one: '1個', other: '${value} 個')}";
 
-  static m14(beg, end) => "${beg} - ${end}";
+  static m14(value) => "${value} 日";
 
-  static m15(max) => "不良(${max} 超)";
+  static m15(hours, minutes) => "${hours} h ${minutes} m";
 
-  static m16(min, max) => "良 (${min} to ${max})";
+  static m16(beg, end) => "${beg} - ${end}";
 
-  static m17(min) => "利用不可(${min} 分未満)";
+  static m17(max) => "不良(${max} 超)";
 
-  static m18(min, max) => "良好(${min}～${max})";
+  static m18(min, max) => "良 (${min} to ${max})";
 
-  static m19(unit, value) => "重度の高血糖\n[${unit} x min²]";
+  static m19(min) => "利用不可(${min} 分未満)";
 
-  static m20(unit) => "重度の高血糖/日(${unit} 以上)";
+  static m20(min, max) => "良好(${min}～${max})";
 
-  static m21(unit, value) => "重度の低血糖\n[${unit} x min²]";
+  static m21(unit, value) => "重度の高血糖\n[${unit} x min²]";
 
-  static m22(unit) => "重度の低血糖/日(${unit} 以下)";
+  static m22(unit) => "重度の高血糖/日(${unit} 以上)";
 
-  static m23(value) => "高血糖${value}";
+  static m23(unit, value) => "重度の低血糖\n[${unit} x min²]";
 
-  static m24(value) => "履歴${value}";
+  static m24(unit) => "重度の低血糖/日(${unit} 以下)";
 
-  static m25(unit) => "インスリン効果値(ISF) 1 IUでX ${unit} の血糖値が下がる";
+  static m25(value) => "高血糖${value}";
 
-  static m26(value) => "${value}g";
+  static m26(value) => "履歴${value}";
 
-  static m27(value) => "g CH (${value} BU)";
+  static m27(value) => "Hypos (< ${value})";
 
-  static m28(value) => "総インスリン量(${value})";
+  static m28(unit) => "インスリン効果値(ISF) 1 IUでX ${unit} の血糖値が下がる";
 
-  static m29(error, stacktrace) => "データ取得エラー:${error}${stacktrace}";
+  static m29(value) => "${value}g";
 
-  static m30(date) => "データを${date} より取得しています…";
+  static m30(value) => "g CH (${value} BU)";
 
-  static m31(insulin, unit) => "SMB${insulin}${unit}";
+  static m31(value) => "総インスリン量(${value})";
 
-  static m32(percent, duration) => "一時基礎料${percent}%/${duration} 分";
+  static m32(error, stacktrace) => "データ取得エラー:${error}${stacktrace}";
 
-  static m33(target, duration, reason) => "目標範囲${target}、${duration} 分、理由：${reason}";
+  static m33(date) => "データを${date} より取得しています…";
 
-  static m34(value) => "低血糖${value}";
+  static m34(insulin, unit) => "SMB${insulin}${unit}";
 
-  static m35(gluc, unit) => "血糖値${gluc}${unit}";
+  static m35(percent, duration) => "一時基礎料${percent}%/${duration} 分";
 
-  static m36(unit, value) => "平均血糖値[${unit}]";
+  static m36(target, duration, reason) => "目標範囲${target}、${duration} 分、理由：${reason}";
 
-  static m37(hba1c) => "指定期間の平均血糖値";
+  static m37(value) => "低血糖${value}";
 
-  static m38(min, max) => "不良 (${min} to ${max})";
+  static m38(gluc, unit) => "血糖値${gluc}${unit}";
 
-  static m39(min, max) => "良好 (${min} to ${max})";
+  static m39(unit, value) => "平均血糖値[${unit}]";
 
-  static m40(max) => "とても悪い ( ${max} 超)";
+  static m40(hba1c) => "指定期間の平均血糖値";
 
-  static m41(min) => "優秀(${min} 未満)";
+  static m41(min, max) => "不良 (${min} to ${max})";
 
-  static m42(oldName, newName) => "プロフィール変更 - ${oldName} => ${newName}";
+  static m42(min, max) => "良好 (${min} to ${max})";
 
-  static m43(oldName, newName, duration) => "プロフィール変更 - ${oldName} => ${newName} から ${duration} 分";
+  static m43(max) => "とても悪い ( ${max} 超)";
 
-  static m44(howMany, fmt) => "${Intl.plural(howMany, zero: 'データがありません', one: '1件のデータ/分', other: '${fmt}分毎にデータ')}";
+  static m44(min) => "優秀(${min} 未満)";
 
-  static m45(howMany, fmt) => "${Intl.plural(howMany, zero: '値がありません', one: '1日あたり１データ', other: '1日あたり${fmt}データ')}";
+  static m45(oldName, newName) => "プロフィール変更 - ${oldName} => ${newName}";
 
-  static m46(howMany, fmt) => "${Intl.plural(howMany, zero: 'データがありません', one: '1件のデータ/時間', other: '${fmt} 件のデータ/時間')}";
+  static m46(oldName, newName, duration) => "プロフィール変更 - ${oldName} => ${newName} から ${duration} 分";
 
-  static m47(count, txt) => "${Intl.plural(count, zero: '', one: '(${txt} 日間/リザーバー)', other: '(${txt} 日間/リザーバー)')}";
+  static m47(howMany, fmt) => "${Intl.plural(howMany, zero: 'データがありません', one: '1件のデータ/分', other: '${fmt}分毎にデータ')}";
 
-  static m48(value) => "SMB(${value})";
+  static m48(howMany, fmt) => "${Intl.plural(howMany, zero: '値がありません', one: '1日あたり１データ', other: '1日あたり${fmt}データ')}";
 
-  static m49(count, txt) => "${Intl.plural(count, zero: '', one: '(${txt} 日間/センサー)', other: '(${txt} 日間/センサー)')}";
+  static m49(howMany, fmt) => "${Intl.plural(howMany, zero: 'データがありません', one: '1件のデータ/時間', other: '${fmt} 件のデータ/時間')}";
 
-  static m50(value) => "(標準偏差 ${value})";
+  static m50(count, txt) => "${Intl.plural(count, zero: '', one: '(${txt} 日間/リザーバー)', other: '(${txt} 日間/リザーバー)')}";
 
-  static m51(value) => "ToR [${value}min/d]";
+  static m51(value) => "SMB(${value})";
 
-  static m52(min, max) => "1日あたりの目標範囲外の時間${min} から${max}。";
+  static m52(count, txt) => "${Intl.plural(count, zero: '', one: '(${txt} 日間/センサー)', other: '(${txt} 日間/センサー)')}";
 
-  static m53(unit) => "血糖値目標範囲${unit}";
+  static m53(value) => "(標準偏差 ${value})";
 
-  static m54(min, max, units) => "目標範囲(${min} - ${max} ${units})";
+  static m54(value) => "ToR [${value}min/d]";
 
-  static m55(value) => "目標値";
+  static m55(min, max) => "1日あたりの目標範囲外の時間${min} から${max}。";
 
-  static m56(time) => "${time}";
+  static m56(unit) => "血糖値目標範囲${unit}";
 
-  static m57(time) => "午前${time}";
+  static m57(min, max, units) => "目標範囲(${min} - ${max} ${units})";
 
-  static m58(time) => "午後${time}";
+  static m58(value) => "目標値";
 
-  static m59(begDate) => "${begDate} から有効";
+  static m59(time) => "${time}";
 
-  static m60(begDate, endDate) => "${begDate} から${endDate} まで有効";
+  static m60(time) => "午前${time}";
 
-  static m61(endDate) => "${endDate} まで有効";
+  static m61(time) => "午後${time}";
 
-  static m62(high) => "${high} を超えた値";
+  static m62(begDate) => "${begDate} から有効";
 
-  static m63(low) => "${low} 未満の値";
+  static m63(begDate, endDate) => "${begDate} から${endDate} まで有効";
 
-  static m64(low, high) => "${low} から${high} の値";
+  static m64(endDate) => "${endDate} まで有効";
 
-  static m65(low, high) => "目標範囲 (${low} - ${high})";
+  static m65(high) => "${high} を超えた値";
 
-  static m66(value) => "高い値 (${value})";
+  static m66(low) => "${low} 未満の値";
 
-  static m67(value) => "低い値 (${value})";
+  static m67(low, high) => "${low} から${high} の値";
 
-  static m68(value) => "非常に高い ( > ${value})";
+  static m68(low, high) => "目標範囲 (${low} - ${high})";
 
-  static m69(value) => "非常に低い値 (< ${value})";
+  static m69(value) => "高い値 (${value})";
+
+  static m70(value) => "低い値 (${value})";
+
+  static m71(value) => "非常に高い ( > ${value})";
+
+  static m72(value) => "非常に低い値 (< ${value})";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static _notInlinedMessages(_) => <String, Function> {
@@ -189,7 +195,10 @@ class MessageLookup extends MessageLookupByLibrary {
     "1.3.3 - 12.09.2019" : MessageLookupByLibrary.simpleMessage("1.3.3 - 2019/09/12"),
     "1.3.4 - 17.09.2019" : MessageLookupByLibrary.simpleMessage("1.3.4 - 2019/09/17"),
     "1.3.5 - 23.09.2019" : MessageLookupByLibrary.simpleMessage("1.3.5 ‐ 2019/09/23"),
-    "1.3.6 - xx.10.2019" : MessageLookupByLibrary.simpleMessage("1.3.6 - xx/10/2019"),
+    "1.3.6 - 18.12.2019" : MessageLookupByLibrary.simpleMessage("1.3.6 - 18/12/2019"),
+    "1.3.7 - 7.1.2020" : MessageLookupByLibrary.simpleMessage("1.3.7 - 7/1/2020"),
+    "1.3.8 - 9.1.2020" : MessageLookupByLibrary.simpleMessage("1.3.8 - 9/1/2020"),
+    "10%" : MessageLookupByLibrary.simpleMessage("10%"),
     "10% - 90% der Werte" : MessageLookupByLibrary.simpleMessage("値の10% - 90%"),
     "15 Minuten" : MessageLookupByLibrary.simpleMessage("15 分"),
     "2,1 bis 3,0" : MessageLookupByLibrary.simpleMessage("2,1 ～ 3,0"),
@@ -200,6 +209,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "4,1 bis 4,5" : MessageLookupByLibrary.simpleMessage("4,1 ～ 4,5"),
     "5 Minuten" : MessageLookupByLibrary.simpleMessage("5 分"),
     "75%" : MessageLookupByLibrary.simpleMessage("75%"),
+    "90%" : MessageLookupByLibrary.simpleMessage("90%"),
     "<br><br>Wenn diese URL geschützt ist, muss ausserdem das UserToken korrekt definiert sein." : MessageLookupByLibrary.simpleMessage("<br><br>このURLを保護している場合は、UserTokenを設定する必要があります。"),
     "Absturz behoben, der auftrat, wenn kein passendes Profil für einen Zeitpunkt gefunden werden konnte" : MessageLookupByLibrary.simpleMessage("プロフィールが一定時間内に一致しない場合、クラッシュしていた問題が修正されました。"),
     "Acht" : MessageLookupByLibrary.simpleMessage("8"),
@@ -215,6 +225,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "Anzahl Katheterwechsel" : MessageLookupByLibrary.simpleMessage("注入場所変更回数"),
     "Anzahl Messungen" : MessageLookupByLibrary.simpleMessage("値数"),
     "Anzahl Sensorenwechsel" : MessageLookupByLibrary.simpleMessage("センサー変更回数"),
+    "Anzahl Unterzuckerungen" : MessageLookupByLibrary.simpleMessage("Number of Hypos"),
     "Anzahl der Sensoren zur Analyse hinzugefügt" : MessageLookupByLibrary.simpleMessage("分析へのセンサー数追加"),
     "Anzeigeeinstellungen" : MessageLookupByLibrary.simpleMessage("画面設定"),
     "Auf 10be muss beim Server in den Standardeinstellungen der Haken bei \"cors\" aktiviert werden, damit externe Tools wie dieses hier auf die Daten zugreifen dürfen." : MessageLookupByLibrary.simpleMessage("このような外部ツールが10beに接続できるようにする為には、10beの設定で”cros”のチェックボックスをオンにする必要があります。；"),
@@ -225,18 +236,25 @@ class MessageLookup extends MessageLookupByLibrary {
     "Auf der Analyseseite werden nun auch GVI und PGS ausgegeben." : MessageLookupByLibrary.simpleMessage("分析ページにGVIとPGSを追加しました。"),
     "Auf der Analyseseite wird jetzt auch die Standardabweichung aller Werte der Periode angezeigt." : MessageLookupByLibrary.simpleMessage("分析ページに選択範囲すべての標準偏差も表示されるようになりました。"),
     "Auf der Profilseite wurde die Spalte für die Werte von ICR verbreitert." : MessageLookupByLibrary.simpleMessage("プロフィールページのICRの列幅を広げました"),
+    "Auf der Seite \"Profil\" wird die Gültigkeit jetzt mit Uhrzeit angezeigt." : MessageLookupByLibrary.simpleMessage("The validity is now displayed with the time on the \"Profile\" page."),
+    "Auf der Seite \"Stündliche Statistik\" gibt es eine neue Option, um auch Spalten mit 10% und 90% anzeigen zu lassen." : MessageLookupByLibrary.simpleMessage("There is a new option on the page \"Hourly Statistics\" to also show columns with 10% and 90%."),
     "Aufsummierte Werte" : MessageLookupByLibrary.simpleMessage("合計値"),
     "Ausgabe" : MessageLookupByLibrary.simpleMessage("Output"),
     "Ausgewertete Tage" : MessageLookupByLibrary.simpleMessage("評価期間"),
     "Ausrichtung" : MessageLookupByLibrary.simpleMessage("方向"),
     "Auswertung" : MessageLookupByLibrary.simpleMessage("分析"),
+    "Automatisch_theme selection - automatic" : MessageLookupByLibrary.simpleMessage("Automatic"),
     "Basal" : MessageLookupByLibrary.simpleMessage("ベーサル"),
+    "Basal 0%" : MessageLookupByLibrary.simpleMessage("Basal 0%"),
+    "Basal ges." : MessageLookupByLibrary.simpleMessage("Basal total"),
     "Basal mit zwei Nachkommastellen" : MessageLookupByLibrary.simpleMessage("ベーサルレート：小数点以下表示"),
     "Basalrate" : MessageLookupByLibrary.simpleMessage("基礎単位"),
     "Basalrate\nIE / Stunde" : MessageLookupByLibrary.simpleMessage("ベーサル U / 時"),
     "Batteriewechsel" : MessageLookupByLibrary.simpleMessage("電池交換"),
     "Behandlungen" : MessageLookupByLibrary.simpleMessage("トリートメント"),
     "Bei Tagesgrafiken und Wochengrafiken gibt es jetzt die Möglichkeit 1, 2, 4, 8 oder 16 Grafiken auf einer Seite zu platzieren." : MessageLookupByLibrary.simpleMessage("デイリーグラフとウィークリーグラフで1枚のPDFに複数の画像を表示できるようになりました。（1枚・2枚・4枚・8枚・16枚）"),
+    "Bei der Auswertung kann nun ein Bereich angezeigt werden, in dem die Anzahl an Unterzuckerungen während des ausgewählten Zeitraums und der Zeitpunkt der letzten Unterzuckerung angezeigt werden." : MessageLookupByLibrary.simpleMessage("In the analysis, an area can now be displayed, showing the number of hypos in the selected period and the time of the last hypo."),
+    "Bei der Basalrate und dem Profil gibt es nun eine Option jeweils nur das letzte im entsprechenden Zeitraum ausgeben zu lassen. Das verringert die Blätterflut bei häufigem Profilwechsel." : MessageLookupByLibrary.simpleMessage("With the basalrate and the profile, there is now an option to have only the last one printed in the corresponding period. This reduces the number of pages with frequent profile changes."),
     "Bei der Berechnung der Kohlenhydrate werden weitere Datensätze berücksichtigt" : MessageLookupByLibrary.simpleMessage("追加データは炭水化物の計算に利用されます"),
     "Beim Auslesen des Profils ist ein Fehler aufgetreten." : MessageLookupByLibrary.simpleMessage("プロファイル読み込み中にエラーが発生しました。"),
     "Beim CGP werden die aktuellen Werte jetzt in der Legende angezeigt." : MessageLookupByLibrary.simpleMessage("The CGP now displays the current values in the legend."),
@@ -254,8 +272,11 @@ class MessageLookup extends MessageLookupByLibrary {
     "Bisher fehlende Summenwerte in der Tagesstatistik hinzugefügt" : MessageLookupByLibrary.simpleMessage("日別統計に合計を追加しました。"),
     "Bitte einen Zeitraum wählen." : MessageLookupByLibrary.simpleMessage("期間を選択して下さい"),
     "Bitte überprüfe die Aktivierung der Wochentage unter dem Monat" : MessageLookupByLibrary.simpleMessage("カレンダーの下にあるチェック印を確認してください"),
+    "Blutige Werte sollten jetzt auch bei mmol-Daten korrekt in der Tagesgrafik angezeigt werden." : MessageLookupByLibrary.simpleMessage("Bloody values should now also be displayed correctly in the daily graph for mmol data."),
     "Blutwerte werden jetzt auch bei mmol/L in den Grafiken korrekt angezeigt." : MessageLookupByLibrary.simpleMessage("血糖値がmmol/lでグラフに正しく表示できるようになりました。"),
     "Bolus" : MessageLookupByLibrary.simpleMessage("ボーラス"),
+    "Bolus Rechner_bolus calculated by the bolus wizard" : MessageLookupByLibrary.simpleMessage("Bolus Wizard"),
+    "Bolus ges." : MessageLookupByLibrary.simpleMessage("Bolus total"),
     "Bolusarten anzeigen" : MessageLookupByLibrary.simpleMessage("ボーラスタイプを表示する"),
     "CGP" : MessageLookupByLibrary.simpleMessage("CGP"),
     "Comprehensive Glucose Pentagon" : MessageLookupByLibrary.simpleMessage("グルコース総合グラフ"),
@@ -266,6 +287,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "Das Enddatum ist nicht korrekt" : MessageLookupByLibrary.simpleMessage("終了日が正しくありません"),
     "Das PDF für die Basalrate war nicht korrekt, wenn nicht für jede Stunde ein Wert vorlag." : MessageLookupByLibrary.simpleMessage("ベーサルレートPDFは、毎時間の値が無い場合は正しく表示できませんでした。"),
     "Das PDF wurde erstellt. Wenn es nicht angezeigt wird, dann ist vermutlich ein Popup-Blocker aktiv, der die Anzeige verhindert. Diesen bitte deaktivieren." : MessageLookupByLibrary.simpleMessage("PDFが作成されました。表示されない場合、ブラウザのポップアップ禁止設定が有効になっている可能性がありますので、ご確認ください。"),
+    "Das Problem, dass bestimmte Tage nicht erzeugt werden konnten, wurde behoben." : MessageLookupByLibrary.simpleMessage("The problem that certain days could not be created has been fixed."),
     "Das Profil-PDF wird nun im Querformat erzeugt, um auch Profile mit vielen Einträgen für die Parameter brauchbar darstellen zu können." : MessageLookupByLibrary.simpleMessage("パラメータのエントリーが多いプロファイルでもPDFが横長で出力され表示できるようになりました。"),
     "Das Startdatum ist nicht korrekt" : MessageLookupByLibrary.simpleMessage("開始日が正しくありません"),
     "Das User-Token wird nur benötigt, wenn der Zugriff in Nightscout über AUTH_DEFAULT_ROLES eingeschränkt wurde" : MessageLookupByLibrary.simpleMessage("NightscoutへのアクセスをAUTH_DEFAULT_ROLESで設定している場合は、ユーザートークンを入力する必要があります。"),
@@ -278,8 +300,10 @@ class MessageLookup extends MessageLookupByLibrary {
     "Datum" : MessageLookupByLibrary.simpleMessage("日付"),
     "Dauer der Insulinaktivität (DIA)" : MessageLookupByLibrary.simpleMessage("インスリン作用時間(DIA)"),
     "Dauer der Kohlenhydrataktivität" : MessageLookupByLibrary.simpleMessage("炭水化物作用時間"),
+    "Dauer der abgeschalteten Basalrate anzeigen" : MessageLookupByLibrary.simpleMessage("Show the duration of the disabled basal rate"),
     "Dauer mit Minutenbruchteil" : MessageLookupByLibrary.simpleMessage("Precise duration"),
     "Der Fehler im Profil, der dazu führte, dass die Werte für ISF und Zielbereich falsch umgerechnet werden, wurde behoben." : MessageLookupByLibrary.simpleMessage("プロフィールのISFと目標範囲の値が正確に変換されないバグを修正しました。"),
+    "Der Fehler mit der Vervielfachung der Kohlenhydrate bei wiederholter Ausgabe der PDFs wurde korrigiert." : MessageLookupByLibrary.simpleMessage("The error with the multiplication of the carbohydrates with the repeated output of the PDFs was corrected."),
     "Der Zeitraum enthält keine auswertbaren Tage" : MessageLookupByLibrary.simpleMessage("選択した期間に表示できる日が含まれていません"),
     "Der prognostische glykämische Risikoparameter stellt das Risiko von Langzeitkomplikationen dar (bisher nicht durch Studien belegt)." : MessageLookupByLibrary.simpleMessage("予後血糖リスクパラメーターは、長期の合併症リスクを表します(現在までの研究では証明されていません)。"),
     "Details des Profilwechsels" : MessageLookupByLibrary.simpleMessage("プロファイル変更の詳細"),
@@ -292,14 +316,17 @@ class MessageLookup extends MessageLookupByLibrary {
     "Die Auswahl des Zeitraums ist nun flexibler. Die Auswahl erfolgt in einem Dialog, der die eingestellte Sprache berücksichtigt. Mit der Auswahl der vorbelegten Bereiche (Heute, Letzte Woche, usw.) wird festgelegt, dass beim nächsten Aufruf das aktuelle Datum als Grundlage für den Bereich verwendet wird. Wenn der Bereich direkt im Kalender festgelegt wird, dann gilt dieser beim nächsten Aufruf so wie er festgelegt wurde. Standardmässig ist der erste Tag der Woche jetzt ein Montag. Dieser kann aber durch Anklicken des Wochentags in der Titelzeile des Monats auf die eigene Präferenz festgelegt werden. Die Eingabe der Datumsfelder erfolgt in der Form, die der Sprache entspricht (Tag.Monat.Jahr für deutsch, Monat/Tag/Jahr für englisch)." : MessageLookupByLibrary.simpleMessage("期間の選択がより自由になりました。選択は、言語を考慮したダイアログで行われます。規定の範囲（本日、先週等）を選択すると現在の日付が次の設定での基準日として設定されます。範囲をカレンダーで直接設定している場合は、設定に従って定義されます。又、デフォルトでは週の始まりは月曜日ですが、タイトルバーの曜日をクリックする事で変更が可能です。日付フィールドは言語に対応するフォーマットで入力されます。(ドイツ語：日/月/年　英語：月/日/年)"),
     "Die Auswahl des Zeitraums und der Benutzer wurde in die Titelzeile verschoben." : MessageLookupByLibrary.simpleMessage("タイトルバーに期間とユーザーの選択が移動されました。"),
     "Die Balken für das Bolusinsulin in der Tagesgrafik werden nun entsprechend dem Maximalwert an Bolusinsulin an dem Tag skaliert." : MessageLookupByLibrary.simpleMessage("デイリーグラフのボーラスバーは、その日の最大ボーラスによって縮尺が決定されます。"),
+    "Die Balken in der Analyse werden jetzt korrekt skaliert." : MessageLookupByLibrary.simpleMessage("The bars in the analysis are now scaled correctly."),
     "Die Basalratenprofile für den Tag werden nun auch anhand der Behandlungsdaten ermittelt. Profilwechsel werden in der Tagesgrafik angezeigt und sollten ab dem Zeitpunkt des Wechsels auch eine korrekte Basalratenanpassung anzeigen." : MessageLookupByLibrary.simpleMessage("ベーサルレートも治療データによりプロフィールが変更されます。プロフィールされた場合は、新しいプロファイルを表示します。"),
     "Die Berechnung der PDF-Grössen wurde korrigiert, so dass nun weniger PDFs erstellt werden, wenn sie aufgrund der Grösse aufgeteilt werden." : MessageLookupByLibrary.simpleMessage("ＰＤＦサイズの計算を修正しました。サイズにより分割する際のＰＤＦ数が少なくなりました。"),
     "Die Berechnung der Summenzeile auf der Seite Tagesstatistik wurde korrigiert." : MessageLookupByLibrary.simpleMessage("日別統計の合計行の計算を修正しました。"),
     "Die Berechnung der tatsächlichen Basalrate wurde korrigiert." : MessageLookupByLibrary.simpleMessage("実際のベーサルレートの計算式を修正しました。"),
     "Die Berechnung des täglichen Insulins berücksichtigt nun auch die SMB." : MessageLookupByLibrary.simpleMessage("SMBが1日のインスリン量にも考慮されるようになりました。"),
+    "Die Bilder auf den Kacheln sind nun in der jeweiligen Sprache beschriftet." : MessageLookupByLibrary.simpleMessage("The images on the tiles are now labeled in the respective language."),
     "Die Buttons für die vergangenen Perioden werden nicht angezeigt, wenn kein Zeitraum oder kein PDF ausgewählt wurde." : MessageLookupByLibrary.simpleMessage("選択期間及びPDF作成がされてい場合は、過去の期間ボタンは表示されません。"),
     "Die Daten, die Du hier eingibst, werden normalerweise im localStorage des Browsers gespeichert. Dieser beinhaltet webseitenbezogene Daten, die nur von dieser Webseite ausgelesen werden können. In diesem Fall werden keine Cookies verwendet und es werden keine Daten auf Servern gespeichert. Es wird lediglich eine Verbindung zur angegebenen Nightscout-Instanz aufgebaut und die dort vorhandenen Daten ausgelesen, um daraus ein PDF-Dokument zu erzeugen. Dieses kann dann dem Diabetesberater oder sonstigen Interessenten vorgelegt werden." : MessageLookupByLibrary.simpleMessage("このページに入力したデータは、当ページからのみ読み込みが可能でブラウザのローカルストレージに保存されます。データはサーバーに保存されずクッキーも使用しません。Nightscoutへ接続しデータを読み込みPDFを作成します。PDFを利用して糖尿病カウンセラーや医療関係者に提出出来る場合があります。（※医療関係者に提出する場合は、関係機関にご相談ください。）"),
     "Die Einstellungen für das Herunterladen des PDFs, das Öffnen im gleichen Fenster und die Maximalgrösse der PDFs wurden von der Synchronisierung mit Google Drive ausgenommen, weil sie speziell für den verwendeten Browser oder das verwendete Gerät benötigt werden. Sie werden nach wie vor gespeichert, aber sie werden nicht zwischen verschiedenen Browsern synchronisiert." : MessageLookupByLibrary.simpleMessage("The settings for downloading the PDF, opening the PDF in the same window, and the maximum size of the PDFs were excluded from syncing with Google Drive because they are specific to the browser or device you are using. They are still saved, but they are not synchronized between different browsers."),
+    "Die Einträge im Protokoll für temporäre Ziele werden jetzt auch bei mmol-Angaben richtig angezeigt." : MessageLookupByLibrary.simpleMessage("The entries in the log for temporary targets are now displayed correctly even with mmol data."),
     "Die Ermittlung der Einheit (mg/dl oder mmol/l) wird nun flexibler gehandhabt, so dass auch Leerzeichen in der entsprechenden Einstellung nicht mehr zu einer Fehlinterpretation führen." : MessageLookupByLibrary.simpleMessage("単位(mg/dl or mmol/l) の決定が柔軟に対応できるようになりました。設定にスペースが入っている場合でも間違える事がなくなりました。"),
     "Die Ermittlung der effektiven täglichen Basalrate wurde umstrukturiert und sollte nun genauere Werte ergeben." : MessageLookupByLibrary.simpleMessage("The determination of the effective daily basal rate has been restructured and should now give more accurate values."),
     "Die Farben für Dialoge und Scrollbars wurden angepasst." : MessageLookupByLibrary.simpleMessage("ダイアログとスクロールバーの色を調整しました。"),
@@ -314,6 +341,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "Die Mischung von zwei Seiten auf einer PDF-Seite, die manchmal vorkam, wurde behoben." : MessageLookupByLibrary.simpleMessage("1つのPDFページに2ページ混在することがありましたが修正しました。"),
     "Die Möglichkeit für Beta-Funktionen wurde entfernt; die Betaversion ist nun hier zu finden:" : MessageLookupByLibrary.simpleMessage("ベータ機能の予定は削除されました。ベータバージョンは現在こちらから利用可能です。："),
     "Die Möglichkeit, die URL in der Titelzeile anzeigen zu lassen wurde entfernt, da jetzt der aktuelle Benutzer oder dessen URL direkt angezeigt wird" : MessageLookupByLibrary.simpleMessage("ユーザー名とユーザーのURLが直接表示されるようになった為、タイトルバーにURLを表示する機能は削除されました。"),
+    "Die Oberfläche kann jetzt verschiedene Darstellungen annehmen. Diese zeigen sich zur Zeit durch geänderte Farben und ein angepasstes Icon im Browsertab und beim Laden der Seite. Das hat keine Auswirkungen auf die erzeugten PDF-Dateien. Es ist die Vorbereitung für eine teilweise anpassbare Oberfläche. Das Thema der Darstellung wird standardmässig vom System festgelegt, was zur Zeit heisst, dass im Dezember ein weihnachtliches Thema angezeigt wird. Das kann aber durch Anklicken des Icons, das ab jetzt links unten zu sehen ist, geändert werden. Beim Anklicken wird rechts neben dem Icon ein Bereich mit den verfügbaren Darstellungen eingeblendet. Das erste Icon (der kleine Zauberer) bedeutet dabei, dass die Darstellung vom System ermittelt wird. Zur Zeit bedeutet das die weihnachtliche Darstellung im Dezember. Es kann in Zukunft aber auch weitere Kriterien geben, anhand derer das Thema angepasst wird. Die direkte Festlegung eines Themas mit einem der anderen icons hat aber immer Vorrang vor der systemeigenen Logik." : MessageLookupByLibrary.simpleMessage("The UI can now assume different representations. These show themselves at the moment by different colours and an adapted icon in the Browser tab and with the loading of the side. This does not affect the generated PDF files. It\'s the preparation for a partially customizable surface. The theme of the UI is set by default by the system, which currently means that a Christmas theme will be displayed in December. But this can be changed by clicking on the icon, which can be seen at the bottom left. When clicking the icon, an area with the available themes is displayed to the right of the icon. The first icon (the little wizard) means that the theme is determined by the system. At the moment this means the Christmas presentation in December. However, there may be other criteria in the future that will be used to adjust the theme. However, the direct definition of a theme with one of the other icons always takes precedence over the system logic."),
     "Die Positionierung der Notizen in der Tagesgrafik wurde korrigiert, so dass sie näher an der Uhrzeit stehen. Die Striche wurden so verkürzt, dass sie nur noch bis zum unteren Rand der Grafik gehen und nicht mehr durch die Wertetabelle." : MessageLookupByLibrary.simpleMessage("デイリーグラフのポンプ履歴の表示位置は、時間近くに表示されるように修正しました。短くグラフの下部に表示し、値と重なりません。"),
     "Die Profile für den Zeitraum wurden teilweise nicht korrekt identifiziert. Das sollte behoben sein." : MessageLookupByLibrary.simpleMessage("The profiles for the period were partially incorrectly identified. That should be fixed."),
     "Die Profilseite wurde angepasst, damit Einträge für 24 Stunden auf eine Seite passen." : MessageLookupByLibrary.simpleMessage("プロフィールページでは24時間のエントリーが1ページに収まるように調整されています。"),
@@ -329,15 +357,19 @@ class MessageLookup extends MessageLookupByLibrary {
     "Die Vorschaubilder auf den Kacheln passen sich abhängig von den ausgewählten Optionen teilweise an (z.B. die Auswahl von CGP bei Tagesgrafiken)." : MessageLookupByLibrary.simpleMessage("The preview images on the tiles will partially adjust depending on the options selected (for example, choosing CGP for day graphics)."),
     "Die Webseite verwendet hauptsächlich Javascript zur Erledigung ihrer Aufgaben. Bei der Erzeugung des PDF-Dokuments kommen Javascript und PHP zum Einsatz." : MessageLookupByLibrary.simpleMessage("当ウェブサイトはJavascriptを利用しています。PDFを作成する時はJavascriptとPHPを使用します。"),
     "Die Werte für den Standardzielbereich auf der Analyse-Seite werden nun korrekt ermittelt" : MessageLookupByLibrary.simpleMessage("分析ページのデフォルトのターゲット範囲の値が正しく計算されるようになりました。"),
+    "Die Werte im CGP werden jetzt bei mmol-Angaben auch korrekt angezeigt." : MessageLookupByLibrary.simpleMessage("The values in the CGP are now also correctly displayed for mmol data."),
     "Die angegebene URL ist nicht erreichbar. Wenn die URL stimmt, dann kann es an den Nightscout-Einstellungen liegen. " : MessageLookupByLibrary.simpleMessage("指定されたURLにアクセスできません。URLが正しい場合はNightscoutセッティングを確認してください。 "),
     "Die eigenen Grenzwerte auf der Analyseseite in mmol/L werden nun korrekt berechnet." : MessageLookupByLibrary.simpleMessage("分析ページにmmol/Lを使用時のリミット設定が正しく計算されるようになりました。"),
     "Die einzelne Seite CGP kann jetzt auch im Querformat ausgegeben werden." : MessageLookupByLibrary.simpleMessage("The single page CGP can now also be output in landscape format."),
     "Die fehlerhafte Platzierug der blutigen Werte bei mmol/L in der Tagesgrafik wurde korrigiert." : MessageLookupByLibrary.simpleMessage("デイリーグラフの血糖値をmmol/L標記にした場合も正しい位置に表示されるようになりました。"),
     "Die fehlerhafte Zentrierung der Auswahlbuttons wurde korrigiert." : MessageLookupByLibrary.simpleMessage("メインページのボタン配置の間違いを修正しました。"),
     "Die glykämische Variabilität stellt die Streuung der Werte um den glykämischen Mittelwert herum in Prozent dar." : MessageLookupByLibrary.simpleMessage("血糖変動係数は、血糖値平均値前後の変動をパーセントで表示したものです"),
+    "Die glykämische Variabilität wird jetzt im CGP auch bei Tages- und Wochengrafiken korrekt ausgegeben." : MessageLookupByLibrary.simpleMessage("The glycemic variability is now correctly displayed in the CGP even with daily and weekly graphics."),
+    "Die meisten Spalten auf der Seite \"Stündliche Statistik\" werden bei nicht vorhandenen Daten leer gelassen." : MessageLookupByLibrary.simpleMessage("Most of the columns on the page \"Hourly Statistics\" are left blank if there is no data."),
     "Die mittlerweile überflüssige Option zur Darstellung der Basalrate mit zwei Nachkommastellen wurde aus der Tagesgrafik entfernt." : MessageLookupByLibrary.simpleMessage("デイリーグラフからベーサルレート少数点の古いオプションを削除しました。"),
     "Die teilweise falsch zugewiesenen Grenzwerte für die Bereiche (niedrig, normal, hoch) wurden korrigiert." : MessageLookupByLibrary.simpleMessage("一部間違って割り当てていたエリア(低血糖、普通、高血糖) は修正されました。"),
     "Die temporäre Basalrate am Anfang des Tages wurde bisher falsch gesetzt, wenn sie im vorherigen Tag gesetzt wurde. Das wurde behoben." : MessageLookupByLibrary.simpleMessage("The temporary basal rate at the beginning of the day has been set incorrectly if it was set in the previous day. This has been fixed."),
+    "Die Überschrift über der mittleren Spalte im Tagesprofil wurde korrigiert." : MessageLookupByLibrary.simpleMessage("The heading above the middle column in the daily profile has been corrected."),
     "Diese Seite dient der Erzeugung von PDF-Dokumenten mit den bei Nightscout gespeicherten Daten. Dafür ist es notwendig, auf diese Daten zugreifen zu können, weshalb zunächst ein paar Einstellungen gespeichert werden müssen. Solange diese nicht vorhanden und gültig sind, kann die Seite nichts für Dich tun." : MessageLookupByLibrary.simpleMessage("このページはNightscoutのデータを利用してPDFを作成します。最初に Nightscoutにアクセスできるように設定を保存する必要があります。 設定を保存し有効にしなければ利用できません。"),
     "Diese Seite hinzugefügt. Sie wird jedesmal beim Start von Nightscout Reporter angezeigt, wenn sie in der aktuellen Version noch nicht angezeigt wurde. Ausserdem kann sie im Hamburgermenü wieder aufgerufen werden." : MessageLookupByLibrary.simpleMessage("このページを追加しました。リリースの最新バージョンで表示されていない場合はNightscout　Reporterの起動時に表示されます。又、メニューからも再度表示できます。"),
     "Diese Webseite speichert keine Daten auf Servern. Die benötigten Daten werden von der eingegebenen URL zur Nightscout-Instanz geholt und als PDF aufbereitet. Die Daten, die zur Funktion der Webseite benötigt werden, werden im localStorage des Browsers gespeichert und nicht an den Server übermittelt. Wenn die Synchronisierung mit Google Drive aktiviert wird, dann werden diese Daten zusätzlich in den Anwendungsdaten auf dem Google Drive des verbundenen Kontos gespeichert." : MessageLookupByLibrary.simpleMessage("このウェブサイトはサーバー上にデータを保存しません。Nightscoutのサイトから必要なデータを取得しPDFとして出力されます。ウェブサイトが必要なデータはブラウザのLocalStrage領域に保存しサーバーには送信しません。Googleドライブの同期がオンになっている場合は、Googleドライブにも保存されます。"),
@@ -377,6 +409,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "Fehlerhafte Ausgabe der Blutzuckerwerte in der täglichen Grafik korrigiert." : MessageLookupByLibrary.simpleMessage("デイリーグラフの誤った血糖値出力が修正されました。"),
     "Fehlerhafte Messwerte werden in der Auswertung der Grafiken nicht mehr brücksichtigt; diese werden an dem Wert \"NONE\" im Datenfeld \"direction\" erkannt" : MessageLookupByLibrary.simpleMessage("間違った値はグラフの表示で評価されなくなりました。データフィールドの「矢印」や「無し」によって認識されます。"),
     "Fehlermeldung beim Laden von Profilen ohne Startdatum entfernt." : MessageLookupByLibrary.simpleMessage("開始日を入力せずプロフィールを読み込んだ時に出ていたエラーメッセージを削除しました。"),
+    "Français" : MessageLookupByLibrary.simpleMessage("Français"),
     "Für die Tagesgrafik gibt es jetzt eine Option, um die Aufsummierung nahe beieinander liegender Werte umzuschalten." : MessageLookupByLibrary.simpleMessage("デイリーグラフに、時間帯が近い数値をまとめるオプションが追加されました。"),
     "Geburtstag" : MessageLookupByLibrary.simpleMessage("生年月日"),
     "Ges." : MessageLookupByLibrary.simpleMessage("合計"),
@@ -401,6 +434,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "Hohe Basalraten werden jetzt besser dargestellt." : MessageLookupByLibrary.simpleMessage("高いベーサルレートも正しく表示されます。"),
     "Höchster Wert im Zeitraum" : MessageLookupByLibrary.simpleMessage("期間中の最高血糖値"),
     "IE" : MessageLookupByLibrary.simpleMessage("U"),
+    "IE/std" : MessageLookupByLibrary.simpleMessage("U/hr"),
     "Im Einstellungsdialog wurden die Zeilen mit den Benutzerangaben und der URL gegeneinander ausgetauscht, um eine sinnvollere Verwaltung zu ermöglichen." : MessageLookupByLibrary.simpleMessage("In the settings dialog, the lines with the user details and the URL were exchanged for a more meaningful administration."),
     "Im Kalender-Control kann kein Datum nach dem aktuellen Tag mehr ausgewählt werden." : MessageLookupByLibrary.simpleMessage("範囲選択のカレンダーコントロールで現在以降の日付が選択できなくなりました。"),
     "Im Kalender-Control wird ein eingestellter Bereich (Heute, Letzte Woche, etc.) jetzt korrekt auf den aktuellen Tag bezogen." : MessageLookupByLibrary.simpleMessage("カレンダーコントロールで、定義期間(今日、先週等) が正しく現在の日付を参照するようになりました。"),
@@ -424,12 +458,14 @@ class MessageLookup extends MessageLookupByLibrary {
     "In der Tagesgrafik gibt es eine Option, mit der man sich die erfassten Trainingsdaten anzeigen lassen kann. Diese werden dann am unteren Rand über der Tabelle der Glukosewerte eingefügt." : MessageLookupByLibrary.simpleMessage("デイリーグラフには、グラフにエクササイズのデータを表示するオプションがあります。グラフの最下部の血糖値の上に表示されます。"),
     "In der Tagesgrafik kann die Anzeige der SMB nun ausgeblendet werden." : MessageLookupByLibrary.simpleMessage("デイリーグラフのSMBは非表示にできます。"),
     "In der Tagesgrafik kann jetzt bei Auswahl der Tages Basalrate angegeben werden, dass der Name des Profils angezeigt wird, das am Beginn des Tages aktiv war. Dieser wird dann so angezeigt, wie ein Profilwechsel um 0 Uhr." : MessageLookupByLibrary.simpleMessage("デイリーグラフを表示する際に、その日最初にアクティブだったプロフィール名を表示できるようになりまた。このプロファイルは午前０時より変更したとして表示されます。"),
+    "In der Tagesgrafik kann nun angezeigt werden, wie lange die Basalrate auf 0% lief." : MessageLookupByLibrary.simpleMessage("The daily graph now shows the duration of the basal rate at 0%."),
     "In der Tagesgrafik werden die Insulinangaben jetzt kleiner dargestellt, wenn die Basalrate eine Genauigkeit von mehr als 2 Nachkommastellen hat." : MessageLookupByLibrary.simpleMessage("ベーサルレートを小数点2桁表示にした場合、デイリーグラフでのインスリン量は小さく表示されます。"),
     "In der Tagesgrafik werden jetzt auch Blutzuckermessungen angezeigt. Sie werden als rote Quadrate dargestellt und die zugehörigen Werte in der Tabelle unterhalb der Grafik werden ebenfalls mit roter Schrift angezeigt." : MessageLookupByLibrary.simpleMessage("デイリーチャートに血糖値が表示されるようになりました。値が赤の四角で表示されます。又、下の表のグラフも赤で表示されます。"),
     "In der Tagesgrafik werden nun SMBs auch angezeigt, wenn die Option für die Darstellung von Insulin akitivert wurde. Man kann festlegen, ob die SMBs an der Glukosekurve oder am Zielwert angezeigt werden." : MessageLookupByLibrary.simpleMessage("インスリンを表示するに設定した場合、SMBがデイリーグラフに表示されるようになりました。SMBを血糖値曲線か目標値に表示するかを選択できます。"),
     "In der Tagesgrafik werden nun auch Kohlenhydratkorrekturen angezeigt." : MessageLookupByLibrary.simpleMessage("デイリーグラフにカーボが表示されるようになりました。"),
     "In der Tagesgrafik werden nun auch Reservoirwechsel angezeigt." : MessageLookupByLibrary.simpleMessage("リザーバー交換がデイリーグラフに表示されます。"),
     "In der Tagesgrafik werden nun auch bei Anzeige des Zielwertes die temporären Ziele berücksichtigt." : MessageLookupByLibrary.simpleMessage("デイリーグラフの表示で、目標血糖値を表示する際に一時目標も表示されるようになりました。"),
+    "In der Tagesgrafik werden nun auch verzögerte Boli angezeigt." : MessageLookupByLibrary.simpleMessage("Delayed boli are now displayed in the daily graph."),
     "In der Tagesgrafik werden nun der geschätzte HbA1C und die prozentuale Menge an Bolusinsulin und Basalinsulin für den Tag angezeigt. Diese Anzeige erfolgt innerhalb der Legende, weshalb diese aktiviert sein muss, damit die Werte angezeigt werden." : MessageLookupByLibrary.simpleMessage("日別の推定A1C、ボーラスインスリンおよび基礎インスリンの割合は、デイリーグラフの下の凡例に表示されます。これらを表示するには凡例表示を有効にする必要があります。"),
     "In der Tagesgrafik wird jetzt eine Tabelle mit halbstündigen Glukosewerten eingeblendet angezeigt. Diese kann über einen Parameter ausgeschaltet werden." : MessageLookupByLibrary.simpleMessage("デイリーグラフに30分単位で血糖値グラフが表示されるようになりました。これはパラメーターを使用してオフにできます。"),
     "In der Tagesgraphic werden jetzt Insulinwerte und Kohlenhydratwerte zusammengefasst, wenn es mehrere innerhalb einer Stunde gibt. Die Balken werden nach wie vor für jeden Wert einzeln ausgegeben. Auf diese Art sollte es keine überlappende Ausgabe der Werte mehr geben. Die zusammengefassten Werte werden in eckigen Klammern ausgegeben, um anzuzeigen, dass hier Werte aufsummiert wurden." : MessageLookupByLibrary.simpleMessage("デイリーグラフでは、インスリンと炭水化物の値が1時間に複数個ある場合は合計が表示されます。各バーは値ごとに表示されます。又、この表示により文字が重なる事が解消されました。角括弧で表示された値は合計された値です。"),
@@ -446,8 +482,6 @@ class MessageLookup extends MessageLookupByLibrary {
     "Ja" : MessageLookupByLibrary.simpleMessage("はい"),
     "Januar|Februar|März|April|Mai|Juni|Juli|August|September|Oktober|November|Dezember" : MessageLookupByLibrary.simpleMessage("1月|2月|3月|4月|5月|6月|7月|8月|9月|10月|11月|12月"),
     "Jan|Feb|Mär|Apr|Mai|Jun|Jul|Aug|Sep|Okt|Nov|Dez" : MessageLookupByLibrary.simpleMessage("1月|2月|3月|4月|5月|6月|7月|8月|9月|10月|11月|12月"),
-    "Japanisch" : MessageLookupByLibrary.simpleMessage("日本語"),
-    "Kalibrierung" : MessageLookupByLibrary.simpleMessage("Calibration"),
     "Kalibrierung und blutige Messungen" : MessageLookupByLibrary.simpleMessage("血糖値とキャリブレーション"),
     "Katheterwechsel" : MessageLookupByLibrary.simpleMessage("ポンプ注入場所変更"),
     "Keine" : MessageLookupByLibrary.simpleMessage("無し"),
@@ -462,12 +496,15 @@ class MessageLookup extends MessageLookupByLibrary {
     "Letzte 3 Monate" : MessageLookupByLibrary.simpleMessage("3カ月"),
     "Letzte 3 Tage" : MessageLookupByLibrary.simpleMessage("3日"),
     "Letzte 3 Wochen" : MessageLookupByLibrary.simpleMessage("3週間"),
+    "Letzte Unterzuckerung" : MessageLookupByLibrary.simpleMessage("Last Hypo"),
     "Letzte Woche" : MessageLookupByLibrary.simpleMessage("１週間"),
     "Letzten Messwert in der Titelzeile anzeigen" : MessageLookupByLibrary.simpleMessage("タイトルバーに最新の血糖値を表示する"),
     "Letzter Monat" : MessageLookupByLibrary.simpleMessage("1カ月"),
+    "Mahlzeitenbolus_bolus to handle a meal" : MessageLookupByLibrary.simpleMessage("Meal Bolus"),
     "Man kann jetzt mehrere Benutzer anlegen. Das ist nützlich, um mehrere Nightscout-Instanzen auszuwerten (z.B. für Ärzte, Betreuer oder den Entwickler dieser Software)" : MessageLookupByLibrary.simpleMessage("複数のユーザーのレポートを作成できるようになりました。 複数のナイトスカウトの事例を分析するのに役立ちます(例: 医師、介護者、またはこのソフトウェアの開発者など)。"),
     "Material mit Nachkommastellen" : MessageLookupByLibrary.simpleMessage("小数点以下を表示する"),
     "Max" : MessageLookupByLibrary.simpleMessage("最大"),
+    "Max Mustermann" : MessageLookupByLibrary.simpleMessage("John Smith"),
     "Median" : MessageLookupByLibrary.simpleMessage("中央値"),
     "Mehr gibt es dazu eigentlich nicht zu sagen." : MessageLookupByLibrary.simpleMessage("何もありません。"),
     "Mess-\nwerte" : MessageLookupByLibrary.simpleMessage("値"),
@@ -495,6 +532,8 @@ class MessageLookup extends MessageLookupByLibrary {
     "Notiz" : MessageLookupByLibrary.simpleMessage("ノート"),
     "Notiz-Linien bis zur Kurve zeichnen" : MessageLookupByLibrary.simpleMessage("ノートから血糖値カーブまで線を引く"),
     "Notizen" : MessageLookupByLibrary.simpleMessage("ポンプ履歴"),
+    "Nur letzte Basalrate ausgeben" : MessageLookupByLibrary.simpleMessage("Show only last basalrate"),
+    "Nur letztes Profil ausgeben" : MessageLookupByLibrary.simpleMessage("Show only last profile"),
     "Ok" : MessageLookupByLibrary.simpleMessage("OK"),
     "Optionen für die PDFs, die eine eindeutige Beziehung zu einem laufenden Loop haben, werden nun in Blau dargestellt. Das vereinfacht es, PDFs zu erstellen, denen man nicht ohne Weiteres entnehmen kann, dass ein Loop vorliegt. Dazu müssen nur die Haken bei den blauen Optionen entfernt werden." : MessageLookupByLibrary.simpleMessage("Options for the PDFs that have a unique relationship to a running loop are now displayed in blue. This makes it easy to create PDFs where you can not easily deduce that there is a loop running. All you have to do is to uncheck the blue options."),
     "PDF anzeigen" : MessageLookupByLibrary.simpleMessage("PDFを開く"),
@@ -524,7 +563,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "Sechzehn" : MessageLookupByLibrary.simpleMessage("16"),
     "Sekunden anzeigen" : MessageLookupByLibrary.simpleMessage("Show seconds"),
     "Sensorwechsel" : MessageLookupByLibrary.simpleMessage("センサー交換"),
-    "Slowakisch" : MessageLookupByLibrary.simpleMessage("Slovak"),
+    "Slovenský" : MessageLookupByLibrary.simpleMessage("Slovenský"),
     "Soll der Benutzer mit der URL" : MessageLookupByLibrary.simpleMessage("ナイトスカウトのURLが必要です"),
     "Spalte HbA1c" : MessageLookupByLibrary.simpleMessage("A1C"),
     "Spalte HbA1c zu Tagesstatistik hinzugefügt" : MessageLookupByLibrary.simpleMessage("日別統計にA1Cを追加"),
@@ -532,8 +571,10 @@ class MessageLookup extends MessageLookupByLibrary {
     "Spalte Standardabweichung" : MessageLookupByLibrary.simpleMessage("標準偏差"),
     "Spalte Variationskoeffizient" : MessageLookupByLibrary.simpleMessage("血糖変動係数"),
     "Spalten Perzentile" : MessageLookupByLibrary.simpleMessage("パーセント"),
+    "Spalten für 10% und 90% anzeigen" : MessageLookupByLibrary.simpleMessage("Show columns for 10% and 90%"),
     "Spaltenbreite der Informationen in der Analyse erhöht" : MessageLookupByLibrary.simpleMessage("解析ページの情報を表示する列幅が広くなりました。"),
     "Speichern" : MessageLookupByLibrary.simpleMessage("保存"),
+    "Standard_theme selection - standard" : MessageLookupByLibrary.simpleMessage("Standard"),
     "Standardabweichung" : MessageLookupByLibrary.simpleMessage("標準偏差"),
     "Standardabweichung statt Anzahl" : MessageLookupByLibrary.simpleMessage("値のカウント数の代わりに標準偏差を表示する"),
     "Standardbereich mit feinerer Abstufung" : MessageLookupByLibrary.simpleMessage("標準範囲を精細グラデーションで表示する"),
@@ -541,6 +582,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "Std.\nAbw." : MessageLookupByLibrary.simpleMessage("標準偏差"),
     "Stunden" : MessageLookupByLibrary.simpleMessage("時間"),
     "Stündliche Statistik" : MessageLookupByLibrary.simpleMessage("Hourly Statistics"),
+    "Summe" : MessageLookupByLibrary.simpleMessage("Sum"),
     "Summen für Bolus Insulin, Basalrate für den Tag und Basalrate aus dem Profil zur Tagesgrafik hinzugefügt" : MessageLookupByLibrary.simpleMessage("デイリーグラフに、1日の総インスリン単位、プロフィールで設定したベーサルレートを追加しました。"),
     "Symbole (Katheter etc.)" : MessageLookupByLibrary.simpleMessage("記号(カニューレ等)"),
     "Synchronisierung aufheben" : MessageLookupByLibrary.simpleMessage("同期をキャンセル"),
@@ -567,6 +609,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "Uhr-\nzeit" : MessageLookupByLibrary.simpleMessage("時間"),
     "Uhrzeit" : MessageLookupByLibrary.simpleMessage("時間"),
     "Unbegrenzt" : MessageLookupByLibrary.simpleMessage("無制限"),
+    "Unterzuckerungen anzeigen" : MessageLookupByLibrary.simpleMessage("Show hypoglycemia"),
     "Url zur Nightscout-API (z.B. https://xxx.herokuapp.com)" : MessageLookupByLibrary.simpleMessage("NightscoutのURL(例：https://xxx.herokuapp.com)"),
     "User-Token" : MessageLookupByLibrary.simpleMessage("ユーザートークン"),
     "VarK\nin %" : MessageLookupByLibrary.simpleMessage("CV in %"),
@@ -577,6 +620,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "Vergleich" : MessageLookupByLibrary.simpleMessage("比較する"),
     "Version" : MessageLookupByLibrary.simpleMessage("バージョン"),
     "Verteilung" : MessageLookupByLibrary.simpleMessage("分布"),
+    "Verzögerter Bolus" : MessageLookupByLibrary.simpleMessage("Delayed Bolus"),
     "Vier" : MessageLookupByLibrary.simpleMessage("4"),
     "Von" : MessageLookupByLibrary.simpleMessage("から"),
     "Vorherige Periode" : MessageLookupByLibrary.simpleMessage("前の期間"),
@@ -585,6 +629,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "Was bisher geschah..." : MessageLookupByLibrary.simpleMessage("変更履歴…"),
     "Wechsel" : MessageLookupByLibrary.simpleMessage("Change"),
     "Wechsel (Katheter etc.)" : MessageLookupByLibrary.simpleMessage("交換(カニューレ等)"),
+    "Weihnachten_theme selection - christmas" : MessageLookupByLibrary.simpleMessage("Christmas"),
     "Wenn Sonderzeichen in den Daten vorhanden sind (z.B. Smileys in den Notizen), führte das zu einem Absturz während der PDF-Erstellung. Das wurde behoben, indem diese Sonderzeichen aus der Ausgabe entfernt werden." : MessageLookupByLibrary.simpleMessage("データ中に特殊文字がある場合(ポンプ履歴にスマイルマーク等)、PDFの作成中にクラッシュが発生していました。出力時に特殊文字を削除するように修正しました。"),
     "Wenn das erzeugte PDF zu gross wird, wird es nun auf mehrere PDF-Dateien aufgeteilt. In diesem Fall wird es nicht direkt geöffnet, sondern es wird eine Liste mit durchnummerierten Buttons angezeigt. Diese Buttons öffnen bei Betätigung das entsprechende PDF und erhalten einen Haken, um anzuzeigen, dass es geöffnet wurde. Das sollte es erleichtern, die PDFs nacheinander zu öffnen, weil normalerweise der Browser im Hintergrund verschwindet, wenn ein neues Fenster aufgemacht wird." : MessageLookupByLibrary.simpleMessage("作成したPDFのサイズが大きい場合は、複数のPDFファイルに分割されます。この場合、直接PDFは開かず番号付きのボタンリストが表示されます。このボタンをクリックするとPDFが開いてチェックマークが表示されます。又、新しウィンドウで開くと現在のブラウザウィンドウが背面に移動する為、PDFを簡単に開く事ができます。"),
     "Wenn der Zeitraum leer ist, wird der Button für die Auswahl deutlich markiert und in dem Dialog zur Auswahl wird in der Titelzeile ein Hinweis darauf angezeigt." : MessageLookupByLibrary.simpleMessage("期間選択がされていない場合は、ハイライト表示されタイトルバーに期間を選択する為のボタンが表示されます。"),
@@ -627,70 +672,73 @@ class MessageLookup extends MessageLookupByLibrary {
     "msgBasalrateProfile" : m3,
     "msgBolusInsulin" : m4,
     "msgCV" : m5,
-    "msgCarbBolusInsulin" : m6,
-    "msgCarbs" : m7,
-    "msgCatheterDays" : m8,
-    "msgChangedEntry" : m9,
-    "msgCheckUser" : m10,
-    "msgCorrectBolusInsulin" : m11,
-    "msgCount" : m12,
-    "msgDaySum" : m13,
-    "msgFactorEntry" : m14,
-    "msgGVIBad" : m15,
-    "msgGVIGood" : m16,
-    "msgGVINone" : m17,
-    "msgGVIVeryGood" : m18,
-    "msgHYPER" : m19,
-    "msgHYPERInfo" : m20,
-    "msgHYPO" : m21,
-    "msgHYPOInfo" : m22,
-    "msgHigh" : m23,
-    "msgHistorical" : m24,
-    "msgISF" : m25,
-    "msgKH" : m26,
-    "msgKHBE" : m27,
-    "msgLegendTDD" : m28,
-    "msgLoadingData" : m29,
-    "msgLoadingDataFor" : m30,
-    "msgLogSMB" : m31,
-    "msgLogTempBasal" : m32,
-    "msgLogTempTarget" : m33,
-    "msgLow" : m34,
-    "msgMBG" : m35,
-    "msgMEAN" : m36,
-    "msgMEANInfo" : m37,
-    "msgPGSBad" : m38,
-    "msgPGSGood" : m39,
-    "msgPGSVeryBad" : m40,
-    "msgPGSVeryGood" : m41,
-    "msgProfileSwitch" : m42,
-    "msgProfileSwitchDuration" : m43,
-    "msgReadingsInMinutes" : m44,
-    "msgReadingsPerDay" : m45,
-    "msgReadingsPerHour" : m46,
-    "msgReservoirDays" : m47,
-    "msgSMBInsulin" : m48,
-    "msgSensorDays" : m49,
-    "msgStdAbw" : m50,
-    "msgTOR" : m51,
-    "msgTORInfo" : m52,
-    "msgTarget" : m53,
-    "msgTargetArea" : m54,
-    "msgTargetValue" : m55,
-    "msgTimeOfDay24" : m56,
-    "msgTimeOfDayAM" : m57,
-    "msgTimeOfDayPM" : m58,
-    "msgValidFrom" : m59,
-    "msgValidRange" : m60,
-    "msgValidTo" : m61,
-    "msgValuesAbove" : m62,
-    "msgValuesBelow" : m63,
-    "msgValuesIn" : m64,
-    "msgValuesNorm" : m65,
-    "msgValuesNormHigh" : m66,
-    "msgValuesNormLow" : m67,
-    "msgValuesVeryHigh" : m68,
-    "msgValuesVeryLow" : m69,
+    "msgCalibration" : m6,
+    "msgCarbBolusInsulin" : m7,
+    "msgCarbs" : m8,
+    "msgCatheterDays" : m9,
+    "msgChangedEntry" : m10,
+    "msgCheckUser" : m11,
+    "msgCorrectBolusInsulin" : m12,
+    "msgCount" : m13,
+    "msgDaySum" : m14,
+    "msgDuration" : m15,
+    "msgFactorEntry" : m16,
+    "msgGVIBad" : m17,
+    "msgGVIGood" : m18,
+    "msgGVINone" : m19,
+    "msgGVIVeryGood" : m20,
+    "msgHYPER" : m21,
+    "msgHYPERInfo" : m22,
+    "msgHYPO" : m23,
+    "msgHYPOInfo" : m24,
+    "msgHigh" : m25,
+    "msgHistorical" : m26,
+    "msgHypoTitle" : m27,
+    "msgISF" : m28,
+    "msgKH" : m29,
+    "msgKHBE" : m30,
+    "msgLegendTDD" : m31,
+    "msgLoadingData" : m32,
+    "msgLoadingDataFor" : m33,
+    "msgLogSMB" : m34,
+    "msgLogTempBasal" : m35,
+    "msgLogTempTarget" : m36,
+    "msgLow" : m37,
+    "msgMBG" : m38,
+    "msgMEAN" : m39,
+    "msgMEANInfo" : m40,
+    "msgPGSBad" : m41,
+    "msgPGSGood" : m42,
+    "msgPGSVeryBad" : m43,
+    "msgPGSVeryGood" : m44,
+    "msgProfileSwitch" : m45,
+    "msgProfileSwitchDuration" : m46,
+    "msgReadingsInMinutes" : m47,
+    "msgReadingsPerDay" : m48,
+    "msgReadingsPerHour" : m49,
+    "msgReservoirDays" : m50,
+    "msgSMBInsulin" : m51,
+    "msgSensorDays" : m52,
+    "msgStdAbw" : m53,
+    "msgTOR" : m54,
+    "msgTORInfo" : m55,
+    "msgTarget" : m56,
+    "msgTargetArea" : m57,
+    "msgTargetValue" : m58,
+    "msgTimeOfDay24" : m59,
+    "msgTimeOfDayAM" : m60,
+    "msgTimeOfDayPM" : m61,
+    "msgValidFrom" : m62,
+    "msgValidRange" : m63,
+    "msgValidTo" : m64,
+    "msgValuesAbove" : m65,
+    "msgValuesBelow" : m66,
+    "msgValuesIn" : m67,
+    "msgValuesNorm" : m68,
+    "msgValuesNormHigh" : m69,
+    "msgValuesNormLow" : m70,
+    "msgValuesVeryHigh" : m71,
+    "msgValuesVeryLow" : m72,
     "ok" : MessageLookupByLibrary.simpleMessage("ok"),
     "sehr geringes Risiko" : MessageLookupByLibrary.simpleMessage("とてもリスクが少ない"),
     "tl;dr" : MessageLookupByLibrary.simpleMessage("tl;dr"),
@@ -706,6 +754,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "Ø Microbolus pro Tag" : MessageLookupByLibrary.simpleMessage("平均マイクロボーラス（日）"),
     "Ø Zuckerwert" : MessageLookupByLibrary.simpleMessage("平均血糖値"),
     "Überprüfe Zugriff auf Nightscout ..." : MessageLookupByLibrary.simpleMessage("ナイトスカウトの接続を確認しています…"),
-    "Übersetzungen korrigiert" : MessageLookupByLibrary.simpleMessage("翻訳の修正")
+    "Übersetzungen korrigiert" : MessageLookupByLibrary.simpleMessage("翻訳の修正"),
+    "日本の" : MessageLookupByLibrary.simpleMessage("日本の")
   };
 }

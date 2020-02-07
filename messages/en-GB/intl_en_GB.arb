@@ -1,5 +1,5 @@
 {
-    "@@last_modified": "2019-10-24T13:07:38.299969",
+    "@@last_modified": "2020-01-09T14:38:57.031527",
     "Überprüfe Zugriff auf Nightscout ...": "Checking access to Nightscout ...",
     "@Überprüfe Zugriff auf Nightscout ...": {
         "type": "text",
@@ -111,6 +111,31 @@
         "type": "text",
         "placeholders": {}
     },
+    "Automatisch_theme selection - automatic": "Automatic",
+    "@Automatisch_theme selection - automatic": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "Standard_theme selection - standard": "Standard",
+    "@Standard_theme selection - standard": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "Weihnachten_theme selection - christmas": "Christmas",
+    "@Weihnachten_theme selection - christmas": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "mg/dL": "mg/dL",
+    "@mg/dL": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "mmol/L": "mmol/L",
+    "@mmol/L": {
+        "type": "text",
+        "placeholders": {}
+    },
     "Deutsch": "Deutsch",
     "@Deutsch": {
         "type": "text",
@@ -136,13 +161,18 @@
         "type": "text",
         "placeholders": {}
     },
-    "Japanisch": "Japanese",
-    "@Japanisch": {
+    "日本の": "日本の",
+    "@日本の": {
         "type": "text",
         "placeholders": {}
     },
-    "Slowakisch": "Slovak",
-    "@Slowakisch": {
+    "Slovenský": "Slovenský",
+    "@Slovenský": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "Français": "Français",
+    "@Français": {
         "type": "text",
         "placeholders": {}
     },
@@ -223,6 +253,12 @@
     },
     "Letzte 3 Monate": "Last 3 months",
     "@Letzte 3 Monate": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "Max Mustermann": "John Smith",
+    "@Max Mustermann": {
+        "description": "modelname used in images on tiles",
         "type": "text",
         "placeholders": {}
     },
@@ -369,6 +405,14 @@
         "type": "text",
         "placeholders": {}
     },
+    "msgDuration": "{hours} h {minutes} m",
+    "@msgDuration": {
+        "type": "text",
+        "placeholders": {
+            "hours": {},
+            "minutes": {}
+        }
+    },
     "msgTargetArea": "Target Range ({min} - {max} {units})",
     "@msgTargetArea": {
         "type": "text",
@@ -403,6 +447,21 @@
         "placeholders": {
             "value": {}
         }
+    },
+    "Mahlzeitenbolus_bolus to handle a meal": "Meal Bolus",
+    "@Mahlzeitenbolus_bolus to handle a meal": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "Bolus Rechner_bolus calculated by the bolus wizard": "Bolus Wizard",
+    "@Bolus Rechner_bolus calculated by the bolus wizard": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "Verzögerter Bolus": "Delayed Bolus",
+    "@Verzögerter Bolus": {
+        "type": "text",
+        "placeholders": {}
     },
     "msgCorrectBolusInsulin": "Correction Bolus ({value})",
     "@msgCorrectBolusInsulin": {
@@ -763,6 +822,16 @@
         "type": "text",
         "placeholders": {}
     },
+    "IE/std": "U/hr",
+    "@IE/std": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "Summe": "Sum",
+    "@Summe": {
+        "type": "text",
+        "placeholders": {}
+    },
     "Ausgabe": "Output",
     "@Ausgabe": {
         "type": "text",
@@ -1024,6 +1093,11 @@
         "type": "text",
         "placeholders": {}
     },
+    "10%": "10%",
+    "@10%": {
+        "type": "text",
+        "placeholders": {}
+    },
     "25%": "25%",
     "@25%": {
         "type": "text",
@@ -1031,6 +1105,11 @@
     },
     "75%": "75%",
     "@75%": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "90%": "90%",
+    "@90%": {
         "type": "text",
         "placeholders": {}
     },
@@ -1046,10 +1125,14 @@
         "type": "text",
         "placeholders": {}
     },
-    "Kalibrierung": "Calibration",
-    "@Kalibrierung": {
+    "msgCalibration": "Calibration (scale {scale} / intercept {intercept} / slope {slope})",
+    "@msgCalibration": {
         "type": "text",
-        "placeholders": {}
+        "placeholders": {
+            "scale": {},
+            "intercept": {},
+            "slope": {}
+        }
     },
     "Wechsel": "Change",
     "@Wechsel": {
@@ -1123,16 +1206,6 @@
             "value": {}
         }
     },
-    "mg/dL": "mg/dL",
-    "@mg/dL": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "mmol/L": "mmol/L",
-    "@mmol/L": {
-        "type": "text",
-        "placeholders": {}
-    },
     "msgProfileSwitch": "Profileswitch - {oldName} => {newName}",
     "@msgProfileSwitch": {
         "type": "text",
@@ -1186,6 +1259,33 @@
     },
     "Standardbereich mit feinerer Abstufung": "Standard range with finer gradation",
     "@Standardbereich mit feinerer Abstufung": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "Unterzuckerungen anzeigen": "Show hypoglycemia",
+    "@Unterzuckerungen anzeigen": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "msgHypoTitle": "Hypos (< {value})",
+    "@msgHypoTitle": {
+        "type": "text",
+        "placeholders": {
+            "value": {}
+        }
+    },
+    "Anzahl Unterzuckerungen": "Number of Hypos",
+    "@Anzahl Unterzuckerungen": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "Letzte Unterzuckerung": "Last Hypo",
+    "@Letzte Unterzuckerung": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "Nur letzte Basalrate ausgeben": "Show only last basalrate",
+    "@Nur letzte Basalrate ausgeben": {
         "type": "text",
         "placeholders": {}
     },
@@ -1471,6 +1571,26 @@
         "type": "text",
         "placeholders": {}
     },
+    "Dauer der abgeschalteten Basalrate anzeigen": "Show the duration of the disabled basal rate",
+    "@Dauer der abgeschalteten Basalrate anzeigen": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "Basal ges.": "Basal total",
+    "@Basal ges.": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "Bolus ges.": "Bolus total",
+    "@Bolus ges.": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "Basal 0%": "Basal 0%",
+    "@Basal 0%": {
+        "type": "text",
+        "placeholders": {}
+    },
     "1 Minute": "1 Minute",
     "@1 Minute": {
         "type": "text",
@@ -1659,6 +1779,11 @@
         "type": "text",
         "placeholders": {}
     },
+    "Spalten für 10% und 90% anzeigen": "Show columns for 10% and 90%",
+    "@Spalten für 10% und 90% anzeigen": {
+        "type": "text",
+        "placeholders": {}
+    },
     "Profil": "Profile",
     "@Profil": {
         "type": "text",
@@ -1666,6 +1791,11 @@
     },
     "Zeilen mit gleichen Werten zusammenfassen": "Combine entries with the same values",
     "@Zeilen mit gleichen Werten zusammenfassen": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "Nur letztes Profil ausgeben": "Show only last profile",
+    "@Nur letztes Profil ausgeben": {
         "type": "text",
         "placeholders": {}
     },
@@ -1869,7 +1999,7 @@
     },
     "Anzeigeeinstellungen": "Displaysettings",
     "@Anzeigeeinstellungen": {
-        "description": "label of area for additional functions",
+        "description": "label of area for display setting",
         "type": "text",
         "placeholders": {}
     },
@@ -2005,8 +2135,80 @@
         "type": "text",
         "placeholders": {}
     },
-    "1.3.6 - xx.10.2019": "1.3.6 - xx/10/2019",
-    "@1.3.6 - xx.10.2019": {
+    "1.3.8 - 9.1.2020": "1.3.8 - 9/1/2020",
+    "@1.3.8 - 9.1.2020": {
+        "description": "v138",
+        "type": "text",
+        "placeholders": {}
+    },
+    "Die Bilder auf den Kacheln sind nun in der jeweiligen Sprache beschriftet.": "The images on the tiles are now labeled in the respective language.",
+    "@Die Bilder auf den Kacheln sind nun in der jeweiligen Sprache beschriftet.": {
+        "description": "v138a1",
+        "type": "text",
+        "placeholders": {}
+    },
+    "Die Werte im CGP werden jetzt bei mmol-Angaben auch korrekt angezeigt.": "The values in the CGP are now also correctly displayed for mmol data.",
+    "@Die Werte im CGP werden jetzt bei mmol-Angaben auch korrekt angezeigt.": {
+        "description": "v138f1",
+        "type": "text",
+        "placeholders": {}
+    },
+    "Die glykämische Variabilität wird jetzt im CGP auch bei Tages- und Wochengrafiken korrekt ausgegeben.": "The glycemic variability is now correctly displayed in the CGP even with daily and weekly graphics.",
+    "@Die glykämische Variabilität wird jetzt im CGP auch bei Tages- und Wochengrafiken korrekt ausgegeben.": {
+        "description": "v138f2",
+        "type": "text",
+        "placeholders": {}
+    },
+    "Blutige Werte sollten jetzt auch bei mmol-Daten korrekt in der Tagesgrafik angezeigt werden.": "Bloody values should now also be displayed correctly in the daily graph for mmol data.",
+    "@Blutige Werte sollten jetzt auch bei mmol-Daten korrekt in der Tagesgrafik angezeigt werden.": {
+        "description": "v138f3",
+        "type": "text",
+        "placeholders": {}
+    },
+    "1.3.7 - 7.1.2020": "1.3.7 - 7/1/2020",
+    "@1.3.7 - 7.1.2020": {
+        "description": "v137",
+        "type": "text",
+        "placeholders": {}
+    },
+    "Auf der Seite \"Stündliche Statistik\" gibt es eine neue Option, um auch Spalten mit 10% und 90% anzeigen zu lassen.": "There is a new option on the page \"Hourly Statistics\" to also show columns with 10% and 90%.",
+    "@Auf der Seite \"Stündliche Statistik\" gibt es eine neue Option, um auch Spalten mit 10% und 90% anzeigen zu lassen.": {
+        "description": "v137a1",
+        "type": "text",
+        "placeholders": {}
+    },
+    "Auf der Seite \"Profil\" wird die Gültigkeit jetzt mit Uhrzeit angezeigt.": "The validity is now displayed with the time on the \"Profile\" page.",
+    "@Auf der Seite \"Profil\" wird die Gültigkeit jetzt mit Uhrzeit angezeigt.": {
+        "description": "v137c1",
+        "type": "text",
+        "placeholders": {}
+    },
+    "Die Einträge im Protokoll für temporäre Ziele werden jetzt auch bei mmol-Angaben richtig angezeigt.": "The entries in the log for temporary targets are now displayed correctly even with mmol data.",
+    "@Die Einträge im Protokoll für temporäre Ziele werden jetzt auch bei mmol-Angaben richtig angezeigt.": {
+        "description": "v137f1",
+        "type": "text",
+        "placeholders": {}
+    },
+    "Die Überschrift über der mittleren Spalte im Tagesprofil wurde korrigiert.": "The heading above the middle column in the daily profile has been corrected.",
+    "@Die Überschrift über der mittleren Spalte im Tagesprofil wurde korrigiert.": {
+        "description": "v137f2",
+        "type": "text",
+        "placeholders": {}
+    },
+    "Die Balken in der Analyse werden jetzt korrekt skaliert.": "The bars in the analysis are now scaled correctly.",
+    "@Die Balken in der Analyse werden jetzt korrekt skaliert.": {
+        "description": "v137f3",
+        "type": "text",
+        "placeholders": {}
+    },
+    "Die meisten Spalten auf der Seite \"Stündliche Statistik\" werden bei nicht vorhandenen Daten leer gelassen.": "Most of the columns on the page \"Hourly Statistics\" are left blank if there is no data.",
+    "@Die meisten Spalten auf der Seite \"Stündliche Statistik\" werden bei nicht vorhandenen Daten leer gelassen.": {
+        "description": "v137f4",
+        "type": "text",
+        "placeholders": {}
+    },
+    "1.3.6 - 18.12.2019": "1.3.6 - 18/12/2019",
+    "@1.3.6 - 18.12.2019": {
         "description": "v136",
         "type": "text",
         "placeholders": {}
@@ -2035,6 +2237,36 @@
         "type": "text",
         "placeholders": {}
     },
+    "In der Tagesgrafik werden nun auch verzögerte Boli angezeigt.": "Delayed boli are now displayed in the daily graph.",
+    "@In der Tagesgrafik werden nun auch verzögerte Boli angezeigt.": {
+        "description": "v136a5",
+        "type": "text",
+        "placeholders": {}
+    },
+    "In der Tagesgrafik kann nun angezeigt werden, wie lange die Basalrate auf 0% lief.": "The daily graph now shows the duration of the basal rate at 0%.",
+    "@In der Tagesgrafik kann nun angezeigt werden, wie lange die Basalrate auf 0% lief.": {
+        "description": "v136a6",
+        "type": "text",
+        "placeholders": {}
+    },
+    "Die Oberfläche kann jetzt verschiedene Darstellungen annehmen. Diese zeigen sich zur Zeit durch geänderte Farben und ein angepasstes Icon im Browsertab und beim Laden der Seite. Das hat keine Auswirkungen auf die erzeugten PDF-Dateien. Es ist die Vorbereitung für eine teilweise anpassbare Oberfläche. Das Thema der Darstellung wird standardmässig vom System festgelegt, was zur Zeit heisst, dass im Dezember ein weihnachtliches Thema angezeigt wird. Das kann aber durch Anklicken des Icons, das ab jetzt links unten zu sehen ist, geändert werden. Beim Anklicken wird rechts neben dem Icon ein Bereich mit den verfügbaren Darstellungen eingeblendet. Das erste Icon (der kleine Zauberer) bedeutet dabei, dass die Darstellung vom System ermittelt wird. Zur Zeit bedeutet das die weihnachtliche Darstellung im Dezember. Es kann in Zukunft aber auch weitere Kriterien geben, anhand derer das Thema angepasst wird. Die direkte Festlegung eines Themas mit einem der anderen icons hat aber immer Vorrang vor der systemeigenen Logik.": "The UI can now assume different representations. These show themselves at the moment by different colours and an adapted icon in the Browser tab and with the loading of the side. This does not affect the generated PDF files. It's the preparation for a partially customizable surface. The theme of the UI is set by default by the system, which currently means that a Christmas theme will be displayed in December. But this can be changed by clicking on the icon, which can be seen at the bottom left. When clicking the icon, an area with the available themes is displayed to the right of the icon. The first icon (the little wizard) means that the theme is determined by the system. At the moment this means the Christmas presentation in December. However, there may be other criteria in the future that will be used to adjust the theme. However, the direct definition of a theme with one of the other icons always takes precedence over the system logic.",
+    "@Die Oberfläche kann jetzt verschiedene Darstellungen annehmen. Diese zeigen sich zur Zeit durch geänderte Farben und ein angepasstes Icon im Browsertab und beim Laden der Seite. Das hat keine Auswirkungen auf die erzeugten PDF-Dateien. Es ist die Vorbereitung für eine teilweise anpassbare Oberfläche. Das Thema der Darstellung wird standardmässig vom System festgelegt, was zur Zeit heisst, dass im Dezember ein weihnachtliches Thema angezeigt wird. Das kann aber durch Anklicken des Icons, das ab jetzt links unten zu sehen ist, geändert werden. Beim Anklicken wird rechts neben dem Icon ein Bereich mit den verfügbaren Darstellungen eingeblendet. Das erste Icon (der kleine Zauberer) bedeutet dabei, dass die Darstellung vom System ermittelt wird. Zur Zeit bedeutet das die weihnachtliche Darstellung im Dezember. Es kann in Zukunft aber auch weitere Kriterien geben, anhand derer das Thema angepasst wird. Die direkte Festlegung eines Themas mit einem der anderen icons hat aber immer Vorrang vor der systemeigenen Logik.": {
+        "description": "v136a7",
+        "type": "text",
+        "placeholders": {}
+    },
+    "Bei der Basalrate und dem Profil gibt es nun eine Option jeweils nur das letzte im entsprechenden Zeitraum ausgeben zu lassen. Das verringert die Blätterflut bei häufigem Profilwechsel.": "With the basalrate and the profile, there is now an option to have only the last one printed in the corresponding period. This reduces the number of pages with frequent profile changes.",
+    "@Bei der Basalrate und dem Profil gibt es nun eine Option jeweils nur das letzte im entsprechenden Zeitraum ausgeben zu lassen. Das verringert die Blätterflut bei häufigem Profilwechsel.": {
+        "description": "v136a8",
+        "type": "text",
+        "placeholders": {}
+    },
+    "Bei der Auswertung kann nun ein Bereich angezeigt werden, in dem die Anzahl an Unterzuckerungen während des ausgewählten Zeitraums und der Zeitpunkt der letzten Unterzuckerung angezeigt werden.": "In the analysis, an area can now be displayed, showing the number of hypos in the selected period and the time of the last hypo.",
+    "@Bei der Auswertung kann nun ein Bereich angezeigt werden, in dem die Anzahl an Unterzuckerungen während des ausgewählten Zeitraums und der Zeitpunkt der letzten Unterzuckerung angezeigt werden.": {
+        "description": "v136a9",
+        "type": "text",
+        "placeholders": {}
+    },
     "Im Einstellungsdialog wurden die Zeilen mit den Benutzerangaben und der URL gegeneinander ausgetauscht, um eine sinnvollere Verwaltung zu ermöglichen.": "In the settings dialog, the lines with the user details and the URL were exchanged for a more meaningful administration.",
     "@Im Einstellungsdialog wurden die Zeilen mit den Benutzerangaben und der URL gegeneinander ausgetauscht, um eine sinnvollere Verwaltung zu ermöglichen.": {
         "description": "v136c1",
@@ -2056,6 +2288,18 @@
     "Die Ermittlung der effektiven täglichen Basalrate wurde umstrukturiert und sollte nun genauere Werte ergeben.": "The determination of the effective daily basal rate has been restructured and should now give more accurate values.",
     "@Die Ermittlung der effektiven täglichen Basalrate wurde umstrukturiert und sollte nun genauere Werte ergeben.": {
         "description": "v136f2",
+        "type": "text",
+        "placeholders": {}
+    },
+    "Der Fehler mit der Vervielfachung der Kohlenhydrate bei wiederholter Ausgabe der PDFs wurde korrigiert.": "The error with the multiplication of the carbohydrates with the repeated output of the PDFs was corrected.",
+    "@Der Fehler mit der Vervielfachung der Kohlenhydrate bei wiederholter Ausgabe der PDFs wurde korrigiert.": {
+        "description": "v136f3",
+        "type": "text",
+        "placeholders": {}
+    },
+    "Das Problem, dass bestimmte Tage nicht erzeugt werden konnten, wurde behoben.": "The problem that certain days could not be created has been fixed.",
+    "@Das Problem, dass bestimmte Tage nicht erzeugt werden konnten, wurde behoben.": {
+        "description": "v136f4",
         "type": "text",
         "placeholders": {}
     },
