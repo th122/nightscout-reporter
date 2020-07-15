@@ -22,149 +22,167 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static m1(count) => "${Intl.plural(count, zero: '', one: '1 página ou mais', other: '${count} páginas ou mais')}";
 
-  static m2(time) => "A taxa de basal tem sido válida desde ${time} e não inclui nenhuma alteração temporária.";
+  static m2(isVisible) => "The Access Token is only required if access in Nightscout was restricted via AUTH_DEFAULT_ROLES";
 
-  static m3(value) => "Taxa Basal do dia (${value})";
+  static m3(time) => "A taxa de basal tem sido válida desde ${time} e não inclui nenhuma alteração temporária.";
 
-  static m4(value) => "Taxa Basal do perfil (${value})";
+  static m4(unit) => "Este basalrate estava ativo em ${unit}.";
 
-  static m5(value) => "Insulina Bolus (${value})";
+  static m5(value) => "Taxa Basal do dia (${value})";
 
-  static m6(value) => "CV [${value}%]";
+  static m6(value) => "Taxa Basal do perfil (${value})";
 
-  static m7(scale, intercept, slope) => "Calibração (escala ${scale} / interceptação em ${intercept} / coeficiente angular ${slope})";
+  static m7(value) => "Insulina Bolus (${value})";
 
-  static m8(value) => "Bolus da refeição (${value})";
+  static m8(value) => "CV [${value}%]";
 
-  static m9(value) => "Hidratos de Carbono (${value}g)";
+  static m9(date) => "Checking ${date} ...";
 
-  static m10(count, txt) => "${Intl.plural(count, zero: '', one: '(${txt} dia por cateter)', other: '(${txt} dias por cateter)')}";
+  static m10(scale, intercept, slope) => "Calibração (escala ${scale} / interceptação em ${intercept} / coeficiente angular ${slope})";
 
-  static m11(name, from, to) => "${name} ${from} => ${to}";
+  static m11(value) => "Bolus da refeição (${value})";
 
-  static m12(url) => "Comunicando com ${url}...";
+  static m12(value) => "Hidratos de Carbono (${value}g)";
 
-  static m13(value) => "Bolus de Correção (${value})";
+  static m13(count, txt) => "${Intl.plural(count, zero: '', one: '(${txt} dia por cateter)', other: '(${txt} dias por cateter)')}";
 
-  static m14(value) => "${Intl.plural(value, zero: 'Sem valor', one: '1 valor', other: '${value} valores')}";
+  static m14(name, from, to) => "${name} ${from} => ${to}";
 
-  static m15(value) => "${value} dias";
+  static m15(url) => "Comunicando com ${url}...";
 
-  static m16(hours, minutes) => "${hours} h ${minutes} m";
+  static m16(value) => "Bolus de Correção (${value})";
 
-  static m17(beg, end) => "${beg} - ${end}";
+  static m17(value) => "${Intl.plural(value, zero: 'Sem valor', one: '1 valor', other: '${value} valores')}";
 
-  static m18(max) => "mau (greater than ${max})";
+  static m18(value) => "${value} dias";
 
-  static m19(min, max) => "bom (${min} para ${max})";
+  static m19(hours, minutes) => "${hours} h ${minutes} m";
 
-  static m20(min) => "não disponível (less than ${min})";
+  static m20(isVisible) => "The date of the last complete day with data";
 
-  static m21(min, max) => "muito bom (${min} para ${max})";
+  static m21(beg, end) => "${beg} - ${end}";
 
-  static m22(unit, value) => "Intensidade HIPER\n[${unit} x min²]";
+  static m22(count) => "${Intl.plural(count, zero: '', one: '1 Form', other: '${count} Forms')}";
 
-  static m23(unit) => "A intensidade da hiperglicemia por dia (valores maiores ou iguais a ${unit}).";
+  static m23(max) => "mau (greater than ${max})";
 
-  static m24(unit, value) => "Intensidade HIPO\n[${unit} x min²]";
+  static m24(min, max) => "bom (${min} para ${max})";
 
-  static m25(unit) => "A intensidade da hipoglicemia por dia (valores menores ou iguais a ${unit}).";
+  static m25(min) => "não disponível (less than ${min})";
 
-  static m26(value) => "Alto${value}";
+  static m26(min, max) => "muito bom (${min} para ${max})";
 
-  static m27(value) => "Histórico ${value}";
+  static m27(unit, value) => "Intensidade HIPER\n[${unit} x min²]";
 
-  static m28(value) => "Hipos (< ${value})";
+  static m28(unit) => "A intensidade da hiperglicemia por dia (valores maiores ou iguais a ${unit}).";
 
-  static m29(unit) => "Fator de Sensibilidade da Insulina (ISF) 1 U reduz BG em X ${unit}";
+  static m29(unit, value) => "Intensidade HIPO\n[${unit} x min²]";
 
-  static m30(value) => "${value}g";
+  static m30(unit) => "A intensidade da hipoglicemia por dia (valores menores ou iguais a ${unit}).";
 
-  static m31(value) => "g CH (${value} BU)";
+  static m31(value) => "Alto${value}";
 
-  static m32(value) => "Dose Total Diário (${value})";
+  static m32(value) => "Histórico ${value}";
 
-  static m33(error, stacktrace) => "Erro ao carregar dados: ${error} ${stacktrace}";
+  static m33(value) => "Hipos (< ${value})";
 
-  static m34(date) => "A carregando dados para ${date}...";
+  static m34(unit) => "Fator de Sensibilidade da Insulina (ISF) 1 U reduz BG em X ${unit}";
 
-  static m35(insulin, unit) => "SMB ${insulin} ${unit}";
+  static m35(value) => "${value}g";
 
-  static m36(percent, duration) => "basal temporária ${percent}% / ${duration} min";
+  static m36(value) => "g CH (${value} BU)";
 
-  static m37(target, duration, reason) => "alvo temporário ${target} por ${duration} min, motivo: ${reason}";
+  static m37(value) => "Dose Total Diário (${value})";
 
-  static m38(value) => "Baixo${value}";
+  static m38(error, stacktrace) => "Erro ao carregar dados: ${error} ${stacktrace}";
 
-  static m39(gluc, unit) => "Valor do sangue ${gluc} ${unit}";
+  static m39(date) => "A carregando dados para ${date}...";
 
-  static m40(unit, value) => "Glicose média\n[${unit}]";
+  static m40(insulin, unit) => "Microbolus ${insulin} ${unit}";
 
-  static m41(hba1c) => "O valor da glicémia médio no período especificado.";
+  static m41(insulin, unit) => "SMB ${insulin} ${unit}";
 
-  static m42(min, max) => "mau (${min} para ${max})";
+  static m42(percent, duration) => "basal temporária ${percent}% / ${duration} min";
 
-  static m43(min, max) => "bom (${min} para ${max})";
+  static m43(value, duration) => "temp. Basal ${value} / ${duration} min";
 
-  static m44(max) => "muito mau (maior que ${max})";
+  static m44(target, duration, reason) => "alvo temporário ${target} por ${duration} min, motivo: ${reason}";
 
-  static m45(min) => "excelente (menor que ${min})";
+  static m45(value) => "Baixo${value}";
 
-  static m46(oldName, newName) => "TrocaPerfil - ${oldName} => ${newName}";
+  static m46(gluc, unit) => "Valor do sangue ${gluc} ${unit}";
 
-  static m47(oldName, newName, duration) => "Profileswitch - ${oldName} => ${newName} por ${duration} Minutos";
+  static m47(unit, value) => "Glicose média\n[${unit}]";
 
-  static m48(howMany, fmt) => "${Intl.plural(howMany, zero: 'Sem valores disponiveis', one: '1 valor por minuto', other: 'valor a cada ${fmt} minutos')}";
+  static m48(hba1c) => "O valor da glicémia médio no período especificado.";
 
-  static m49(howMany, fmt) => "${Intl.plural(howMany, zero: 'Sem dados disponiveis', one: '1 valor por dia', other: '${fmt} valores por dia')}";
+  static m49(min, max) => "mau (${min} para ${max})";
 
-  static m50(howMany, fmt) => "${Intl.plural(howMany, zero: 'Sem valores disponiveis', one: '1 valor por hora', other: '${fmt} valores por horas')}";
+  static m50(min, max) => "bom (${min} para ${max})";
 
-  static m51(count, txt) => "${Intl.plural(count, zero: '', one: '(${txt} dia por reservatório)', other: '(${txt} dias por reservatório)')}";
+  static m51(max) => "muito mau (maior que ${max})";
 
-  static m52(value) => "SMB (${value})";
+  static m52(min) => "excelente (menor que ${min})";
 
-  static m53(count, txt) => "${Intl.plural(count, zero: '', one: '(${txt} dia por sensor)', other: '(${txt} dias por sensor)')}";
+  static m53(oldName, newName) => "TrocaPerfil - ${oldName} => ${newName}";
 
-  static m54(value) => "(DesvP ${value})";
+  static m54(oldName, newName, duration) => "Profileswitch - ${oldName} => ${newName} por ${duration} Minutos";
 
-  static m55(value) => "ToR [${value}min/d]";
+  static m55(howMany, fmt) => "${Intl.plural(howMany, zero: 'Sem valores disponiveis', one: '1 valor por minuto', other: 'valor a cada ${fmt} minutos')}";
 
-  static m56(min, max) => "O tempo por dia em minutos em que os valores estão fora do intervalo de ${min} a ${max}.";
+  static m56(howMany, fmt) => "${Intl.plural(howMany, zero: 'Sem dados disponiveis', one: '1 valor por dia', other: '${fmt} valores por dia')}";
 
-  static m57(unit) => "Intervalo alvo da glicose ${unit}";
+  static m57(howMany, fmt) => "${Intl.plural(howMany, zero: 'Sem valores disponiveis', one: '1 valor por hora', other: '${fmt} valores por horas')}";
 
-  static m58(min, max, units) => "Intervalo Alvo(${min} - ${max} ${units})";
+  static m58(count, txt) => "${Intl.plural(count, zero: '', one: '(${txt} dia por reservatório)', other: '(${txt} dias por reservatório)')}";
 
-  static m59(value) => "Valor de Alvo";
+  static m59(value) => "SMB (${value})";
 
-  static m60(time) => "${time}";
+  static m60(count, txt) => "${Intl.plural(count, zero: '', one: '(${txt} dia por sensor)', other: '(${txt} dias por sensor)')}";
 
-  static m61(time) => "${time} am";
+  static m61(low, high, unit) => "Usar intervalo padrão (${low} ${unit} - ${high} ${unit})";
 
-  static m62(time) => "${time} pm";
+  static m62(isVisible) => "The date of the first day with data";
 
-  static m63(begDate) => "válido desde ${begDate}";
+  static m63(value) => "(DesvP ${value})";
 
-  static m64(begDate, endDate) => "válido de ${begDate} para ${endDate}";
+  static m64(value) => "ToR [${value}min/d]";
 
-  static m65(endDate) => "válido até ${endDate}";
+  static m65(min, max) => "O tempo por dia em minutos em que os valores estão fora do intervalo de ${min} a ${max}.";
 
-  static m66(high) => "Valores acima de ${high}";
+  static m66(unit) => "Intervalo alvo da glicose ${unit}";
 
-  static m67(low) => "Valores abaixo ${low}";
+  static m67(min, max, units) => "Intervalo Alvo(${min} - ${max} ${units})";
 
-  static m68(low, high) => "Valor entre ${low} e ${high}";
+  static m68(value) => "Valor de Alvo";
 
-  static m69(low, high) => "Intervalo alvo (${low} - ${high})";
+  static m69(time) => "${time}";
 
-  static m70(value) => "Valores altos (${value})";
+  static m70(time) => "${time} am";
 
-  static m71(value) => "Valores baixos (${value})";
+  static m71(time) => "${time} pm";
 
-  static m72(value) => "Valores muito altos ( > ${value})";
+  static m72(begDate) => "válido desde ${begDate}";
 
-  static m73(value) => "Valores muito baixos (< ${value})";
+  static m73(begDate, endDate) => "válido de ${begDate} para ${endDate}";
+
+  static m74(endDate) => "válido até ${endDate}";
+
+  static m75(high) => "Valores acima de ${high}";
+
+  static m76(low) => "Valores abaixo ${low}";
+
+  static m77(low, high) => "Valor entre ${low} e ${high}";
+
+  static m78(low, high) => "Intervalo alvo (${low} - ${high})";
+
+  static m79(value) => "Valores altos (${value})";
+
+  static m80(value) => "Valores baixos (${value})";
+
+  static m81(value) => "Valores muito altos ( > ${value})";
+
+  static m82(value) => "Valores muito baixos (< ${value})";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static _notInlinedMessages(_) => <String, Function> {
@@ -200,30 +218,36 @@ class MessageLookup extends MessageLookupByLibrary {
     "1.3.6 - 18.12.2019" : MessageLookupByLibrary.simpleMessage("1.3.6 - 18/12/2019"),
     "1.3.7 - 7.1.2020" : MessageLookupByLibrary.simpleMessage("1.3.7 - 7/1/2020"),
     "1.3.8 - 9.1.2020" : MessageLookupByLibrary.simpleMessage("1.3.8 - 9/1/2020"),
-    "1.3.9 - xx.2.2020" : MessageLookupByLibrary.simpleMessage("1.3.9 - 2/xx/2020"),
+    "1.4 - 28.2.2020" : MessageLookupByLibrary.simpleMessage("1.4 - 28/2/2020"),
+    "1.4.1 - 13.3.2020" : MessageLookupByLibrary.simpleMessage("1.4.1 - 13/3/2020"),
+    "1.4.2 - 16.3.2020" : MessageLookupByLibrary.simpleMessage("1.4.2 - 16/3/2020"),
+    "1.4.3 - 26.3.2020" : MessageLookupByLibrary.simpleMessage("1.4.3 - 26/3/2020"),
+    "1.4.4 - 6.4.2020" : MessageLookupByLibrary.simpleMessage("1.4.4 - 6/4/2020"),
+    "1.4.5 - 20.4.2020" : MessageLookupByLibrary.simpleMessage("1.4.5 - 20/4/2020"),
+    "1.4.6 - 26.5.2020" : MessageLookupByLibrary.simpleMessage("1.4.6 - 26/5/2020"),
+    "1.4.7 - 5.6.2020" : MessageLookupByLibrary.simpleMessage("1.4.7 - 5/6/2020"),
+    "1.4.8 - 12.6.2020" : MessageLookupByLibrary.simpleMessage("1.4.8 - 12/6/2020"),
+    "1.4.9 - 16.6.2020" : MessageLookupByLibrary.simpleMessage("1.4.9 - 16/6/2020"),
     "10%" : MessageLookupByLibrary.simpleMessage("10%"),
     "10% - 90% der Werte" : MessageLookupByLibrary.simpleMessage("10% - 90% dos valores"),
     "15 Minuten" : MessageLookupByLibrary.simpleMessage("15 Minutos"),
-    "150" : MessageLookupByLibrary.simpleMessage("150"),
     "2,1 bis 3,0" : MessageLookupByLibrary.simpleMessage("2,1 a 3,0"),
-    "200" : MessageLookupByLibrary.simpleMessage("200"),
+    "2.0.0 - 15.7.2020" : MessageLookupByLibrary.simpleMessage("2.0.0 - 15/7/2020"),
     "25%" : MessageLookupByLibrary.simpleMessage("25%"),
     "25% - 75% der Werte" : MessageLookupByLibrary.simpleMessage("25% - 75% dos valores"),
-    "250" : MessageLookupByLibrary.simpleMessage("250"),
     "3,1 bis 4,0" : MessageLookupByLibrary.simpleMessage("3,1 a 4,0"),
     "30 Minuten" : MessageLookupByLibrary.simpleMessage("30 Minutos"),
-    "300" : MessageLookupByLibrary.simpleMessage("300"),
-    "350" : MessageLookupByLibrary.simpleMessage("350"),
     "4,1 bis 4,5" : MessageLookupByLibrary.simpleMessage("4,1 a 4,5"),
     "5 Minuten" : MessageLookupByLibrary.simpleMessage("5 Minutos"),
     "75%" : MessageLookupByLibrary.simpleMessage("75%"),
     "90%" : MessageLookupByLibrary.simpleMessage("90%"),
     "<br><br>Wenn diese URL geschützt ist, muss ausserdem der Zugriffsschlüssel korrekt definiert sein. Diesen erreicht man über \"Administrator-Werkzeuge\" auf der persönlichen Nightscout Seite." : MessageLookupByLibrary.simpleMessage("<br> <br> Se esta URL está protegida, o Token de Acesso também deve ser definido corretamente Pode ser inserido através de \"Ferramentas de administração\" na página pessoal do nightscout."),
+    "Abbruch" : MessageLookupByLibrary.simpleMessage("Cancel"),
     "Absturz behoben, der auftrat, wenn kein passendes Profil für einen Zeitpunkt gefunden werden konnte" : MessageLookupByLibrary.simpleMessage("Corrigido um erro que ocorreu quando nenhum perfil correspondente poderia ser encontrado por um determinado tempo"),
     "Acht" : MessageLookupByLibrary.simpleMessage("Oito"),
-    "Aktuelle Periode" : MessageLookupByLibrary.simpleMessage("Período actual"),
     "Alle Werte für den Tag anzeigen" : MessageLookupByLibrary.simpleMessage("Mostrar todos os valores do dia"),
     "Alles" : MessageLookupByLibrary.simpleMessage("Todos"),
+    "Allgemeines" : MessageLookupByLibrary.simpleMessage("Geral"),
     "Als ersten Tag der Woche festlegen" : MessageLookupByLibrary.simpleMessage("Definir como primeiro dia da semana"),
     "Ampullenwechsel" : MessageLookupByLibrary.simpleMessage("Mudança do reservatório"),
     "Anmelden" : MessageLookupByLibrary.simpleMessage("Iniciar Sessão"),
@@ -236,9 +260,11 @@ class MessageLookup extends MessageLookupByLibrary {
     "Anzahl Sensorenwechsel" : MessageLookupByLibrary.simpleMessage("Mudanças de sensor"),
     "Anzahl Unterzuckerungen" : MessageLookupByLibrary.simpleMessage("Número de Hipos"),
     "Anzahl der Sensoren zur Analyse hinzugefügt" : MessageLookupByLibrary.simpleMessage("Número de sensores adicionados à análise"),
+    "Anzahl:" : MessageLookupByLibrary.simpleMessage("Count:"),
     "Anzeigeeinstellungen" : MessageLookupByLibrary.simpleMessage("Definições visuais"),
-    "Auf 10be muss beim Server in den Standardeinstellungen der Haken bei \"cors\" aktiviert werden, damit externe Tools wie dieses hier auf die Daten zugreifen dürfen." : MessageLookupByLibrary.simpleMessage("Em 10be, nas configurações padrão do servidor devem ativar a caixa de seleção \"cors\" para que ferramentas externas como esta possam aceder os dados."),
+    "Auf 10be muss beim Server in den Standardeinstellungen der Haken bei \"cors\" aktiviert werden, damit externe Tools wie dieses hier auf die Daten zugreifen dürfen. Wenn \"cors\" aktiviert wurde, muss auf dem Server eventuell noch ReDeploy gemacht werden, bevor es wirklich verfügbar ist." : MessageLookupByLibrary.simpleMessage("No servidor 10be, a seleção \"cors\" no servidor deve estar ativada para que ferramentas externas como esta possam aceder os dados. Se o \"cors\" for ativado, deve executar o ReDeploy para que a alteração produza efeito."),
     "Auf Kacheln Bilder statt Namen anzeigen" : MessageLookupByLibrary.simpleMessage("Mostrar imagens em vez de nomes nos mosaicos"),
+    "Auf dem Einstellungen-Dialog gibt es neben den URL-Eingabefeldern jeweils einen Button, um die URL in einem neuen Browser-Fenster zu öffnen." : MessageLookupByLibrary.simpleMessage("In addition to the URL input fields, there is a button on the Settings dialog to open the URL in a new browser window."),
     "Auf den Kacheln können nun Bilder statt der Namen angezeigt werden. Die Bilder zeigen dann das ungefähre Aussehen der entsprechenden Seite an. Sie entsprechen nicht den tatsächlichen Daten, sondern sind nur eine visuelle Darstellung, die es manchem Benutzer vielleicht einfacher machen, die gewünschten Seiten schneller auszuwählen. Die Aktivierung der Bilder erfolgt im Einstellungsdialog." : MessageLookupByLibrary.simpleMessage("As imagens agora podem ser exibidas em mosaicos ao invés de nomes. As imagens mostram a aparência aproximada da página correspondente. Não correspondem aos dados reais, mas é apenas uma representação visual que pode tornar mais fácil para alguns usuários selecionarem rapidamente as páginas que quiserem. A ativação das imagens pode ser feita usando a caixa de diálogo de configurações."),
     "Auf den Seiten Profil und Basalrate wird in der Titelzeile jetzt wieder das Datum angezeigt, ab dem das Profil gilt." : MessageLookupByLibrary.simpleMessage("Na página do perfil e da taxa de basal, a barra de título agora mostra novamente a data em que este perfil começa."),
     "Auf der Analyseseite kann statt der Anzahl der Werte bei den Zielbereichen jetzt die Standardabweichung der Werte im Zielbereich angezeigt werden." : MessageLookupByLibrary.simpleMessage("O desvio padrão dos valores na área de destino agora pode ser exibido na página de análise em vez do número de valores."),
@@ -247,12 +273,17 @@ class MessageLookup extends MessageLookupByLibrary {
     "Auf der Profilseite wurde die Spalte für die Werte von ICR verbreitert." : MessageLookupByLibrary.simpleMessage("Aumentada a largura da coluna ICR na página de perfil."),
     "Auf der Seite \"Profil\" wird die Gültigkeit jetzt mit Uhrzeit angezeigt." : MessageLookupByLibrary.simpleMessage("A validade agora é exibida com o tempo na página \"Perfil\"."),
     "Auf der Seite \"Stündliche Statistik\" gibt es eine neue Option, um auch Spalten mit 10% und 90% anzeigen zu lassen." : MessageLookupByLibrary.simpleMessage("Há uma nova opção na página \"Estatísticas horárias\" para também mostrar colunas com 10% e 90%."),
+    "Auf der Seite Protokoll werden jetzt auch Insulinabgaben angezeigt, die z.B. über xdrip eingegeben wurden." : MessageLookupByLibrary.simpleMessage("Insulin deliveries are now also displayed on the Protocol page, e.g. if they were entered via xdrip."),
+    "Aufhebung von temp. Ziel" : MessageLookupByLibrary.simpleMessage("Cancel temp target"),
     "Aufsummierte Werte" : MessageLookupByLibrary.simpleMessage("Valores resumidos"),
+    "Aus den Profilen ermitteln" : MessageLookupByLibrary.simpleMessage("Extract from profiles"),
     "Ausgabe" : MessageLookupByLibrary.simpleMessage("Resultado"),
+    "Ausgabe Parameter" : MessageLookupByLibrary.simpleMessage("Parâmetros"),
     "Ausgewertete Tage" : MessageLookupByLibrary.simpleMessage("Dias avaliados"),
+    "Ausgewählter Zeitraum" : MessageLookupByLibrary.simpleMessage("Período selecionado"),
     "Ausrichtung" : MessageLookupByLibrary.simpleMessage("Orientação"),
     "Auswertung" : MessageLookupByLibrary.simpleMessage("Análise"),
-    "Automatisch" : MessageLookupByLibrary.simpleMessage("Automatic"),
+    "Automatisch" : MessageLookupByLibrary.simpleMessage("Automático"),
     "Automatisch_theme selection - automatic" : MessageLookupByLibrary.simpleMessage("Automatico"),
     "Basal" : MessageLookupByLibrary.simpleMessage("Basal"),
     "Basal 0%" : MessageLookupByLibrary.simpleMessage("Basal 0%"),
@@ -260,16 +291,22 @@ class MessageLookup extends MessageLookupByLibrary {
     "Basal mit zwei Nachkommastellen" : MessageLookupByLibrary.simpleMessage("Basal com dois lugares decimais"),
     "Basalrate" : MessageLookupByLibrary.simpleMessage("Taxa da Basal"),
     "Basalrate\nIE / Stunde" : MessageLookupByLibrary.simpleMessage("Basal rácio Uni / hora"),
+    "Basalrate anzeigen" : MessageLookupByLibrary.simpleMessage("Mostrar basalrate"),
     "Batteriewechsel" : MessageLookupByLibrary.simpleMessage("Troca de bateria"),
     "Behandlungen" : MessageLookupByLibrary.simpleMessage("Tratamentos"),
+    "Bei Herokuapp und anderen Anbietern kostenloser Datenbankinstanzen ist der Speicherplatz der Instanz beschränkt, weshalb sie irgendwann voll ist. Dann kann man zwar eine neue Instanz anlegen, Nightscout Reporter benötigt aber für eine lückenlose Darstellung aller Tage Zugriff auf alle Instanzen, für die man eine Auswertung erhalten will. Deshalb können nun mehrere URLs für die Nightscout Instanzen eingegeben werden. Zusätzlich muss noch eingegeben werden, welches der erste und der letzte Tag mit Daten ist. Mit diesen Informationen ist es Nightscout Reporter dann möglich die benötigten Daten lückenlos auch über mehrere Instanzen hinweg auszuwerten." : MessageLookupByLibrary.simpleMessage("With herokuapp and other providers of free database instances, the instance\'s storage space is limited, which is why it becomes full at some point. Then you can create a new instance, but Nightscout Reporter needs access to all instances for which you want to receive a PDF in order to be able to display it seamlessly every day. Therefore, multiple URLs can now be entered for the Nightscout instances. In addition, you have to enter which is the first and the last day with data. With this information, Nightscout Reporter can then seamlessly evaluate the required data across multiple instances."),
     "Bei Tagesgrafiken und Wochengrafiken gibt es jetzt die Möglichkeit 1, 2, 4, 8 oder 16 Grafiken auf einer Seite zu platzieren." : MessageLookupByLibrary.simpleMessage("Nos gráficos diários e nas gráficos semanais, existe agora a possibilidade de colocar 1, 2, 4, 8 ou 16 imagens numa página."),
     "Bei der Auswertung kann nun ein Bereich angezeigt werden, in dem die Anzahl an Unterzuckerungen während des ausgewählten Zeitraums und der Zeitpunkt der letzten Unterzuckerung angezeigt werden." : MessageLookupByLibrary.simpleMessage("Na análise, uma área agora pode ser exibida, mostrando o número de hipos no período selecionado e o tempo da última hipo."),
     "Bei der Basalrate und dem Profil gibt es nun eine Option jeweils nur das letzte im entsprechenden Zeitraum ausgeben zu lassen. Das verringert die Blätterflut bei häufigem Profilwechsel." : MessageLookupByLibrary.simpleMessage("Com a taxa de basal e o perfil, existe agora a opção de apenas ter o último impresso no período correspondente. Isto reduz o número de páginas com mudanças frequentes no perfil."),
     "Bei der Berechnung der Kohlenhydrate werden weitere Datensätze berücksichtigt" : MessageLookupByLibrary.simpleMessage("Dados adicionais são usados para o cálculo de hidratos de carbonos"),
+    "Bei der Profilermittlung wurde manchmal der letzte Profilwechsel ignoriert. Das ist nun behoben." : MessageLookupByLibrary.simpleMessage("The last profile change was sometimes ignored when determining the profile. That is now fixed."),
     "Beim Auslesen des Profils ist ein Fehler aufgetreten." : MessageLookupByLibrary.simpleMessage("Ocorreu um erro ao ler o perfil."),
     "Beim CGP werden die aktuellen Werte jetzt in der Legende angezeigt." : MessageLookupByLibrary.simpleMessage("O CGP agora exibe os valores atuais na legenda."),
     "Beim Erzeugen des PDF ist ein Fehler aufgetreten." : MessageLookupByLibrary.simpleMessage("Ocorreu um erro ao criar o PDF."),
+    "Beim Glukose Perzentil Diagramm kann man nun ein Maximum für die Skalierung festlegen. Wenn es auf \"Automatisch\" gesetzt wird, wird das Maximum wie bisher auch ermittelt. Bei einem anderen Wert wird die Obergrenze für das Diagramm auf diesen Wert festgesetzt. Damit ist es leichter möglich zwei Diagramme miteinander zu vergleichen, deren Obergrenze unterschiedlich ist." : MessageLookupByLibrary.simpleMessage("No Diagrama do percentil pode definir um máximo para a escala. Se estiver definido como \"Automático\", o máximo é determinado como antes. Para qualquer outro valor, o limite máximo para o diagrama é definido para esse valor. Isto facilita a comparação de dois diagramas com diferentes limites superiores."),
+    "Beim Laden der Behandlungsdaten werden doppelte Datensätze herausgefiltert." : MessageLookupByLibrary.simpleMessage("Quando os dados de tratamento são carregados, registos de dados duplicados são filtrados."),
     "Beim Laden der Daten wird das entsprechende Datumsformat zur Anzeige verwendet" : MessageLookupByLibrary.simpleMessage("Ao carregar os dados, o formato de data correspondente é usado para a exibição de progresso"),
+    "Beim Perzentil Diagramm gibt es eine neue Option, mit der man die Basalrate unter dem Diagramm anzeigen lassen kann. Da das Diagramm normalerweise einen grösseren Zeitraum umspannt, wird dort die Basalrate angezeigt, die zu Beginn des Zeitraums aktiv war." : MessageLookupByLibrary.simpleMessage("No diagrama percentil há uma nova opção para exibir a taxa basal abaixo do diagrama. Como o diagrama normalmente abrange um período mais longo, é exibida a taxa basal que estava ativa no início do período."),
     "Benutzer können ein User-Token angeben, um sich mit geschützten Nightscout-Instanzen zu verbinden" : MessageLookupByLibrary.simpleMessage("Os usuários podem especificar um token de usuário para conectar a instâncias nightscout protegidas"),
     "Benutzer können nun gelöscht werden" : MessageLookupByLibrary.simpleMessage("Os usuários agora podem ser excluídos"),
     "Benutzerdaten" : MessageLookupByLibrary.simpleMessage("Dados do usuário"),
@@ -278,22 +315,30 @@ class MessageLookup extends MessageLookupByLibrary {
     "Berechnete IE für Kohlenhydrate anzeigen" : MessageLookupByLibrary.simpleMessage("Mostrar U calculadas para hidratos de carbono"),
     "Bereite Daten vor..." : MessageLookupByLibrary.simpleMessage("A preparar dados..."),
     "Bestätigung" : MessageLookupByLibrary.simpleMessage("Confirmação"),
+    "Bewegung" : MessageLookupByLibrary.simpleMessage("Exercícios"),
+    "Bewegung anzeigen" : MessageLookupByLibrary.simpleMessage("Mostrar exercícios"),
+    "Bezeichnung" : MessageLookupByLibrary.simpleMessage("Title"),
     "Bis" : MessageLookupByLibrary.simpleMessage("Até"),
     "Bisher fehlende Summenwerte in der Tagesstatistik hinzugefügt" : MessageLookupByLibrary.simpleMessage("Adicionados totais ausentes nas estatísticas diárias"),
+    "Bitte den Dateinamen für die Speicherung auswählen" : MessageLookupByLibrary.simpleMessage("Please select the filename for saving"),
     "Bitte einen Zeitraum wählen." : MessageLookupByLibrary.simpleMessage("Por favor, selecione um período."),
     "Bitte überprüfe die Aktivierung der Wochentage unter dem Monat" : MessageLookupByLibrary.simpleMessage("Por favor, verifique a activação dos dias da semana abaixo do mês"),
+    "Blutige Messung" : MessageLookupByLibrary.simpleMessage("Valores do Capilar"),
     "Blutige Werte sollten jetzt auch bei mmol-Daten korrekt in der Tagesgrafik angezeigt werden." : MessageLookupByLibrary.simpleMessage("Valores do sangue agora também devem ser exibidos corretamente no gráfico diário de dados mmol."),
     "Blutwerte werden jetzt auch bei mmol/L in den Grafiken korrekt angezeigt." : MessageLookupByLibrary.simpleMessage("Os valores de sangue agora são exibidos corretamente em mmol/L nos gráficos."),
     "Bolus" : MessageLookupByLibrary.simpleMessage("Bolus"),
     "Bolus Rechner_bolus calculated by the bolus wizard" : MessageLookupByLibrary.simpleMessage("Assistente de Bólus"),
     "Bolus ges." : MessageLookupByLibrary.simpleMessage("Total de Bolus"),
     "Bolusarten anzeigen" : MessageLookupByLibrary.simpleMessage("Mostrar tipos de bolus"),
+    "Bolusspalte anzeigen" : MessageLookupByLibrary.simpleMessage("Mostrar Coluna do Bolus"),
     "CGP" : MessageLookupByLibrary.simpleMessage("CGP"),
+    "CGP immer mit Standard Zielbereich" : MessageLookupByLibrary.simpleMessage("CGP always with Standard Targetarea"),
     "COB (Carbs On Board) anzeigen" : MessageLookupByLibrary.simpleMessage("Mostrar COB (hidratos A Bordo)"),
     "Comprehensive Glucose Pentagon" : MessageLookupByLibrary.simpleMessage("Pentágono abrangente de glicose"),
     "Da wir seit einiger Zeit in Europa eine DSGVO haben, werden im Folgenden noch die Vorschriften dafür erfüllt. Der folgende Text ist nur auf Deutsch verfügbar:" : MessageLookupByLibrary.simpleMessage("Uma vez que temos um DSGVO na Europa, o seguinte texto cumpre as regras do mesmo: o seguinte texto só está disponível em German:"),
     "Das \"Comprehensive Glucose Pentagon\" (Umfassendes Glukose Fünfeck) wurde als eigenes PDF und als Zusatzseite zur Tagesgrafik und Wochengrafik hinzugefügt. Es handelt sich hierbei um eine Darstellung von fünf Messgrössen, mit deren Hilfe sich die Qualität der Therapie ermitteln und mit anderen vergleichen lässt. Auf den Ausdrucken wird ein Verweis auf die zugrunde liegende Abhandlung ausgegeben." : MessageLookupByLibrary.simpleMessage("O \"Pentágono Completo de Glucose\" foi adicionado como um PDF separado e como uma página adicional ao gráfico diário e semanal. Trata-se de uma representação de cinco medidas, com a ajuda da qual a qualidade da terapia pode ser determinada e comparada com outras. Na impressão, uma referência é a saída para o papel subjacente."),
     "Das Anklicken des Nachrichtenbereichs schliesst diesen nicht mehr." : MessageLookupByLibrary.simpleMessage("Clicar na área da mensagem já não a fecha."),
+    "Das CGP wird jetzt auch bei extremen Werten korrekt erzeugt." : MessageLookupByLibrary.simpleMessage("The CGP is now generated correctly even with extreme values."),
     "Das Control für die Eingabe des Zeitraums wurde angepasst, damit es auf schmalen Display auch korrekt dargestellt wird." : MessageLookupByLibrary.simpleMessage("O controle para a definição do período foi ajustado para que ele seja exibido corretamente em uma exibição estreita."),
     "Das Enddatum ist nicht korrekt" : MessageLookupByLibrary.simpleMessage("A data final não está correta"),
     "Das PDF für die Basalrate war nicht korrekt, wenn nicht für jede Stunde ein Wert vorlag." : MessageLookupByLibrary.simpleMessage("A taxa de basal do PDF estava incorreta se não estava definido um valor para cada hora."),
@@ -303,8 +348,10 @@ class MessageLookup extends MessageLookupByLibrary {
     "Das Startdatum ist nicht korrekt" : MessageLookupByLibrary.simpleMessage("A data de início não está correta"),
     "Das gelbe Fünfeck stellt den Wertebereich des angegebenen Zeitraums dar." : MessageLookupByLibrary.simpleMessage("O pentágono amarelo representa o intervalo de valor do período especificado."),
     "Das grüne Fünfeck stellt den Wertebereich eines gesunden Menschen ohne Diabetes dar." : MessageLookupByLibrary.simpleMessage("O pentágono verde representa o alcance do valor de uma pessoa saudável sem diabetes."),
+    "Daten bis" : MessageLookupByLibrary.simpleMessage("Data to"),
     "Daten für die Glukosewerte mit fehlerhaftem Datumsformat werden jetzt trotzdem korrekt ausgelesen." : MessageLookupByLibrary.simpleMessage("Dados para os valores de glicemia com formato de data incorreto foram lidos corretamente."),
     "Daten verschiedener Uploader werden nun besser interpretiert." : MessageLookupByLibrary.simpleMessage("Os dados de diferentes Uploaders agora são melhores interpretados."),
+    "Daten von" : MessageLookupByLibrary.simpleMessage("Data from"),
     "Daten, die von xDrip als sync markiert wurden, werden bei der Auswertung ignoriert." : MessageLookupByLibrary.simpleMessage("Os dados que foram marcados como sincronização pelo xDrip serão ignorados nas calculações."),
     "Datenschutzerklärung" : MessageLookupByLibrary.simpleMessage("Proteção de dados"),
     "Datum" : MessageLookupByLibrary.simpleMessage("Data"),
@@ -315,12 +362,12 @@ class MessageLookup extends MessageLookupByLibrary {
     "Der Fehler im Profil, der dazu führte, dass die Werte für ISF und Zielbereich falsch umgerechnet werden, wurde behoben." : MessageLookupByLibrary.simpleMessage("Corrigido o erro no perfil que fazia com que os valores de faixa do ISF e intervalo alvo fossem convertidos incorretamente."),
     "Der Fehler mit der Vervielfachung der Kohlenhydrate bei wiederholter Ausgabe der PDFs wurde korrigiert." : MessageLookupByLibrary.simpleMessage("O erro com a multiplicação dos Hidratos de carbono com o resultado repetido nos PDFs foi corrigido."),
     "Der Zeitraum enthält keine auswertbaren Tage" : MessageLookupByLibrary.simpleMessage("O período não contém dias inestimáveis"),
-    "Der Zugriffsschlüssel wird nur benötigt, wenn der Zugriff in Nightscout über AUTH_DEFAULT_ROLES eingeschränkt wurde" : MessageLookupByLibrary.simpleMessage("O token de acesso só é necessário se o acesso no Nightscout foi restrito via AUTH_DEFAULT_ROLES"),
     "Der prognostische glykämische Risikoparameter stellt das Risiko von Langzeitkomplikationen dar (bisher nicht durch Studien belegt)." : MessageLookupByLibrary.simpleMessage("O prognóstico Glycemic Riskparameter representa o risco de complicações a longo prazo (não provadas por estudos até agora)."),
     "Details des Profilwechsels" : MessageLookupByLibrary.simpleMessage("Detalhes do Perfil"),
     "Deutsch" : MessageLookupByLibrary.simpleMessage("Alemão"),
     "Diabetes seit" : MessageLookupByLibrary.simpleMessage("Diabetes desde"),
     "Die Analyse-Seite wurde überarbeitet und zeigt nun Überschriften über den Bereichen an" : MessageLookupByLibrary.simpleMessage("A página de análise foi redesenhada e agora exibe títulos acima das áreas"),
+    "Die Analysewerte wurden nicht ganz korrekt ermittelt. Das wurde korrigiert und nun sollten die statistischen Daten über den Zeitraum richtig ausgewertet werden." : MessageLookupByLibrary.simpleMessage("Os valores da análise não foram determinados correctamente, foi corrigido e os dados estatísticos avaliados ao longo do período devem agora estar correctos."),
     "Die Angabe DIA auf der Profilseite wird nun mit zwei Nachkommastellen angezeigt." : MessageLookupByLibrary.simpleMessage("DIA na página do perfil agora é exibido com duas casas decimais."),
     "Die Aufsummierung der Werte in der Analyse wurde korrigiert." : MessageLookupByLibrary.simpleMessage("Os valores acumulados na análise foi corrigida."),
     "Die Aufteilung auf mehrere PDF-Dateien funktioniert jetzt besser." : MessageLookupByLibrary.simpleMessage("A divisão em vários arquivos PDF funciona melhor agora."),
@@ -334,21 +381,29 @@ class MessageLookup extends MessageLookupByLibrary {
     "Die Berechnung der tatsächlichen Basalrate wurde korrigiert." : MessageLookupByLibrary.simpleMessage("O cálculo da taxa basal atual foi corrigido."),
     "Die Berechnung des täglichen Insulins berücksichtigt nun auch die SMB." : MessageLookupByLibrary.simpleMessage("O cálculo da insulina diária também tem agora em conta as SMB."),
     "Die Bilder auf den Kacheln sind nun in der jeweiligen Sprache beschriftet." : MessageLookupByLibrary.simpleMessage("As imagens nos mosaicos estão agora rotuladas no respectivo idioma."),
+    "Die Buttons für die Erzeugung vergangener Zeiträume wurden entfernt. Das kann jetzt im neuen PDF-Dialog eingestellt werden." : MessageLookupByLibrary.simpleMessage("Os botões para criar períodos anteriores foram removidos. Agora isto pode ser definido na nova caixa de diálogo PDF."),
     "Die Buttons für die vergangenen Perioden werden nicht angezeigt, wenn kein Zeitraum oder kein PDF ausgewählt wurde." : MessageLookupByLibrary.simpleMessage("Os botões para os últimos períodos não serão exibidos se nenhum período ou PDF for selecionado."),
     "Die Daten, die Du hier eingibst, werden normalerweise im localStorage des Browsers gespeichert. Dieser beinhaltet webseitenbezogene Daten, die nur von dieser Webseite ausgelesen werden können. In diesem Fall werden keine Cookies verwendet und es werden keine Daten auf Servern gespeichert. Es wird lediglich eine Verbindung zur angegebenen Nightscout-Instanz aufgebaut und die dort vorhandenen Daten ausgelesen, um daraus ein PDF-Dokument zu erzeugen. Dieses kann dann dem Diabetesberater oder sonstigen Interessenten vorgelegt werden." : MessageLookupByLibrary.simpleMessage("Os dados inseridos aqui serão gravados no armazenamento local do browser. Este contém dados que apenas podem ser lidos a partir deste site. Nenhum cookie é usado e nenhum dado é armazenado em servidores. Somente uma conexão com a instância especificada do Nightscout está configurada e os dados disponíveis são lidos para criar um documento PDF. Isso poderá então ser apresentado ao profissional de saúde para a diabetes ou a outra parte interessada."),
+    "Die Eingabe des Zugriffsschlüssels auf dem Einstellungen-Dialog kann jetzt mit einem Button neben dem Eingabefeld lesbar gemacht werden." : MessageLookupByLibrary.simpleMessage("The entry of the access key in the settings dialog can now be made readable with a button next to the input field."),
+    "Die Einstellung für das Öffnen des PDF im gleichen Fenster, das Herunterladen des PDFs und den Hinweis auf Nightscout im PDF wurde aus den Einstellungen in die Ausgabe Parameter verschoben. Dadurch kann man das bei jedem Ausdruck schnell festlegen und ändern." : MessageLookupByLibrary.simpleMessage("The setting for opening the PDF in the same window, downloading the PDF and hiding text about Nightscout in the PDF has been moved from the settings to the output parameters. This allows you to quickly set and change that for each output."),
     "Die Einstellungen für das Herunterladen des PDFs, das Öffnen im gleichen Fenster und die Maximalgrösse der PDFs wurden von der Synchronisierung mit Google Drive ausgenommen, weil sie speziell für den verwendeten Browser oder das verwendete Gerät benötigt werden. Sie werden nach wie vor gespeichert, aber sie werden nicht zwischen verschiedenen Browsern synchronisiert." : MessageLookupByLibrary.simpleMessage("Configurações para fazer o download do PDF, abrir o PDF na mesma janela, e os PDFs com tamanho superior ao máximo permitido foram excluídos da sincronização com o Google Drive porque eles são específicos para o browser ou dispositivo que você usa. Continuam a ser gravados, mas não são sincronizados entre browsers diferentes."),
     "Die Einträge im Protokoll für temporäre Ziele werden jetzt auch bei mmol-Angaben richtig angezeigt." : MessageLookupByLibrary.simpleMessage("As entradas no registro para alvos temporários agora são exibidas corretamente, mesmo com dados mmol."),
     "Die Ermittlung der Einheit (mg/dl oder mmol/l) wird nun flexibler gehandhabt, so dass auch Leerzeichen in der entsprechenden Einstellung nicht mehr zu einer Fehlinterpretation führen." : MessageLookupByLibrary.simpleMessage("A determinação da unidade (mg/dl ou mmol/l) é agora tratada de forma mais flexível, de modo que mesmo os espaços na configuração correspondente já não conduzem a uma interpretação errada."),
     "Die Ermittlung der effektiven täglichen Basalrate wurde umstrukturiert und sollte nun genauere Werte ergeben." : MessageLookupByLibrary.simpleMessage("A determinação da taxa basal diária efectiva foi reestruturada e deve agora proporcionar valores mais exactos."),
+    "Die Farbe für Bewegung in der Tagesgrafik wurde geändert." : MessageLookupByLibrary.simpleMessage("Alteração da cor para exercícios no gráfico diário."),
     "Die Farben für Dialoge und Scrollbars wurden angepasst." : MessageLookupByLibrary.simpleMessage("As cores das caixas de diálogo e barras de deslizantes foram ajustadas."),
+    "Die Genauigkeit der ISF Angaben im Profil wurde korrigiert." : MessageLookupByLibrary.simpleMessage("The precision of ISF in profile was corrected."),
     "Die Genauigkeit der Insulindosierung wird aus dem Profil ermittelt. Der Wert mit der höchsten Genauigkeit legt fest, mit wieviel Nachkommastellen Basalratenwerte angezeigt werden." : MessageLookupByLibrary.simpleMessage("A precisão da dosagem de insulina é determinada a partir do perfil. O valor com a maior precisão define quantos números decimais são usados para exibição de valores basais."),
     "Die Glucose Perzentil Grafik wurde um die Tabelle \"Stündliche Statistik\" erweitert. Diese listet tabellarisch die Werte des Zeitraums für jede Stunde des Tages auf. Man kann entweder nur die Grafik, nur die Tabelle oder beides zusammen erzeugen lassen." : MessageLookupByLibrary.simpleMessage("O gráfico do Percentil foi expandido para incluir a tabela de estatísticas por hora. Isto tabela os valores do período para cada hora do dia. Pode criar apenas o gráfico, apenas a tabela ou ambas juntas."),
     "Die Glukosekurve der täglichen Grafiken wurde von fehlenden Daten befreit." : MessageLookupByLibrary.simpleMessage("O gráfico de glicose dos gráficos diários foi retirado dos dados em falta."),
     "Die Icons auf einigen Buttons waren zu nahe am Text" : MessageLookupByLibrary.simpleMessage("Os ícones em alguns botões estavam muito próximos do texto"),
     "Die Kohlenhydratangaben auf der Tagesgrafik werden jetzt ohne den Zusatz KH ausgegeben." : MessageLookupByLibrary.simpleMessage("A informação de Hidratos de carbono no gráfico diário agora é mostrado sem o sufixo KH."),
+    "Die Legende der Tagesgrafik wurde um den Eintrag für Bewegung erweitert." : MessageLookupByLibrary.simpleMessage("A legenda do gráfico diário foi aumentada para incluir a entrada para exercícios."),
+    "Die Legende der Tagesgrafik wurde um den Eintrag für blutige Messungen erweitert." : MessageLookupByLibrary.simpleMessage("The legend of the daily graphic now includes the entry for blood values."),
     "Die Links zu Nightscout und den Reports von Nightscout im Menü funktionieren jetzt auch richtig, wenn ein Usertoken angegeben wurde." : MessageLookupByLibrary.simpleMessage("O link do menu para o Nightscout e relatórios do Nightscout agora também funcionam corretamente quando um token for fornecido."),
     "Die Listenansicht ist jetzt wieder scrollbar." : MessageLookupByLibrary.simpleMessage("A vista de listagem é deslizavél novamente."),
     "Die Microboli des Minimed 600 Uploaders werden jetzt auch ermittelt und in der Analyse ausgegeben, wenn sie vorhanden sind." : MessageLookupByLibrary.simpleMessage("O microbolus do Minimed 600 Uploader agora também é identificado e mostrado na análise, se eles existirem."),
+    "Die Microboli vom Minimed 600 Uploader wurden aus der Ausgabe entfernt, da es sich dabei nur um Temporäre Basalraten handelt." : MessageLookupByLibrary.simpleMessage("The microboli from the Minimed 600 Uploader have been removed from the output, because they are just temporary basal rates."),
     "Die Mischung von zwei Seiten auf einer PDF-Seite, die manchmal vorkam, wurde behoben." : MessageLookupByLibrary.simpleMessage("A mistura de duas páginas em uma página PDF, que às vezes ocorreu foi corrigida."),
     "Die Möglichkeit für Beta-Funktionen wurde entfernt; die Betaversion ist nun hier zu finden:" : MessageLookupByLibrary.simpleMessage("A possibilidade de funções beta foi removida; a versão beta agora está disponível em:"),
     "Die Möglichkeit, die URL in der Titelzeile anzeigen zu lassen wurde entfernt, da jetzt der aktuelle Benutzer oder dessen URL direkt angezeigt wird" : MessageLookupByLibrary.simpleMessage("A capacidade de exibir a URL na barra de título foi removida, uma vez que o usuário atual ou o URL dele agora são exibidos diretamente"),
@@ -365,12 +420,14 @@ class MessageLookup extends MessageLookupByLibrary {
     "Die Tagesstatistik zeigt mmol/l-Werte nun korrekt an" : MessageLookupByLibrary.simpleMessage("As estatísticas diárias agora exibem valores mmol/l corretamente"),
     "Die URL wurde noch nicht festgelegt" : MessageLookupByLibrary.simpleMessage("O URL ainda não foi definido"),
     "Die URL wurde noch nicht festgelegt." : MessageLookupByLibrary.simpleMessage("O URL ainda não foi definido."),
+    "Die Url zur Nightscout-API muss mit https beginnen, da Nightscout Reporter auch auf https läuft. Ein Zugriff auf unsichere http-Resourcen ist nicht möglich." : MessageLookupByLibrary.simpleMessage("O Endereço para a API Nightscout deve iniciar com https, uma vez que o Nightscout Reporter também é executado em https. Não é possível o acesso a recursos http inseguros."),
     "Die Vorschaubilder auf den Kacheln passen sich abhängig von den ausgewählten Optionen teilweise an (z.B. die Auswahl von CGP bei Tagesgrafiken)." : MessageLookupByLibrary.simpleMessage("As imagens de visualização nos mosaicos irão ajustar-se parcialmente dependendo das opções selecionadas (por exemplo, escolher CGP para gráficos diários)."),
     "Die Webseite verwendet hauptsächlich Javascript zur Erledigung ihrer Aufgaben. Bei der Erzeugung des PDF-Dokuments kommen Javascript und PHP zum Einsatz." : MessageLookupByLibrary.simpleMessage("O site usa principalmente Javascript para fazer seu trabalho. Ao criar o documento PDF Javascript e PHP são usados."),
     "Die Werte VarK und ToR im CGP werden bei Tages- und Wochengrafiken in der Legende und in der Grafik korrekt ausgegeben." : MessageLookupByLibrary.simpleMessage("Os valores VarK e ToR no CGP são resultados corretos para os gráficos do dia e da semana na legenda e no gráfico."),
     "Die Werte für den Standardzielbereich auf der Analyse-Seite werden nun korrekt ermittelt" : MessageLookupByLibrary.simpleMessage("Os valores do intervalo padrão na página de análise agora são calculados corretamente"),
     "Die Werte im CGP werden jetzt bei mmol-Angaben auch korrekt angezeigt." : MessageLookupByLibrary.simpleMessage("Os valores no CGP agora também são exibidos corretamente para dados em mmol."),
     "Die angegebene URL ist nicht erreichbar. Wenn die URL stimmt, dann kann es an den Nightscout-Einstellungen liegen. " : MessageLookupByLibrary.simpleMessage("A URL especificada não está acessível. Se a URL está correta, então ela pode não estar acessível devido às configurações do Nightscout. "),
+    "Die berechneten IE für Kohlenhydrate in der Tagesgrafik wurden teilweise mit falschen Faktoren ermittelt. Der Fehler wurde behoben." : MessageLookupByLibrary.simpleMessage("O IE calculado para hidratos de carbono no gráfico diário foi parcialmente determinado com fatores errados. O bug foi corrigido."),
     "Die eigenen Grenzwerte auf der Analyseseite in mmol/L werden nun korrekt berechnet." : MessageLookupByLibrary.simpleMessage("Os próprios limites da página de análise em mmol/L agora são calculados corretamente."),
     "Die einzelne Seite CGP kann jetzt auch im Querformat ausgegeben werden." : MessageLookupByLibrary.simpleMessage("A única página CGP pode agora ter formato paisagem."),
     "Die fehlerhafte Platzierug der blutigen Werte bei mmol/L in der Tagesgrafik wurde korrigiert." : MessageLookupByLibrary.simpleMessage("Corrigido o erro de posicionamento dos valores sangrentos no gráfico diário ao usar mmol/L."),
@@ -381,21 +438,26 @@ class MessageLookup extends MessageLookupByLibrary {
     "Die mittlerweile überflüssige Option zur Darstellung der Basalrate mit zwei Nachkommastellen wurde aus der Tagesgrafik entfernt." : MessageLookupByLibrary.simpleMessage("Removido a opção obsoleta para os decimais da taxa de basalrate dos gráficos diários."),
     "Die teilweise falsch zugewiesenen Grenzwerte für die Bereiche (niedrig, normal, hoch) wurden korrigiert." : MessageLookupByLibrary.simpleMessage("Os limites parcialmente mal alocados para as áreas (baixa, normal, elevada) foram corrigidos."),
     "Die temporäre Basalrate am Anfang des Tages wurde bisher falsch gesetzt, wenn sie im vorherigen Tag gesetzt wurde. Das wurde behoben." : MessageLookupByLibrary.simpleMessage("A taxa de basal temporária no início do dia foi definida incorretamente se foi definida no dia anterior. Isso foi corrigido."),
+    "Die Überschrift über der Tabelle vom Glucose Perzentil Diagramm wurde korrigiert." : MessageLookupByLibrary.simpleMessage("The title above the table of glucose percentile diagram has been corrected."),
     "Die Überschrift über der mittleren Spalte im Tagesprofil wurde korrigiert." : MessageLookupByLibrary.simpleMessage("O título acima da coluna do meio no perfil diário foi corrigido."),
     "Diese Seite dient der Erzeugung von PDF-Dokumenten mit den bei Nightscout gespeicherten Daten. Dafür ist es notwendig, auf diese Daten zugreifen zu können, weshalb zunächst ein paar Einstellungen gespeichert werden müssen. Solange diese nicht vorhanden und gültig sind, kann die Seite nichts für Dich tun." : MessageLookupByLibrary.simpleMessage("Esta página é usada para gerar documentos PDF com os dados armazenados no Nightscout. Por conseguinte, é necessário o acesso aos dados, razão pela qual algumas configurações devem ser salvas primeiro. Enquanto estes não estiverem disponíveis e certos, o site não poderá mostrar os resultados."),
     "Diese Seite hinzugefügt. Sie wird jedesmal beim Start von Nightscout Reporter angezeigt, wenn sie in der aktuellen Version noch nicht angezeigt wurde. Ausserdem kann sie im Hamburgermenü wieder aufgerufen werden." : MessageLookupByLibrary.simpleMessage("Adicionado esta página. É exibida cada vez que o Nightscout reporter inicia, se não for exibido na versão atual. Além disso, pode ser chamado de novo no menu."),
     "Diese Webseite speichert keine Daten auf Servern. Die benötigten Daten werden von der eingegebenen URL zur Nightscout-Instanz geholt und als PDF aufbereitet. Die Daten, die zur Funktion der Webseite benötigt werden, werden im localStorage des Browsers gespeichert und nicht an den Server übermittelt. Wenn die Synchronisierung mit Google Drive aktiviert wird, dann werden diese Daten zusätzlich in den Anwendungsdaten auf dem Google Drive des verbundenen Kontos gespeichert." : MessageLookupByLibrary.simpleMessage("Este site não armazena dados nos servidores. Os dados necessários são recuperados a partir da URL inserida para a instância do Nightscout e formatados como PDF. Os dados necessários para o site funcionar são armazenados no armazenamento local do browser e não transmitidos ao servidor. Se a sincronização com o Google Drive estiver ativada, os dados também serão armazenados nos dados do aplicativo na conta associada ao Google Drive."),
     "Dieser Regler legt fest, wie gross eine Ausgabe maximal werden darf, bevor sie auf mehrere PDF-Dateien aufgeteilt wird. Wenn bei Erstellung eines PDFs ein leeres Fenster angezeigt wird, dann hilft es normalerweise, diesen Regler weiter nach links zu bewegen." : MessageLookupByLibrary.simpleMessage("Este botão deslizante define o tamanho máximo permitido antes do PDF ser dividido em vários ficheiros. Se uma janela em branco for exibida ao criar um PDF, normalmente ajuda ao mover o botão deslizante para a esquerda."),
     "Diverse Abstürze beim Auslesen der Daten bereinigt" : MessageLookupByLibrary.simpleMessage("Corrigidos vários erros ao ler dados"),
-    "Dämmerung (06:00 - 07:59, 18:00 - 20:59)" : MessageLookupByLibrary.simpleMessage("Twilight (06:00 - 07:59, 18:00 - 20:59)"),
+    "Drei Monate vorher" : MessageLookupByLibrary.simpleMessage("Três meses antes"),
+    "Dämmerung (06:00 - 07:59, 18:00 - 20:59)" : MessageLookupByLibrary.simpleMessage("Crepúsculo (06:00 - 07:59, 18:00 - 20:59)"),
     "Eigene Grenzwerte" : MessageLookupByLibrary.simpleMessage("Meu Intervalo alvo"),
-    "Eigenen Zielbereich verwenden" : MessageLookupByLibrary.simpleMessage("Utilizar o próprio intervalo alvo"),
     "Ein Fehler in der Zahlenformatierung wurde behoben." : MessageLookupByLibrary.simpleMessage("Um erro na formatação numérica foi corrigido."),
     "Ein Fehler wurde behoben, der dafür sorgte, dass die letzten Tage bestimmter Monate nicht im Kalender-Control angezeigt wurden." : MessageLookupByLibrary.simpleMessage("Corrigido um erro que fazia com que os últimos dias de certos meses não fossem exibidos no controlo do calendário."),
     "Ein Fehler wurde behoben, der in der Tagesgrafik dazu führte, dass Texte in der Legende andere Texte überschrieben haben." : MessageLookupByLibrary.simpleMessage("Foi corrigido um bug que causou que os gráficos diários substituíssem textos na legenda."),
     "Ein Fehler wurde wahrscheinlich behoben, der dazu führt, dass bei manchen Profilen der Wert für DIA nicht korrekt ausgelesen wurde." : MessageLookupByLibrary.simpleMessage("Um erro foi provavelmente corrigido, faz com que alguns perfis lhe faltem o valor do DIA."),
+    "Ein Jahr vorher" : MessageLookupByLibrary.simpleMessage("Um ano antes"),
     "Ein Link zur Facebookseite von Nightscout Reporter wurde im Menü hinzugefügt." : MessageLookupByLibrary.simpleMessage("Um link para a página do Facebook do Nightscout Reporter foi adicionado ao menu."),
+    "Ein Shortcut beinhaltet den Zeitraum und die ausgewählten Formulare mit den jeweils gesetzten Optionen. Wenn ein Shortcut aktiviert wird, werden die darin gespeicherten Einstellungen geladen und aktiviert." : MessageLookupByLibrary.simpleMessage("A shortcut contains the period and the selected forms with the options set. When a shortcut is activated, the settings saved in it are loaded and activated."),
+    "Ein möglicher Absturz bei der Ausgabe des CGP bei der Tagesgrafik wurde korrigiert." : MessageLookupByLibrary.simpleMessage("A possible crash in the output of the CGP in the daily graphic has been fixed."),
     "Eine" : MessageLookupByLibrary.simpleMessage("Um"),
+    "Einen Monat vorher" : MessageLookupByLibrary.simpleMessage("Um mês antes"),
     "Einige Browser sind nicht in der Lage PDF Dateien anzuzeigen, die eine bestimmte Grösse überschreiten. Da das von verschiedenen Faktoren abhängt, die sich nicht ohne Weiteres automatisch ermitteln lassen, gibt es die Möglichkeit, statt einer grossen PDF Datei, die nicht angezeigt werden kann, mehrere kleinere PDF Dateien zu erzeugen, die der Browser anzeigen kann. In den Einstellungen und hier kann diese Grösse festgelegt werden. Diese Seite hier wird nur angezeigt, wenn das PDF aufgeteilt werden musste. Wenn nur ein PDF erzeugt wurde, dann wird es direkt angezeigt." : MessageLookupByLibrary.simpleMessage("Alguns browsers não podem exibir ficheiros PDF que excedam um determinado tamanho. Uma vez que isso depende de vários fatores que não podem ser facilmente determinados automaticamente, existe a possibilidade de gerar vários ficheiros PDF mais pequenos que o browser pode exibir, ao invés de um ficheiro PDF grande que não pode ser exibido. Este tamanho pode ser especificado nas definições e aqui. Esta página só será exibida se o PDF tiver que ser dividido. Se apenas um PDF foi criado, ele será exibido diretamente."),
     "Einige Formulare können nun mit Parametern konfiguriert werden; hierzu den Pfeil am rechten Rand des Formularbuttons anklicken und im aufgeklappten Bereich die entsprechenden Einstellungen vornehmen; der Pfeil erscheint erst, wenn das Formular zum Ausdruck markiert wurde" : MessageLookupByLibrary.simpleMessage("Alguns formulários agora podem ser configurados com parâmetros; carregue na seta no lado direito do botão do formulário e faça as configurações apropriadas na área aberta; a seta não aparecerá até que o formulário seja marcado para impressão"),
     "Einige der Optionen für die PDFs wurden hierarchisch angeordnet. Es macht z.B. keinen Sinn, die SMB Werte in der Tagesgrafik an der Kurve platzieren zu lassen, wenn die SMB Werte gar nicht angezeigt werden. Deswegen werden Optionen, die von einer anderen Option abhängen nur dann angezeigt, wenn die entsprechende Option markiert ist. Dadurch ändert sich leider auch die Speicherung der Optionen, weshalb sich die aktuelle Auswahl der Optionen bei manchen PDFs verändert. Da müssen die Optionen dann neu gesetzt werden." : MessageLookupByLibrary.simpleMessage("Algumas das opções para os PDFs foram organizadas de forma hierárquica. Não faz sentido que os valores de SMB sejam colocados na curva do gráfico diário se os valores de SMB não forem sequer exibidos. Portanto, as opções que dependem de outra opção só são exibidas se a opção correspondente for selecionada. Isto infelizmente também altera as opções de armazenamento, razão pela qual a actual selecção de opções para alguns PDFs mudou. Estas opções têm de ser definidas novamente."),
@@ -404,21 +466,27 @@ class MessageLookup extends MessageLookupByLibrary {
     "Einstellungen von Release-Version übernehmen" : MessageLookupByLibrary.simpleMessage("Aplicar configurações da versão de lançamento"),
     "English (GB)" : MessageLookupByLibrary.simpleMessage("Inglês (GB)"),
     "English (USA)" : MessageLookupByLibrary.simpleMessage("Inglês (USA)"),
+    "Ermittle ersten Tag mit Daten" : MessageLookupByLibrary.simpleMessage("Searching first day with data"),
+    "Ermittle letzten Tag mit Daten" : MessageLookupByLibrary.simpleMessage("Searching last day with data"),
     "Erzeuge PDF..." : MessageLookupByLibrary.simpleMessage("A criar PDF..."),
-    "Es gibt ein neues PDF namens Tagesstunden. Dieses zeigt die Durchschnittswerte eines Tages in jedem Stundenintervall an und färbt die Zellen entsprechend des Glukosewertes ein. So hat man eine gut Übersicht über die Werteverteilung im ausgewählten Zeitraum." : MessageLookupByLibrary.simpleMessage("There is a new PDF called Dayhours. This shows the average values of a day in every hourly interval and fills the cells backgroundcolor according to the glucose value. This gives you a good overview of the distribution of values in the selected period."),
+    "Es gibt ein neues PDF namens Tagesstunden. Dieses zeigt die Durchschnittswerte eines Tages in jedem Stundenintervall an und färbt die Zellen entsprechend des Glukosewertes ein. So hat man eine gut Übersicht über die Werteverteilung im ausgewählten Zeitraum." : MessageLookupByLibrary.simpleMessage("Há um novo PDF chamado Dias/Horas. Isto mostra os valores médios de um dia em cada intervalo horário e preenche a cor de fundo das células de acordo com o valor de glicose. Isto dá-lhe uma boa visão geral da distribuição de valores no período seleccionado."),
     "Es gibt ein neues PDF namens Tagestrend. Dieses zeigt die Werte eines Tages zusammen mit dem Trend zu jeder vollen Stunde, sowie der eingestellten Basalrate aus dem Profil. Das ist eine gute Übersicht für Basalratentests, um zu erkennen, wo etwas anzupassen ist." : MessageLookupByLibrary.simpleMessage("Há um novo PDF chamado Tendência Diária. Isto mostra os valores de um dia juntamente com a tendência de hora e a taxa de basal definida no perfil. Esta é uma boa panorâmica dos testes de taxa de basal para ver onde é que algo precisa de ser ajustado."),
     "Es gibt eine neue PDF-Seite für die Tagesprofile. Darauf ist eine Tabelle zu sehen, die die tatsächliche Basalrate für den Tag zeigt, inklusive aller temporären Anpassungen. Ich brauchte das für Debugzwecke, aber vielleicht findet das der eine oder andere Benutzer auch interessant. Das Profil, das dort angezeigt wird entspricht dem Tagesprofil auf der Seite Tagesgrafik. Beim Loopen können das sehr viele Seiten werden, da dort normalerweise alle paar Minuten Anpassungen an der Basalrate vorgenommen werden. Deswegen wird die Tabelle auch abhängig von der Datenmenge in maximal drei Spalten dargestellt, um die Anzahl an Seiten zu reduzieren." : MessageLookupByLibrary.simpleMessage("Existe uma nova página PDF para os perfis diários. Contém uma tabela que mostra a taxa de basal real de cada dia, incluindo todos os ajustamentos temporários. Eu precisava disso para depuração, mas talvez alguns usuários também o considerem interessante. O perfil exibido lá corresponde ao perfil diário na página Gráficos Diários. Loops pode produzir muitas páginas, já que a taxa de basal geralmente é ajustada a cada poucos minutos. Portanto, dependendo da quantidade de dados, a tabela é exibida num máximo de três colunas para reduzir o número de páginas."),
     "Es gibt in den Einstellungen eine Option, das PDF herunterladen zu lassen, statt es im Browser direkt anzeigen zu lassen. Das wird für Browser wie Edge benötigt." : MessageLookupByLibrary.simpleMessage("Há uma opção nas configurações para fazer download do PDF em vez de tê-lo exibido diretamente no browser. Isto é necessário para browsers como o Edge."),
     "Es gibt in den Einstellungen eine neue Option, um den letzten in Nightscout gespeicherten Glukosewert in der Titelzeile anzeigen zu lassen. Wenn diese Option aktiviert ist, wird der aktuelle Wert, das Alter des Wertes, der Trendpfeil und die Differenz zum vorherigen Wert rechts in der Titelzeile angezeigt. Diese Anzeige wird jede Minute aktualisiert, solange das Browserfenster den Eingabefokus besitzt. Wenn es diesen nicht hat, wird die Aktualisierung angehalten und der Wert ausgeblendet, um nicht unnötig Systemresourcen zu belasten." : MessageLookupByLibrary.simpleMessage("Há uma nova opção nas configurações para exibir o último valor de glicose armazenado no Nightscout na barra de títulos. Se esta opção estiver ativada, o valor atual, a idade do valor, a seta de tendência e a diferença para o valor anterior é exibida no lado direito da barra de títulos. Esta tela é atualizada a cada minuto, desde que a janela do seu navegador tenha o foco de entrada. Se não tiver o foco, a atualização é interrompida e o valor está escondido para evitar carga desnecessária sobre os recursos do sistema."),
+    "Es gibt jetzt Shortcuts, mit denen man die aktuelle Auswahl der Formulare, deren Parameter und den ausgewählten Zeitraum speichern kann. Beim Aktivieren eines Shortcuts wird das alles wieder so eingestellt, wie es war, als der Shortcut gespeichert wurde." : MessageLookupByLibrary.simpleMessage("There are now shortcuts with which you can save the current selection of forms, their parameters and the selected period. When activating a shortcut, everything is set back to what it was when the shortcut was saved."),
     "Es gibt jetzt auch die Möglichkeit, Nightscout Reporter in europäischem Englisch darzustellen. Der Unterschied zum amerikanischen Englisch besteht derzeit lediglich im Datumsformat (gb: dd/MM/yyyy, us: MM/dd/yyyy)." : MessageLookupByLibrary.simpleMessage("Existe agora também a possibilidade de usar o Relatório de Nightscout em inglês europeu. A diferença para o inglês americano existe actualmente apenas no formato da data (gb: dd/MM/yyyy, nós: MM/dd/yyyy)."),
     "Es gibt jetzt die Möglichkeit, PDFs vergangener Zeiträume zu erzeugen, ohne den Zeitraum anpassen zu müssen. Oberhalb des Buttons zur PDF-Erzeugung gibt es zwei Buttons, welche die PDFs für eine frühere Periode erzeugen. Der untere der beiden Buttons erzeugt die Vorperiode, der obere die vorletzte Periode. Auf den Buttons wird das Startdatum und das Enddatum angezeigt. Wenn z.B. als Zeitraum \"Letzte 2 Wochen\" gewählt wurde, dann wird mit dem unteren Button der Zeitraum von zwei Wochen beginnend vor vier Wochen erzeugt und mit dem oberen Button der Zeitraum von zwei Wochen beginnend vor sechs Wochen. Auf diese Art kann man recht einfach Vergleichsberichte erzeugen, um die Entwicklung der Werte zu erkennen. Auf den Seiten wird für diese Ausdrucke in der Kopfzeile das Wort \"Historisch 1\", bzw. \"Historisch 2\" oberhalb des Zeitraums ausgegeben. So kann man beim Vergleich der Werte die Daten voneinander unterscheiden." : MessageLookupByLibrary.simpleMessage("Existe agora a capacidade de gerar PDFs de períodos passados sem ter de ajustar o período. existem dois botões para períodos anteriores acima do botão para criar PDF que geram os PDFs. A parte inferior dos dois botões gera o período anterior, o período superior ao anterior. Os botões mostram a data de início e a data de fim. Se o período de \"últimas 2 semanas\" for selecionado, então o botão mais baixo cria o período a partir de duas semanas, começando há quatro semanas, e o botão superior o período de duas semanas a partir de há seis semanas. Desta forma, é fácil gerar relatórios de comparação para detectar a evolução dos valores. As palavras \"Histórico 1\" ou \"Histórico 2\" são colocadas acima do período nas páginas para estes documentos impressos no cabeçalho. Então você pode distinguir os dados entre si ao comparar as folhas."),
     "Es ist jetzt möglich, die Buttons zur PDF-Auswahl als Kacheln darstellen zu lassen. Die Option dazu ist im Menü auf der linken Seite zu finden. In der Kachelansicht werden die Buttons über die verfügbare Fläche verteilt und sind so auf kleinen Geräten leichter zu treffen. Ausserdem sieht man dann normalerweise alle verfügbaren PDFs auf einen Blick und muss nicht scrollen. Auf den aktivierten Kacheln wird angezeigt, an welcher Stelle im PDF die entsprechenden Seiten ausgegeben werden und wieviele Seiten die entsprechende Kachel ausgibt. Diese Zahl kann für die meisten Kacheln korrekt ermittelt werden, bei einigen ist das aber ohne Auswertung der Daten nicht möglich (z.B. Profile und Protokoll). In diesem Fall wird entweder keine Seitenzahl oder eine Mindestzahl an Seiten angegeben. Sobald die Erstellung des PDFs erfolgt ist, werden die korrekten Zahlen angezeigt. Die Reihenfolge der Kacheln kann verändert werden, indem man sie festhält und an die Stelle verschiebt, an der man sie gerne hätte. Nach Anklicken des Icons in der oberen rechten Ecke können die Parameter für das entsprechende PDF erfasst werden." : MessageLookupByLibrary.simpleMessage("Agora é possível exibir os botões para seleção de PDF como mosaico. A opção pode ser encontrada no menu à esquerda. Na visualização dos mosaicos, os botões são distribuídos pela área disponível e, portanto, são mais fáceis de carregar em pequenos dispositivos. Além disso, vê normalmente todos os PDFs disponíveis de uma vez só e não precisa mexer na página. Os mosáicos ativados indicam em que ponto no PDF as páginas correspondentes são criadas e quantas páginas o mosaico correspondente cria. O número de páginas pode ser determinado corretamente para a maioria dos mosaicos, mas para alguns isso não é possível sem informações (por exemplo, perfis e protocolo). Neste caso, nenhum número de página ou um número mínimo de páginas é mostrado. Depois de criado, os números corretos serão exibidos. O sitio dos mosaicos pode ser alterado arrastando-o para onde você quiser. Depois de clicar no ícone no canto superior direito, os parâmetros para o PDF correspondente podem ser definidos."),
     "Es ist jetzt möglich, die Einstellungen auf Google Drive zu speichern. Das hat den Vorteil, dass man die Einstellungen nicht nur im aktuellen Browser hat, sondern bei jedem Browser, mit dem man sich bei Google anmeldet. Die Einstellungen werden nach wie vor im Browser gespeichert. Bei einer Verbindung zu Google Drive werden sie aber zusätzlich auf Google Drive gespeichert. Beim Laden der Seite wird überprüft, ob eine Synchronisierung gewünscht ist. Wenn das der Fall ist, dann werden die Daten von Google Drive heruntergeladen. Wenn die Daten darin neuer sind als die Daten im Browser, werden sie verwendet. Nach dem Speichern der Daten werden bei aktivierter Synchronisierung diese Daten mit dem aktuellen Zeitstempel auf Google Drive gespeichert. Die Synchronisierung wird im Menü auf der linken Seite aktiviert und deaktiviert. Sie kann auch beim erstmaligen Aufruf der Seite in einem neuen Browser direkt im Willkommensbildschirm aktiviert werden. Nightscout Reporter verlangt nur die Berechtigung die eigenen App-Daten zu speichern und zu laden und benötigt keinen Zugriff auf andere Daten auf Google Drive." : MessageLookupByLibrary.simpleMessage("Agora é possível gravar as definições no Google Drive. Essa é a vantagem de ter as definições não somente no browser atual, mas em qualquer browser, que está ligado à sua conta do Google. As definições ainda estão armazenadas no browser. Quando ligado ao Google Drive, ele também será armazenado no Google Drive. Ao carregar a página, verifica se a sincronização é necessária. Se for o caso, então os dados serão carregados do Google Drive. Se os dados carregados forem mais recentes que os dados no browser, eles serão utilizados. Uma vez que os dados são gravados, a sincronização gravará esses dados com o timestamp atual no Google Drive. A sincronização está ativada e desativada no menu do lado esquerdo. Ele também pode ser ativado quando ligar a página fpr pela primeira vez num novo browser diretamente na página de boas-vindas. O Nightscout Reporter requer apenas permissão para gravar e carregar os seus próprios dados do aplicativo e não requer acesso a outros dados no Google Drive."),
     "Es ist jetzt möglich, die Wochentage festzulegen, die im Zeitraum berücksichtigt werden sollen. Die entsprechenden Tage werden bei der Auswahl des Zeitraums mit den Buttons unterhalb des Monats festgelegt. Auf den PDFs werden Zeiträume dann zusätzlich mit der Information versehen, welche Wochentage berücksichtigt werden, wenn es nicht alle sind." : MessageLookupByLibrary.simpleMessage("É agora possível fixar os dias da semana que devem ser utilizados no período. Ao selecionar um período os dias correspondentes são definidos com botões abaixo do mês. Nos PDFs, os períodos são indicados com os dias da semana que são utilizados, se pelo menos um não existir."),
     "Es sind keine Daten für den Ausdruck vorhanden" : MessageLookupByLibrary.simpleMessage("Não há dados para impressão"),
+    "Es sind keine Daten vorhanden." : MessageLookupByLibrary.simpleMessage("No data available."),
     "Es werden jetzt auch blutige Werte erkannt, die von Loop auf dem IPhone eingetragen werden." : MessageLookupByLibrary.simpleMessage("Os valores de sangue que são inseridos pelo Loop no iPhone também agora são reconhecidos."),
     "Español" : MessageLookupByLibrary.simpleMessage("Espanhol"),
+    "Exportieren" : MessageLookupByLibrary.simpleMessage("Export"),
     "Facebook Seite" : MessageLookupByLibrary.simpleMessage("Página do Facebook"),
+    "Fehler behoben, der bei der Kachelansicht teilweise verhindert hat, dass die Parameter für die Kacheln aufgerufen werden konnten." : MessageLookupByLibrary.simpleMessage("Corrigido um erro que por vezes impedia os parâmetros dos blocos de serem chamados na visualização dos mosaicos."),
     "Fehler beim Laden der Daten" : MessageLookupByLibrary.simpleMessage("Erro ao carregar dados"),
     "Fehler werden besser abgefangen und mit sinnvollem Text ersetzt." : MessageLookupByLibrary.simpleMessage("Os erros são melhor interceptados e substituídos por texto."),
     "Fehlerhafte Ausgabe der Blutzuckerwerte in der täglichen Grafik korrigiert." : MessageLookupByLibrary.simpleMessage("Corrigimos o resultado incorreto dos níveis de glicose no gráfico diário."),
@@ -427,6 +495,8 @@ class MessageLookup extends MessageLookupByLibrary {
     "Français" : MessageLookupByLibrary.simpleMessage("Françês"),
     "Für die Tagesgrafik gibt es jetzt eine Option, um die Aufsummierung nahe beieinander liegender Werte umzuschalten." : MessageLookupByLibrary.simpleMessage("Agora há uma opção para que os gráficos diários alternem a acumulação de valores fechados."),
     "Geburtstag" : MessageLookupByLibrary.simpleMessage("Data de nascimento"),
+    "Gelbe Kreise zeigen an, dass der entsprechende Wert die Skala überschreitet." : MessageLookupByLibrary.simpleMessage("Yellow circles indicate that the corresponding value exceeds the scale."),
+    "Genauigkeit der Basalangaben:" : MessageLookupByLibrary.simpleMessage("Precision of basalvalues:"),
     "Ges." : MessageLookupByLibrary.simpleMessage("Total"),
     "Gesamt" : MessageLookupByLibrary.simpleMessage("Total"),
     "Geschätzter HbA1c" : MessageLookupByLibrary.simpleMessage("HbA1c Estimado"),
@@ -438,19 +508,28 @@ class MessageLookup extends MessageLookupByLibrary {
     "Glukosekurve" : MessageLookupByLibrary.simpleMessage("Curva de glicose"),
     "Glukosewert" : MessageLookupByLibrary.simpleMessage("Glucose"),
     "Glykämischer Variabilitäts Index (GVI)" : MessageLookupByLibrary.simpleMessage("Índice de Variabilidade Glicêmica (GVI)"),
+    "Google Assistant" : MessageLookupByLibrary.simpleMessage("Google Assistant"),
     "Grafik" : MessageLookupByLibrary.simpleMessage("Gráfico"),
     "Grafiken pro Seite" : MessageLookupByLibrary.simpleMessage("Gráficos por página"),
     "Gross" : MessageLookupByLibrary.simpleMessage("Grande"),
     "Gruppierung der Zeiten" : MessageLookupByLibrary.simpleMessage("Agrupamento de tempos"),
     "HTML-Notizen anzeigen" : MessageLookupByLibrary.simpleMessage("Exibir notas em HTML"),
     "Heute" : MessageLookupByLibrary.simpleMessage("Hoje"),
+    "Hiermit wird festgelegt, um wieviel der Zeitraum des PDFs verschoben werden soll, um Vergleichswerte zu erhalten." : MessageLookupByLibrary.simpleMessage("Isto determina quanto o período do PDF deve ser deslocado para obter valores comparativos."),
     "Hinweise auf Nightscout in der Kopf- und Fusszeile des PDFs ausblenden" : MessageLookupByLibrary.simpleMessage("Ocultar texto sobre Nightscout no cabeçalho e rodapé do PDF"),
+    "Hinzufügen" : MessageLookupByLibrary.simpleMessage("Add"),
+    "Historische Daten" : MessageLookupByLibrary.simpleMessage("Histórico"),
     "Hochformat" : MessageLookupByLibrary.simpleMessage("Retrato"),
     "Hohe Basalraten werden jetzt besser dargestellt." : MessageLookupByLibrary.simpleMessage("As elevadas taxas de basal estão agora melhor representadas."),
     "Höchster Wert im Zeitraum" : MessageLookupByLibrary.simpleMessage("Valor mais alto no período"),
     "IE" : MessageLookupByLibrary.simpleMessage("U"),
     "IE/std" : MessageLookupByLibrary.simpleMessage("U/hr"),
     "IOB (Insulin On Board) anzeigen" : MessageLookupByLibrary.simpleMessage("Mostrar IOB (Insulina a Bordo)"),
+    "Im CGP wurden die Skalenbeschriftungen korrigiert." : MessageLookupByLibrary.simpleMessage("The scale labels have been corrected in the CGP."),
+    "Im CGP wurden verschiedene Berechnungen korrigiert, die sich vor allem in Differenzen bei ToR und Mittelwerten zeigten." : MessageLookupByLibrary.simpleMessage("Various calculations were corrected in the CGP, which were mainly shown in differences in ToR and average values."),
+    "Im Dialog der Ausgabe Parameter gibt es nun die Möglichkeit, das CGP immer mit dem Standard Zielbereich zu erzeugen. Diese Option ist anfangs eingeschaltet, da das CGP ein standardisiertes Formular ist, das gerne zu Vergleichszwecken herangezogen wird. Man kann es aber für seine eigenen Zwecke ausschalten. Diese Einstellung wird dann auch beibehalten." : MessageLookupByLibrary.simpleMessage("In the dialog of the output parameters there is now the possibility to always generate the CGP with the standard target area. This option is initially activated because the CGP is a standardized form that is often used for comparison purposes. But you can turn it off for your own purposes. This setting is retained."),
+    "Im Dialog der Ausgabe Parameter wurde rechts oben der Schieberegler \"zu Vergleichszwecken\" hinzugefügt. Wenn dieser aktiviert ist, dann wird überall der Standard Zielbereich verwendet. Intern wird das auch noch für andere Anpassungen verwendet. Diese Option ist dafür gedacht, dass man seine Ausdrucke mit anderen Diabetikern vergleichen kann. Das ist zum Beispiel zur Vorlage bei Ärzten und Diabetesberatern sinnvoll." : MessageLookupByLibrary.simpleMessage("In the dialog of the Output Parameters, the switch \"for comparison purposes\" was added in the top right. If this is activated, the standard target area is used everywhere. Internally, this is also used for other adjustments. This option is designed so that you can compare your printouts with other diabetics. This is useful, for example, for submission to doctors and diabetes consultants."),
+    "Im Einstellungen Dialog gibt es jetzt die Möglichkeit, die Einstellungen zu exportieren und zu importieren. Beim Export wird eine Datei mit den allgemeinen Einstellungen geschrieben, beim Import wird so eine Datei wieder eingelesen. Damit kann man auch ohne Google Drive Zugriff die Einstellungen über verschiedene Browser hinweg manuell synchronisieren." : MessageLookupByLibrary.simpleMessage("In the Settings dialog there is now the possibility to export and import the settings. When exporting, a file is written with the general settings; when importing, such a file is read in again. This allows you to manually synchronize the settings across different browsers even without Google Drive access."),
     "Im Einstellungsdialog wurden die Zeilen mit den Benutzerangaben und der URL gegeneinander ausgetauscht, um eine sinnvollere Verwaltung zu ermöglichen." : MessageLookupByLibrary.simpleMessage("Na caixa de diálogo de definições, as linhas com os detalhes do usuário e a URL foram trocadas por uma administração mais significativa."),
     "Im Kalender-Control kann kein Datum nach dem aktuellen Tag mehr ausgewählt werden." : MessageLookupByLibrary.simpleMessage("O controlo do calendário não pode mais selecionar uma data após o dia atual."),
     "Im Kalender-Control wird ein eingestellter Bereich (Heute, Letzte Woche, etc.) jetzt korrekt auf den aktuellen Tag bezogen." : MessageLookupByLibrary.simpleMessage("No controlo do calendário, um período definido (hoje, na semana passada, etc.) está agora corretamente baseado no dia atual."),
@@ -458,9 +537,14 @@ class MessageLookup extends MessageLookupByLibrary {
     "Im PDF werden Zahlen und Datumsangaben entsprechend der ausgewählten Sprache formatiert" : MessageLookupByLibrary.simpleMessage("Números e datas no PDF são formatados de acordo com o idioma selecionado"),
     "Im Profil werden jetzt die richtigen Einheiten verwendet (mg/dL oder mmol/l)." : MessageLookupByLibrary.simpleMessage("O perfil agora usa as unidades corretas (mg/dL ou mmol/l)."),
     "Im Profil werden nun die Gesamtsumme der Basalrate und die durchschnittlichen Werte für ICR und ISF pro Stunde angezeigt." : MessageLookupByLibrary.simpleMessage("O perfil mostra agora a taxa de basal total e a média ICR e ISF por hora."),
+    "Im Protokoll gibt es jetzt die Möglichkeit, sich doppelte Datensätze markieren zu lassen. Sie werden von Nightscout Reporter zwar rausgefiltert, aber er kann anzeigen, wie oft ein bestimmter Datensatz in den Daten gefunden wurde. Man kann dort auch angeben, dass er nur mehrfach vorhandene Datensätze ausgeben soll. So kann man mögliche Diskrepanzen zwischen Nightscout Reporter und anderen Reporting Tools herausfinden." : MessageLookupByLibrary.simpleMessage("In the daily log there is now the possibility to have duplicate records marked. Nightscout Reporter filters them out, but it can show how often a particular record was found in the data. You can also specify that it should only output data records that exist more than once. This way you can find out possible differences between Nightscout Reporter and other reporting tools."),
     "Im Protokoll können jetzt auch Batteriewechsel der Pumpe angezeigt werden." : MessageLookupByLibrary.simpleMessage("O protocolo agora também pode mostrar alterações na bateria da bomba."),
+    "Im Protokoll werden die Angaben, die ein temporäres Ziel von 0 IE für 0 Minuten setzen als \"Aufhebung von temp. Ziel\" ausgegeben." : MessageLookupByLibrary.simpleMessage("In the log, the information that sets a temporary target of 0 U for 0 minutes is output as \"Cancel temp target\"."),
+    "Importieren" : MessageLookupByLibrary.simpleMessage("Import"),
     "Impressum" : MessageLookupByLibrary.simpleMessage("Informação legal"),
     "In Firefox ist es jetzt auch möglich, die Hauptseite zu scrollen, wenn sie länger ist, als das Browserfenster." : MessageLookupByLibrary.simpleMessage("Agora é possível rolar a página principal no Firefox, se é mais do que a janela do browser."),
+    "In dem Dialog mit den Ausgabe Parametern wurde die Option hinzugefügt, die Genauigkeit der Ausgabe von Basalangaben festzulegen. Diese wird normalerweise aus den Angaben zur Basalrate in den Profilen ermittelt. Das wird auch weiterhin getan, wenn der erste Eintrag in der Liste ausgewählt wird. Ansonsten werden alle Basalangaben mit der Genauigkeit ausgegeben, die bei dieser Option ausgewählt wurde." : MessageLookupByLibrary.simpleMessage("In the dialog with the output parameters, an option was added to specify the precision of the output of basal information. This is usually determined from the information on the basal rate in the profiles. This is still the case when the first entry in the list is selected. Otherwise, all basal information is output with the precision selected for this option."),
+    "In den Ausgabe Parametern kann nun angegeben werden, ob immer der neueste Tag zuerst angezeigt wird. Das hat Auswirkungen auf die Tagesgrafik, die Tagesstatistik und die Wochengrafik. In den Formularoptionen wurde die entsprechende Option entfernt." : MessageLookupByLibrary.simpleMessage("You can now specify in the output parameters whether the newest day is always displayed first. This has an impact on the daily graph, the daily statistics and the weekly graph. The corresponding option has been removed from the form options."),
     "In den Einstellungen gibt es einen Regler, der festlegt, wie gross die erzeugten PDF-Dateien maximal sein dürfen. Wenn nur ein leeres PDF erzeugt wird, dann sollte dieser Regler weiter nach links geschoben werden, um die Dateigrösse zu verringern." : MessageLookupByLibrary.simpleMessage("Nas configurações há um controle deslizante que define o tamanho dos arquivos PDF resultantes. Quando um PDF em branco é criado, então este controle deslizante deve ser movido para a esquerda, para reduzir o tamanho do ficheiro."),
     "In der Analyse können die Prozentzahlen für die Zielbereiche mit Nachkommazahl angezeigt werden. Das verringert die Differenz zu 100%, wenn man sie zusammenzählt. Der verbleibende Rest sind Rundungsdifferenzen." : MessageLookupByLibrary.simpleMessage("Na análise, as percentagens para os intervalos alvo podem ser mostradas com casas decimais. Isto reduz a diferença a 100% se for somar. O resto deve-se a diferenças de arredondamento."),
     "In der Auswertung gibt es eine neue Option, um den Standardbereich feiner abzustufen. Dort werden dann zusätzlich sehr hohe Werte und sehr niedrige Werte angezeigt." : MessageLookupByLibrary.simpleMessage("Há uma nova opção na análise para ajustar o intervalo padrão. Valores muito altos e valores muito baixos são exibidos com esta opção."),
@@ -486,6 +570,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "In der Tagesgrafik werden nun auch verzögerte Boli angezeigt." : MessageLookupByLibrary.simpleMessage("Bolus atrasado agora são exibidos no gráfico diário."),
     "In der Tagesgrafik werden nun der geschätzte HbA1C und die prozentuale Menge an Bolusinsulin und Basalinsulin für den Tag angezeigt. Diese Anzeige erfolgt innerhalb der Legende, weshalb diese aktiviert sein muss, damit die Werte angezeigt werden." : MessageLookupByLibrary.simpleMessage("O gráfico diário mostra agora o HbA1c estimado e a percentagem de insulina bolus e insulina basal para o dia. Estes valores são exibidos dentro da legenda, e é por isso que deve ser activado para que os valores apareçam."),
     "In der Tagesgrafik wird jetzt eine Tabelle mit halbstündigen Glukosewerten eingeblendet angezeigt. Diese kann über einen Parameter ausgeschaltet werden." : MessageLookupByLibrary.simpleMessage("Agora, os gráficos diários mostram uma tabela com valores de glicemia em semi-horária. Isso pode ser desligado através de um parâmetro."),
+    "In der Tagesgrafik wurde \"Training\" in \"Bewegung\" umbenannt. Das passt besser zu den Einträgen in AAPS." : MessageLookupByLibrary.simpleMessage("No gráfico diário na versão do german \"Treino\" foi substituído por \"Bewegung\" já que isso corresponde melhor ao texto no AAPS."),
     "In der Tagesgraphic werden jetzt Insulinwerte und Kohlenhydratwerte zusammengefasst, wenn es mehrere innerhalb einer Stunde gibt. Die Balken werden nach wie vor für jeden Wert einzeln ausgegeben. Auf diese Art sollte es keine überlappende Ausgabe der Werte mehr geben. Die zusammengefassten Werte werden in eckigen Klammern ausgegeben, um anzuzeigen, dass hier Werte aufsummiert wurden." : MessageLookupByLibrary.simpleMessage("O gráfico diário resume agora os valores de insulina e os valores de Hidratos de carbono quando há vários valores dentro de uma hora. As barras são desenhadas individualmente para cada valor. Desta forma, não deve haver mais nenhuma saída sobreposta dos valores. Os valores resumidos são exibidos entre quadros para indicar que os valores foram resumidos aqui."),
     "In der Tagesstatistik und in den täglichen Grafiken werden jetzt zum Datum die Wochentage mit angezeigt." : MessageLookupByLibrary.simpleMessage("Nas estatísticas diárias e nas gráficos diários, os dias da semana são agora exibidos com o dia da semana."),
     "In der Tagesstatistik wurde die Spalte Varianzkoeffizient hinzugefügt (VarK)." : MessageLookupByLibrary.simpleMessage("Nas estatísticas diárias, foi acrescentada a coluna Coeficiente de variação (CV)."),
@@ -509,6 +594,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "Klein" : MessageLookupByLibrary.simpleMessage("Pequeno"),
     "Kohlenhydrate" : MessageLookupByLibrary.simpleMessage("Hidratos de carbono"),
     "Kohlenhydrate und Bolusinsulin werden jetzt in den täglichen Grafiken angezeigt" : MessageLookupByLibrary.simpleMessage("Hidratos de carbono e insulina de bólus agora são exibidos nos gráficos diários"),
+    "Lade die Basisdaten..." : MessageLookupByLibrary.simpleMessage("Carregando base de dados..."),
     "Legende" : MessageLookupByLibrary.simpleMessage("Legenda"),
     "Legende für Katheter- und Sensorwechsel zur Tagesgrafik hinzugefügt." : MessageLookupByLibrary.simpleMessage("Adicionada legenda para troca de cateter e sensor para gráfico diário."),
     "Letzte 2 Tage" : MessageLookupByLibrary.simpleMessage("Últimos 2 dias"),
@@ -520,21 +606,25 @@ class MessageLookup extends MessageLookupByLibrary {
     "Letzte Woche" : MessageLookupByLibrary.simpleMessage("Última semana"),
     "Letzten Messwert in der Titelzeile anzeigen" : MessageLookupByLibrary.simpleMessage("Mostrar o último valor de glicose na barra de títulos"),
     "Letzter Monat" : MessageLookupByLibrary.simpleMessage("Mês anterior"),
+    "Loopenthüllende Daten verbergen (die Markierung der andersfarbigen Optionen ignorieren)" : MessageLookupByLibrary.simpleMessage("Hide loop revealing data (ignore the marking of the different colored options)"),
+    "Löschen" : MessageLookupByLibrary.simpleMessage("Delete"),
     "Mahlzeitenbolus_bolus to handle a meal" : MessageLookupByLibrary.simpleMessage("Bolus da refeição"),
     "Man kann jetzt mehrere Benutzer anlegen. Das ist nützlich, um mehrere Nightscout-Instanzen auszuwerten (z.B. für Ärzte, Betreuer oder den Entwickler dieser Software)" : MessageLookupByLibrary.simpleMessage("Agora pode criar vários usuários. Isto é útil para analisar várias instâncias do nightscout (por exemplo, para médicos, cuidadores ou o desenvolvedor deste software)"),
     "Material mit Nachkommastellen" : MessageLookupByLibrary.simpleMessage("Material com locais decimais"),
     "Max" : MessageLookupByLibrary.simpleMessage("Máx"),
     "Max Mustermann" : MessageLookupByLibrary.simpleMessage("John Smith"),
-    "Maximum für die Skalierung" : MessageLookupByLibrary.simpleMessage("Maximum value for scale"),
+    "Maximaler Glukosewert in Grafiken:" : MessageLookupByLibrary.simpleMessage("Valor máximo de Glicose em gráficos:"),
     "Median" : MessageLookupByLibrary.simpleMessage("Mediano"),
     "Mehr gibt es dazu eigentlich nicht zu sagen." : MessageLookupByLibrary.simpleMessage("Não há mais nada a dizer."),
+    "Mehrfache Datensätze kennzeichnen" : MessageLookupByLibrary.simpleMessage("Denote repeated datasets"),
+    "Menü" : MessageLookupByLibrary.simpleMessage("Menu"),
     "Mess-\nwerte" : MessageLookupByLibrary.simpleMessage("Valores"),
     "Min" : MessageLookupByLibrary.simpleMessage("Min"),
     "Mit Google Drive synchronisieren" : MessageLookupByLibrary.simpleMessage("Sincronizar com o Google Drive"),
     "Mittel-\nwert" : MessageLookupByLibrary.simpleMessage("Média"),
     "Montag|Dienstag|Mittwoch|Donnerstag|Freitag|Samstag|Sonntag" : MessageLookupByLibrary.simpleMessage("Segunda-feira|Terça-feira|Quarta-feira|Quinta-feira|Sexta-feira|Sábado|Domingo"),
     "Mo|Di|Mi|Do|Fr|Sa|So" : MessageLookupByLibrary.simpleMessage("Seg|Ter|Qua|Qui|Sex|Sab|Dom"),
-    "Nacht (21:00 - 05:59)" : MessageLookupByLibrary.simpleMessage("Night (21:00 - 05:59)"),
+    "Nacht (21:00 - 05:59)" : MessageLookupByLibrary.simpleMessage("Noite (21:00 - 05:59)"),
     "Nahe zusammen liegende Werte aufsummieren" : MessageLookupByLibrary.simpleMessage("Valores Acumulados próximo do intervalo Limite"),
     "Name" : MessageLookupByLibrary.simpleMessage("Nome"),
     "Name, Geburtstag, Insulin und das Startdatum des Diabetes können nun leer gelassen werden, ohne dass das negative Auswirkungen auf die Darstellung im PDF hat." : MessageLookupByLibrary.simpleMessage("Nome, aniversário, insulina e data de início da diabetes agora podem ser deixados em branco sem qualquer impacto negativo na apresentação no PDF."),
@@ -542,7 +632,6 @@ class MessageLookup extends MessageLookupByLibrary {
     "Neue Option im Profil, um fortlaufende Zeiten mit gleichen Werten zu einem Eintrag zusammen zu fassen." : MessageLookupByLibrary.simpleMessage("Nova opção no perfil para combinar horários consecutivos com os mesmos valores numa única entrada."),
     "Neuer Parameter für die Tagesgrafik, der festlegt, ob die Linien für die Notizen unter der Grafik bis zur Glukosekurve gezeichnet werden sollen oder nicht." : MessageLookupByLibrary.simpleMessage("Novo parâmetro do gráfico diário que determina se deve ou não desenhar as linhas para as notas abaixo do gráfico até a curva de glicose."),
     "Neues PDF für eine Wochengrafik hinzugefügt, auf der die Glukosekurven der Woche übereinander gelegt werden." : MessageLookupByLibrary.simpleMessage("Adicionamos um novo PDF para gráficos semanais onde as curvas de glicose da semana são mostradas de uma só vez."),
-    "Neueste Woche zuerst" : MessageLookupByLibrary.simpleMessage("Dia mais recente primeiro"),
     "Neuester Tag zuerst" : MessageLookupByLibrary.simpleMessage("Dia mais recente primeiro"),
     "Niedrigster Wert im Zeitraum" : MessageLookupByLibrary.simpleMessage("Valor mais baixo no período"),
     "Nightscout Berichte" : MessageLookupByLibrary.simpleMessage("Relatórios do Nightscout"),
@@ -550,16 +639,19 @@ class MessageLookup extends MessageLookupByLibrary {
     "Nightscout Reporter kann nun auch auf Portugiesisch verwendet werden." : MessageLookupByLibrary.simpleMessage("Nightscout Reporter pode agora ser usado em Português."),
     "Nightscout Reporter kann nun auch in Japanisch verwendet werden." : MessageLookupByLibrary.simpleMessage("Nightscout Reporter pode agora ser usado em Japonês."),
     "Nightscout Seite" : MessageLookupByLibrary.simpleMessage("Site Nightscout"),
+    "Nightscout Url in der Fusszeile des PDFs anzeigen" : MessageLookupByLibrary.simpleMessage("Show Nightscout Url in the footer of the PDFs"),
     "Normal" : MessageLookupByLibrary.simpleMessage("Normal"),
     "Notiz" : MessageLookupByLibrary.simpleMessage("Nota"),
     "Notiz-Linien bis zur Kurve zeichnen" : MessageLookupByLibrary.simpleMessage("Desenhar linhas das notas para a curva"),
     "Notizen" : MessageLookupByLibrary.simpleMessage("Notas"),
     "Nur letzte Basalrate ausgeben" : MessageLookupByLibrary.simpleMessage("Mostrar apenas a última taxa de basal"),
     "Nur letztes Profil ausgeben" : MessageLookupByLibrary.simpleMessage("Mostrar apenas o último perfil"),
+    "Nur mehrfache Datensätze anzeigen" : MessageLookupByLibrary.simpleMessage("Show only repeated datasets"),
     "Ok" : MessageLookupByLibrary.simpleMessage("Ok"),
     "Optionen für die PDFs, die eine eindeutige Beziehung zu einem laufenden Loop haben, werden nun in Blau dargestellt. Das vereinfacht es, PDFs zu erstellen, denen man nicht ohne Weiteres entnehmen kann, dass ein Loop vorliegt. Dazu müssen nur die Haken bei den blauen Optionen entfernt werden." : MessageLookupByLibrary.simpleMessage("As opções para PDFs que têm um relacionamento único com loop agora são exibidas em azul. Isso facilita a criação de PDFs onde você não pode facilmente deduzir que há um loop em execução. Tudo o que precisa fazer é desmarcar as opções azuis."),
     "PDF anzeigen" : MessageLookupByLibrary.simpleMessage("Visualizar PDF"),
     "PDF erneut erzeugen" : MessageLookupByLibrary.simpleMessage("Criar PDF novamente"),
+    "PDF erzeugen" : MessageLookupByLibrary.simpleMessage("Crear PDF"),
     "PDF für Profildaten" : MessageLookupByLibrary.simpleMessage("PDF para dados do perfil"),
     "PDF herunterladen (bei einigen Browsern benötigt)" : MessageLookupByLibrary.simpleMessage("Download PDF (necessário para alguns browsers)"),
     "PDF im selben Fenster öffnen" : MessageLookupByLibrary.simpleMessage("Abrir PDF na mesma janela"),
@@ -583,15 +675,24 @@ class MessageLookup extends MessageLookupByLibrary {
     "SMB an der Kurve platzieren" : MessageLookupByLibrary.simpleMessage("Coloque o SMB na curva"),
     "Schliessen" : MessageLookupByLibrary.simpleMessage("Fechar"),
     "Schliessen Button im Nachrichtenbereich hinzugefügt." : MessageLookupByLibrary.simpleMessage("Botão Fechar adicionado na área de mensagem."),
+    "Sechs Monate vorher" : MessageLookupByLibrary.simpleMessage("Seis meses antes"),
     "Sechzehn" : MessageLookupByLibrary.simpleMessage("Dezasseis"),
     "Sekunden anzeigen" : MessageLookupByLibrary.simpleMessage("Mostrar segundos"),
     "Sensorwechsel" : MessageLookupByLibrary.simpleMessage("Mudança do Sensor"),
+    "Shortcut anlegen" : MessageLookupByLibrary.simpleMessage("Add shortcut"),
+    "Shortcut ändern" : MessageLookupByLibrary.simpleMessage("Edit shortcut"),
+    "Shortcuts" : MessageLookupByLibrary.simpleMessage("Shortcuts"),
     "Slovenský" : MessageLookupByLibrary.simpleMessage("Eslovaco"),
     "Soll der Benutzer mit der URL" : MessageLookupByLibrary.simpleMessage("O usuário deve usar o URL"),
+    "Soll der Shortcut mit der Bezeichnung" : MessageLookupByLibrary.simpleMessage("`Should the shortcut with the title"),
+    "Soll der Zeitraum" : MessageLookupByLibrary.simpleMessage("Should the period"),
+    "Soll die Formularauswahl mit der aktuellen Auswahl ersetzt werden?" : MessageLookupByLibrary.simpleMessage("Should the form selection be replaced with the current selection?"),
+    "Soll die URL" : MessageLookupByLibrary.simpleMessage("Deleting Url"),
     "Spalte HbA1c" : MessageLookupByLibrary.simpleMessage("Coluna HbA1c"),
     "Spalte HbA1c zu Tagesstatistik hinzugefügt" : MessageLookupByLibrary.simpleMessage("Adicionada coluna HbA1c às estatísticas diárias"),
     "Spalte Messwerte" : MessageLookupByLibrary.simpleMessage("Coluna do Valor"),
     "Spalte Standardabweichung" : MessageLookupByLibrary.simpleMessage("Desvio padrão de coluna"),
+    "Spalte TDD" : MessageLookupByLibrary.simpleMessage("Coluna TDD"),
     "Spalte Variationskoeffizient" : MessageLookupByLibrary.simpleMessage("Coluna do coeficiente de variação"),
     "Spalten Perzentile" : MessageLookupByLibrary.simpleMessage("Colunas dos percentis"),
     "Spalten für 10% und 90% anzeigen" : MessageLookupByLibrary.simpleMessage("Mostrar colunas para 10% e 90%"),
@@ -602,6 +703,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "Standardabweichung statt Anzahl" : MessageLookupByLibrary.simpleMessage("Desvio padrão em vez da contagem de valor"),
     "Standardbereich mit feinerer Abstufung" : MessageLookupByLibrary.simpleMessage("Intervalo padrão com ajuste preciso"),
     "Standardgrenzwerte" : MessageLookupByLibrary.simpleMessage("Intervalo Padrão"),
+    "Startstunde" : MessageLookupByLibrary.simpleMessage("Hora de inicio"),
     "Std.\nAbw." : MessageLookupByLibrary.simpleMessage("DesvP"),
     "Stunden" : MessageLookupByLibrary.simpleMessage("horas"),
     "Stündliche Statistik" : MessageLookupByLibrary.simpleMessage("Estatísticas por hora"),
@@ -623,14 +725,13 @@ class MessageLookup extends MessageLookupByLibrary {
     "Tagesprofil" : MessageLookupByLibrary.simpleMessage("Perfil diário"),
     "Tagesstartprofil anzeigen" : MessageLookupByLibrary.simpleMessage("Mostrar perfil ao início do dia"),
     "Tagesstatistik" : MessageLookupByLibrary.simpleMessage("Estatísticas Diárias"),
-    "Tagesstunden" : MessageLookupByLibrary.simpleMessage("Dayhours"),
+    "Tagesstunden" : MessageLookupByLibrary.simpleMessage("Dias/Horas"),
     "Tagestrend" : MessageLookupByLibrary.simpleMessage("Tendência diária"),
     "Temporäre Basalraten" : MessageLookupByLibrary.simpleMessage("Taxa de Basal temporária"),
     "Temporäre Basalraten mit absoluten Werten werden korrekt dargestellt" : MessageLookupByLibrary.simpleMessage("Taxas basais temporárias com valores absolutos setecentos são exibidas corretamente"),
     "Temporäre Profilwechsel werden jetzt erkannt und in der Tagesgrafik korrekt angezeigt." : MessageLookupByLibrary.simpleMessage("As alterações no perfil temporário agora são reconhecidas e exibidas corretamente nos gráficos diários."),
     "Temporäre Ziele" : MessageLookupByLibrary.simpleMessage("Alvos temporários"),
     "Titelangaben für Datumsbereiche auf den PDFs vereinheitlicht" : MessageLookupByLibrary.simpleMessage("Informações do título para os intervalos de datas nos PDFs estão unificadas"),
-    "Training anzeigen" : MessageLookupByLibrary.simpleMessage("Mostrar exercícios"),
     "Trend" : MessageLookupByLibrary.simpleMessage("Tendência"),
     "Uhr-\nzeit" : MessageLookupByLibrary.simpleMessage("Hora"),
     "Uhrzeit" : MessageLookupByLibrary.simpleMessage("Hora"),
@@ -648,8 +749,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "Verzögerter Bolus" : MessageLookupByLibrary.simpleMessage("Bólus atrasado"),
     "Vier" : MessageLookupByLibrary.simpleMessage("Quatro"),
     "Von" : MessageLookupByLibrary.simpleMessage("de"),
-    "Vorherige Periode" : MessageLookupByLibrary.simpleMessage("Período anterior"),
-    "Vorletzte Periode" : MessageLookupByLibrary.simpleMessage("Período penúltimo"),
+    "Vor der Erzeugung eines PDFs wird noch ein Dialog angezeigt, auf dem man Parameter für alle erzeugten PDFs eingeben kann. Man kann dort den Zielbereich auf den Standardbereich festlegen, den Ärzte gerne sehen. Das hat Auswirkungen auf alle Darstellungen des Zielbereichs, sowie auf die Verteilung der Werte innerhalb und ausserhalb des Zielbereichs. Man kann dort auch den Maximalwert für Glukose in Grafiken festlegen. Dieser Wert wird in der Tagesgrafik, dem Perzentil Diagramm und der Wochengrafik verwendet. Wenn er auf \"Automatisch\" gesetzt wird, wird der Maximalwert wie bisher auch aus den vorhandenen Daten ermittelt. Ausserdem kann man hier angeben, ob man den aktuellen Zeitraum erzeugen möchte oder einen Vergleichszeitraum. Das ist nützlich, um dem Arzt die Gegenüberstellung von Werten der Vergangenheit und jetzt zu zeigen." : MessageLookupByLibrary.simpleMessage("Antes de criar um PDF, é exibido uma caixa de parâmetros no qual pode inserir parâmetros para todos os PDFs criados. Pode definir o intervalo-alvo para o valor padrão que os médicos gostam de ver. Isto tem um impacto em todas as representações do intervalo alvo, bem como na distribuição dos valores dentro e fora do intervalo alvo. Você também pode definir o valor máximo para a glicose nos gráficos. Esse valor é usado nos gráficos diários, no diagrama percentual e nos gráficos semanais. Se estiver definido como \"Automático\", o valor máximo é determinado a partir dos dados existentes, como antes. Você também pode especificar aqui se deseja gerar o período atual ou um período de comparação. Isto é útil para mostrar ao médico uma comparação do passado e dos valores actuais."),
     "Warum werde ich mit mehreren Buttons genervt, statt eine einzelne PDF angezeigt zu kriegen?" : MessageLookupByLibrary.simpleMessage("Por que é que existe vários botões em vez de obter um único PDF?"),
     "Was bisher geschah..." : MessageLookupByLibrary.simpleMessage("O que aconteceu até agora..."),
     "Wechsel" : MessageLookupByLibrary.simpleMessage("Troca"),
@@ -660,6 +760,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "Wenn das erzeugte PDF zu gross wird, wird es nun auf mehrere PDF-Dateien aufgeteilt. In diesem Fall wird es nicht direkt geöffnet, sondern es wird eine Liste mit durchnummerierten Buttons angezeigt. Diese Buttons öffnen bei Betätigung das entsprechende PDF und erhalten einen Haken, um anzuzeigen, dass es geöffnet wurde. Das sollte es erleichtern, die PDFs nacheinander zu öffnen, weil normalerweise der Browser im Hintergrund verschwindet, wenn ein neues Fenster aufgemacht wird." : MessageLookupByLibrary.simpleMessage("Se o PDF gerado for muito grande, ele será dividido em vários ficheiros PDF. Neste caso, não vai abrir diretamente, mas vai ser mostrada uma lista de botões numerados. Estes botões abrem o PDF correspondente e recebem uma marcação indicando que foi aberta. Isso deve tornar mais fácil a abertura dos PDFs, porque geralmente a janela do browser atual é movida para o plano de fundo quando uma nova janela é aberta."),
     "Wenn der Zeitraum leer ist, wird der Button für die Auswahl deutlich markiert und in dem Dialog zur Auswahl wird in der Titelzeile ein Hinweis darauf angezeigt." : MessageLookupByLibrary.simpleMessage("Se o período estiver vazio, o botão para a seleção está marcado e na caixa de diálogo para escolher uma indicação aparecerá na barra de títulos."),
     "Wenn die Grenzwerte in Nightscout (BG_TARGET_BOTTOM und BG_TARGET_TOP) den Werten 70 und 180 entsprechen, wird auf der Analyse-Seite der Bereich für die Standardzielwerte ausgeblendet" : MessageLookupByLibrary.simpleMessage("Se os limiares no Nightscout (BG_TARGET_BOTTOM e BG_TARGET_TOP) são iguais a 70 e 180, então a área para os alvos padrão será ocultada na página de análise"),
+    "Wenn im CGP ein Wert den Maximalwert der Skala überschreitet, wird die entsprechende Ecke mit einem gelben Kreis markiert." : MessageLookupByLibrary.simpleMessage("If a value in the CGP exceeds the maximum value of the scale, the corresponding corner is marked with a yellow circle."),
     "Wenn in den Einstellungen eine Verbindung zum Google-Konto hergestellt wird, werden die Cookies von Google verwendet und die Daten nicht mehr im localStorage des Browsers gespeichert, sondern im AppStorage auf Google Drive. Auf diese Art kann man die Daten zentralisiert verwalten und hat diese in jedem Browser zur Verfügung, der mit dem angegebenen Google Konto verbunden ist." : MessageLookupByLibrary.simpleMessage("Quando as definições forem ligadas à conta do Google, Os cookies do Google são usados e os dados não são mais armazenados no localStorage do browser, mas no AppStorage no Google Drive. Desta forma, pode gerir os dados centralmente e disponibilizá-los em qualquer browser conectado à Conta do Google especificada."),
     "Wenn in den Einträgen Lücken von 15 Minuten oder mehr sind, führen diese zu einer Unterbrechung der Linie in der Tagesgrafik." : MessageLookupByLibrary.simpleMessage("Se houver lacunas nas entradas de 15 minutos ou mais, haverá também uma lacuna no gráfico diário."),
     "Wenn in einem Profil mehr Zeiten erfasst wurden, als auf eine Seite passen, wurden diese fortlaufend in die nächste Seite hineingeschrieben. Jetzt wird an geeigneter Stelle eine neue Seite ausgegeben." : MessageLookupByLibrary.simpleMessage("Se foram registados mais vezes num perfil do que os que cabem numa página, eles superavam o conteúdo da próxima página. Agora, nova página é criada conforme necessário."),
@@ -670,6 +771,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "Zeilen mit gleichen Werten zusammenfassen" : MessageLookupByLibrary.simpleMessage("Combinar entradas com os mesmos valores"),
     "Zeitraum" : MessageLookupByLibrary.simpleMessage("Período"),
     "Zeitraum festlegen" : MessageLookupByLibrary.simpleMessage("Definir o período"),
+    "Zeitraum:" : MessageLookupByLibrary.simpleMessage("Period:"),
     "Zeitzone" : MessageLookupByLibrary.simpleMessage("Fuso horário"),
     "Zielbereich" : MessageLookupByLibrary.simpleMessage("Intervalo alvo"),
     "Zielbereich mit Nachkommastellen" : MessageLookupByLibrary.simpleMessage("Intervalo alvo com casas decimais"),
@@ -686,92 +788,105 @@ class MessageLookup extends MessageLookupByLibrary {
     "ab 4,6" : MessageLookupByLibrary.simpleMessage("a partir de 4,6"),
     "bis" : MessageLookupByLibrary.simpleMessage("até"),
     "dd.MM.yyyy" : MessageLookupByLibrary.simpleMessage("dd/MM/yyyy"),
+    "ersetzt werden?" : MessageLookupByLibrary.simpleMessage("?"),
     "extrem hohes Risiko" : MessageLookupByLibrary.simpleMessage("risco extremamente alto"),
     "g / Stunde" : MessageLookupByLibrary.simpleMessage("g / hora"),
-    "geringes Risiko" : MessageLookupByLibrary.simpleMessage("baixo risco"),
+    "geringes Risiko" : MessageLookupByLibrary.simpleMessage("risco baixo"),
     "gesch. HbA1c" : MessageLookupByLibrary.simpleMessage("est. HbA1c"),
     "hohes Risiko" : MessageLookupByLibrary.simpleMessage("risco alto"),
     "https://nightscout-reporter.zreptil.de/beta" : MessageLookupByLibrary.simpleMessage("https://nightscout-reporter.zreptil.de/beta"),
     "mg/dL" : MessageLookupByLibrary.simpleMessage("mg/dL"),
+    "mit dem Zeitraum" : MessageLookupByLibrary.simpleMessage("be replaced with the period"),
     "mmol/L" : MessageLookupByLibrary.simpleMessage("mmol/L"),
     "moderates Risiko" : MessageLookupByLibrary.simpleMessage("risco moderado"),
-    "msgBasalInfo" : m2,
-    "msgBasalrateDay" : m3,
-    "msgBasalrateProfile" : m4,
-    "msgBolusInsulin" : m5,
-    "msgCV" : m6,
-    "msgCalibration" : m7,
-    "msgCarbBolusInsulin" : m8,
-    "msgCarbs" : m9,
-    "msgCatheterDays" : m10,
-    "msgChangedEntry" : m11,
-    "msgCheckUser" : m12,
-    "msgCorrectBolusInsulin" : m13,
-    "msgCount" : m14,
-    "msgDaySum" : m15,
-    "msgDuration" : m16,
-    "msgFactorEntry" : m17,
-    "msgGVIBad" : m18,
-    "msgGVIGood" : m19,
-    "msgGVINone" : m20,
-    "msgGVIVeryGood" : m21,
-    "msgHYPER" : m22,
-    "msgHYPERInfo" : m23,
-    "msgHYPO" : m24,
-    "msgHYPOInfo" : m25,
-    "msgHigh" : m26,
-    "msgHistorical" : m27,
-    "msgHypoTitle" : m28,
-    "msgISF" : m29,
-    "msgKH" : m30,
-    "msgKHBE" : m31,
-    "msgLegendTDD" : m32,
-    "msgLoadingData" : m33,
-    "msgLoadingDataFor" : m34,
-    "msgLogSMB" : m35,
-    "msgLogTempBasal" : m36,
-    "msgLogTempTarget" : m37,
-    "msgLow" : m38,
-    "msgMBG" : m39,
-    "msgMEAN" : m40,
-    "msgMEANInfo" : m41,
-    "msgPGSBad" : m42,
-    "msgPGSGood" : m43,
-    "msgPGSVeryBad" : m44,
-    "msgPGSVeryGood" : m45,
-    "msgProfileSwitch" : m46,
-    "msgProfileSwitchDuration" : m47,
-    "msgReadingsInMinutes" : m48,
-    "msgReadingsPerDay" : m49,
-    "msgReadingsPerHour" : m50,
-    "msgReservoirDays" : m51,
-    "msgSMBInsulin" : m52,
-    "msgSensorDays" : m53,
-    "msgStdAbw" : m54,
-    "msgTOR" : m55,
-    "msgTORInfo" : m56,
-    "msgTarget" : m57,
-    "msgTargetArea" : m58,
-    "msgTargetValue" : m59,
-    "msgTimeOfDay24" : m60,
-    "msgTimeOfDayAM" : m61,
-    "msgTimeOfDayPM" : m62,
-    "msgValidFrom" : m63,
-    "msgValidRange" : m64,
-    "msgValidTo" : m65,
-    "msgValuesAbove" : m66,
-    "msgValuesBelow" : m67,
-    "msgValuesIn" : m68,
-    "msgValuesNorm" : m69,
-    "msgValuesNormHigh" : m70,
-    "msgValuesNormLow" : m71,
-    "msgValuesVeryHigh" : m72,
-    "msgValuesVeryLow" : m73,
+    "msgAccessTokenHint" : m2,
+    "msgBasalInfo" : m3,
+    "msgBasalInfo1" : m4,
+    "msgBasalrateDay" : m5,
+    "msgBasalrateProfile" : m6,
+    "msgBolusInsulin" : m7,
+    "msgCV" : m8,
+    "msgCalculatingDay" : m9,
+    "msgCalibration" : m10,
+    "msgCarbBolusInsulin" : m11,
+    "msgCarbs" : m12,
+    "msgCatheterDays" : m13,
+    "msgChangedEntry" : m14,
+    "msgCheckUser" : m15,
+    "msgCorrectBolusInsulin" : m16,
+    "msgCount" : m17,
+    "msgDaySum" : m18,
+    "msgDuration" : m19,
+    "msgEndDateHint" : m20,
+    "msgFactorEntry" : m21,
+    "msgFormsText" : m22,
+    "msgGVIBad" : m23,
+    "msgGVIGood" : m24,
+    "msgGVINone" : m25,
+    "msgGVIVeryGood" : m26,
+    "msgHYPER" : m27,
+    "msgHYPERInfo" : m28,
+    "msgHYPO" : m29,
+    "msgHYPOInfo" : m30,
+    "msgHigh" : m31,
+    "msgHistorical" : m32,
+    "msgHypoTitle" : m33,
+    "msgISF" : m34,
+    "msgKH" : m35,
+    "msgKHBE" : m36,
+    "msgLegendTDD" : m37,
+    "msgLoadingData" : m38,
+    "msgLoadingDataFor" : m39,
+    "msgLogMicroBolus" : m40,
+    "msgLogSMB" : m41,
+    "msgLogTempBasal" : m42,
+    "msgLogTempBasalAbsolute" : m43,
+    "msgLogTempTarget" : m44,
+    "msgLow" : m45,
+    "msgMBG" : m46,
+    "msgMEAN" : m47,
+    "msgMEANInfo" : m48,
+    "msgPGSBad" : m49,
+    "msgPGSGood" : m50,
+    "msgPGSVeryBad" : m51,
+    "msgPGSVeryGood" : m52,
+    "msgProfileSwitch" : m53,
+    "msgProfileSwitchDuration" : m54,
+    "msgReadingsInMinutes" : m55,
+    "msgReadingsPerDay" : m56,
+    "msgReadingsPerHour" : m57,
+    "msgReservoirDays" : m58,
+    "msgSMBInsulin" : m59,
+    "msgSensorDays" : m60,
+    "msgStandardLimits" : m61,
+    "msgStartDateHint" : m62,
+    "msgStdAbw" : m63,
+    "msgTOR" : m64,
+    "msgTORInfo" : m65,
+    "msgTarget" : m66,
+    "msgTargetArea" : m67,
+    "msgTargetValue" : m68,
+    "msgTimeOfDay24" : m69,
+    "msgTimeOfDayAM" : m70,
+    "msgTimeOfDayPM" : m71,
+    "msgValidFrom" : m72,
+    "msgValidRange" : m73,
+    "msgValidTo" : m74,
+    "msgValuesAbove" : m75,
+    "msgValuesBelow" : m76,
+    "msgValuesIn" : m77,
+    "msgValuesNorm" : m78,
+    "msgValuesNormHigh" : m79,
+    "msgValuesNormLow" : m80,
+    "msgValuesVeryHigh" : m81,
+    "msgValuesVeryLow" : m82,
     "ok" : MessageLookupByLibrary.simpleMessage("ok"),
     "sehr geringes Risiko" : MessageLookupByLibrary.simpleMessage("risco muito baixo"),
     "tl;dr" : MessageLookupByLibrary.simpleMessage("tl;dr"),
     "verwerfen" : MessageLookupByLibrary.simpleMessage("descartar"),
+    "vom Benutzer wirklich gelöscht werden?" : MessageLookupByLibrary.simpleMessage("Are you sure?"),
     "wirklich gelöscht werden?" : MessageLookupByLibrary.simpleMessage("deseja apagar?"),
+    "zu Vergleichszwecken (z.B. Arzt)" : MessageLookupByLibrary.simpleMessage("for comparison purposes (e.g. doctor)"),
     "Ø Basal pro Tag" : MessageLookupByLibrary.simpleMessage("Média de Basal por dia"),
     "Ø Bolus pro Tag" : MessageLookupByLibrary.simpleMessage("Média de Bolus por dia"),
     "Ø ICR/Stunde" : MessageLookupByLibrary.simpleMessage("Média ICR/Hora"),

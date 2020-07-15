@@ -24,13 +24,14 @@ import 'package:nightscout_reporter/src/forms/print-cgp.dart';
 import 'package:nightscout_reporter/src/forms/print-daily-analysis.dart';
 import 'package:nightscout_reporter/src/forms/print-daily-gluc.dart';
 import 'package:nightscout_reporter/src/forms/print-daily-graphic.dart';
+import 'package:nightscout_reporter/src/forms/print-daily-hours.dart';
 import 'package:nightscout_reporter/src/forms/print-daily-log.dart';
 import 'package:nightscout_reporter/src/forms/print-daily-profile.dart';
 import 'package:nightscout_reporter/src/forms/print-daily-statistics.dart';
 import 'package:nightscout_reporter/src/forms/print-percentile.dart';
 import 'package:nightscout_reporter/src/forms/print-test.dart';
 import 'package:nightscout_reporter/src/forms/print-weekly-graphic.dart';
-import 'package:nightscout_reporter/src/forms/print-daily-hours.dart';
+import 'package:nightscout_reporter/src/forms/print-user-data.dart';
 import 'package:nightscout_reporter/src/globals.dart' as globals;
 import 'package:nightscout_reporter/src/globals.dart';
 import 'package:nightscout_reporter/src/jsonData.dart';
@@ -40,9 +41,11 @@ import 'src/forms/print-analysis.dart';
 import 'src/forms/print-basalrate.dart';
 import 'src/forms/print-profile.dart';
 import 'src/impressum/impressum_component.dart';
+import 'src/printparams/printparams_component.dart';
 import 'src/settings/settings_component.dart';
 import 'src/welcome/welcome_component.dart';
 import 'src/whatsnew/whatsnew_component.dart';
+import 'src/shortcutedit/shortcutedit_component.dart';
 
 // AngularDart info: https://webdev.dartlang.org/angular
 // Components info: https://webdev.dartlang.org/components
@@ -75,8 +78,10 @@ class PdfData {
       SettingsComponent,
       ImpressumComponent,
       DSGVOComponent,
+      PrintParamsComponent,
       WelcomeComponent,
       WhatsnewComponent,
+      ShortcutEditComponent,
       MaterialInputComponent,
       MaterialProgressComponent,
       MaterialToggleComponent,
@@ -147,6 +152,7 @@ class AppComponent implements OnInit {
   String get msgPreparingData => Intl.message("Bereite Daten vor...",
       desc: "text when data was received and is being prepared to be used in the report");
   String get msgCreatingPDF => Intl.message("Erzeuge PDF...", desc: "text when pdf is being created");
+  String get msgPreparingPDF => Intl.message("Lade die Basisdaten...");
   String get msgImpressum => Intl.message("Impressum");
   String get msgDSGVO => Intl.message("Datenschutzerklärung");
   String get msgApply => Intl.message("ok");
@@ -159,6 +165,8 @@ class AppComponent implements OnInit {
   String get msgGitHubIssue => Intl.message("Problem auf GitHub melden");
   String get msgShowPDF => Intl.message("PDF anzeigen");
   String get msgPeriodCompare => Intl.message("Vergleich");
+  String get msgShortcutName => Intl.message("Bezeichnung");
+  String get msgAddText => Intl.message("Hinzufügen");
 
   bool isFormVisible(BasePrint form) {
     if (form.isDebugOnly && !isDebug) return false;
@@ -187,14 +195,18 @@ class AppComponent implements OnInit {
 
     if (!g.showCurrentGluc || glucRunning) return "";
     glucRunning = true;
-    String url = "${g.user.apiUrl}status.json";
+    String url = g.user.apiUrl(null, "status.json");
     if (!g.hasMGDL) {
       String content = await g.request(url);
-      StatusData status = StatusData.fromJson(json.decode(content));
-      g.setGlucMGDL(status);
+      if (content != null && content.startsWith("{")) {
+        StatusData status = StatusData.fromJson(json.decode(content));
+        g.setGlucMGDL(status);
+      }
     }
-    url = "${g.user.apiUrl}entries.json?count=2";
-    List<dynamic> src = json.decode(await g.request(url));
+    url = g.user.apiUrl(null, "entries.json", params: "count=2");
+    String temp = await g.request(url);
+    if (temp == null || !temp.startsWith("[")) return "??";
+    List<dynamic> src = json.decode(temp);
     if (src.length != 2) {
       currentGluc = "Keine Daten";
       currentGlucDiff = "";
@@ -235,6 +247,19 @@ class AppComponent implements OnInit {
     return currentGluc;
   }
 
+  String get drawerClass {
+    String ret = "material-drawer-button ";
+    switch (menuIdx) {
+      case 0:
+        ret += "icon-menu";
+        break;
+      case 1:
+        ret += "icon-shortcut";
+        break;
+    }
+    return ret;
+  }
+
   String appTitle = "";
   bool currentGlucVisible = true;
 
@@ -248,12 +273,13 @@ class AppComponent implements OnInit {
       if (materialColors.containsKey(value)) value = materialColors[value].hexString;
       html.document.body.style.setProperty("--$key", value);
     }
-    g.saveStorage("webtheme", name);
+    g.saveWebData(); //saveStorage("webtheme", name);
   }
 
   @override
   Future<Null> ngOnInit() async {
-    g.theme = g.loadStorage("theme");
+    g.loadWebData();
+//    g.theme = g.loadStorage("theme");
     await setTheme(g.theme);
 
     appTitle = html.document.querySelector("head>title").text;
@@ -300,13 +326,14 @@ class AppComponent implements OnInit {
         PrintDailyProfile(),
         PrintDailyGluc(),
         PrintDailyHours(),
+        PrintUserData()
       ];
       g.listConfig = List<FormConfig>();
       g.listConfigOrg = List<FormConfig>();
       for (BasePrint form in srcList) g.listConfig.add(FormConfig(form, false));
       g.listConfigOrg.addAll(g.listConfig);
       g.sortConfigs();
-      g.userIdx = g.userIdx;
+      for (FormConfig entry in g.listConfig) g.user.formParams[entry.id] = entry.asString;
 
       if (html.window.location.href.endsWith("?dsgvo")) currPage = "dsgvo";
       if (html.window.location.href.endsWith("?impressum")) currPage = "impressum";
@@ -315,14 +342,13 @@ class AppComponent implements OnInit {
       if (html.window.location.href.endsWith("?settings")) currPage = "settings";
       checkPrint();
 
-      g.period.maxDate = Date.today();
       try {
         g.period.minDate = Date.parseLoose(g.user.birthDate, g.fmtDateForDisplay);
       } catch (ex) {
         g.period.minDate = null;
       }
       getCurrentGluc();
-      if (_currPage == "whatsnew") g.saveStorage("version", g.version);
+      if (_currPage == "whatsnew") g.saveWebData();
     });
 // */
 /*
@@ -355,13 +381,14 @@ class AppComponent implements OnInit {
 
     if (clear) message.links = [];
 
-    message.links.add(
-        {"url": g.adjustUrl(url), "title": title, "class": btnClass, "icon": isDebug && icon == null ? "code" : icon});
+    message.links.add({"url": url, "title": title, "class": btnClass, "icon": isDebug && icon == null ? "code" : icon});
     message.okText = msgClose;
     if (type != null) message.type = type;
   }
 
-  void showDebug(String msg) {
+  void showDebug() {
+    String msg = g.debugCache.join("<br />");
+    g.debugCache.clear();
     message.dbgText = msg;
   }
 
@@ -373,15 +400,15 @@ class AppComponent implements OnInit {
   }
 
   void callNightscout() {
-    String url = g.user.apiUrl;
-    int pos = url.indexOf("/api");
-    if (pos >= 0) url = url.substring(0, pos);
-    if (g.user.token != null && g.user.token != "") url = "${url}?token=${g.user.token}";
-    navigate(url);
+    navigate(g.user.apiUrl(null, "", noApi: true));
   }
 
   void callNightscoutReports() {
     navigate(g.user.reportUrl);
+  }
+
+  void callNightscoutStatus() {
+    navigate("https://nielsmaerten.github.io/nightscout-assistant/#/${g.language.img}/home");
   }
 
   formId(int idx) => "postForm${idx}";
@@ -453,10 +480,12 @@ class AppComponent implements OnInit {
     }
   }
 
+  bool indy = true;
+
   void openPDF(int idx) {
     if (idx >= pdfList.length) return;
 
-    if (g.pdfSameWindow) {
+    if (g.ppPdfSameWindow) {
       for (int i = 0; i < pdfList.length; i++) {
         pdfList[i].isPrinted = true;
         Future.delayed(Duration(milliseconds: 10), () {
@@ -486,16 +515,28 @@ class AppComponent implements OnInit {
   void settingsResult(html.UIEvent evt) {
     switch (evt.type) {
       case "ok":
-        g.save();
+        g.save(skipReload: true);
         reportData = null;
         _currPage = g.isConfigured ? "normal" : "welcome";
         break;
-      case "theme":
-        g.saveStorage("theme", g.themeKey);
-        setTheme(g.theme);
+      default:
+        g.loadSettings(skipSyncGoogle: true);
+        _currPage = g.isConfigured ? _lastPage : "welcome";
+        break;
+    }
+    getCurrentGluc();
+  }
+
+  void printparamsResult(html.UIEvent evt) {
+    switch (evt.type) {
+      case "ok":
+        _currPage = _lastPage;
+        shiftClick(g.currPeriodShift);
+        break;
+      case "cancel":
+        _currPage = _lastPage;
         break;
       default:
-        g.loadSettings();
         _currPage = g.isConfigured ? _lastPage : "welcome";
         break;
     }
@@ -591,8 +632,8 @@ class AppComponent implements OnInit {
 
   ReportData reportData = null;
   Future<ReportData> loadData(bool isForThumbs) async {
-    Date beg = g.period.shiftStartBy(g.currPeriodShift.shift);
-    Date end = g.period.shiftEndBy(g.currPeriodShift.shift);
+    Date beg = g.period.shiftStartBy(g.currPeriodShift.months);
+    Date end = g.period.shiftEndBy(g.currPeriodShift.months);
     if (isForThumbs) {
       beg = Date(2019, 8, 26);
       end = Date(2019, 9, 1);
@@ -610,8 +651,9 @@ class AppComponent implements OnInit {
       data.user.birthDate = "13.2.1965";
       data.user.diaStartDate = "1.1.1996";
       data.user.insulin = "Novorapid";
-      data.user.storageApiUrl = "https://diamant-ns.herokuapp.com";
-      data.user.token = null;
+      data.user.listApiUrl = List<UrlData>();
+      data.user.listApiUrl.add(UrlData.fromJson(
+          g, {"u": "https://diamant-ns.herokuapp.com", "t": "anditoken-a12e3472efe42759", "sd": null, "ed": null}));
       data.user.customData = {};
       data.user.formParams = {};
     } else {
@@ -625,11 +667,45 @@ class AppComponent implements OnInit {
       g, g.dateRange.range.start, g.dateRange.range.end);
 */
     reportData = data;
+
+    bool loadUserData = false;
+    bool loadCurrentUser = false;
+
+    for (FormConfig cfg in g.listConfigOrg) {
+      if (!cfg.checked) continue;
+      if (cfg.form.needsUserData)
+        loadUserData = true;
+      else
+        loadCurrentUser = true;
+    }
+
+    if (loadUserData) {
+      progressMax = g.userList.length + 1;
+      progressValue = 0;
+      for (UserData user in g.userList) {
+//        if (!user.isReachable) continue;
+        progressText = msgLoadingDataFor(user.name);
+        try {
+          String url = user.apiUrl(null, "status.json");
+          displayLink("status", url, type: "debug");
+          String content = await g.request(url, showError: false);
+          user.status = StatusData.fromJson(json.decode(content));
+          user.isReachable = true;
+        } catch (ex) {
+          user.status = null;
+          user.isReachable = false;
+        }
+      }
+      g.save(skipReload: true);
+    }
+
+    if (!loadCurrentUser) return data;
+
     DateTime bd = DateTime(data.begDate.year, data.begDate.month, data.begDate.day);
     DateTime ed = DateTime(data.endDate.year, data.endDate.month, data.endDate.day);
 
-    progressMax = ed.difference(bd).inDays;
     progressValue = 0;
+    progressMax = ed.difference(bd).inDays;
 
     Date begDate = data.begDate;
     Date endDate = data.endDate;
@@ -637,38 +713,45 @@ class AppComponent implements OnInit {
     message.links = [];
     message.type = "msg toggle-debug";
 
-    String url = "${data.user.apiUrl}status.json";
+    String url = data.user.apiUrl(endDate, "status.json");
     displayLink("status", url, type: "debug");
     String content = await g.request(url);
     data.status = StatusData.fromJson(json.decode(content));
     g.setGlucMGDL(data.status);
-    url = "${data.user.apiUrl}profile.json";
-    displayLink("profile", url, type: "debug");
-    content = await g.request(url);
-//      if (g.dateRange.range.start == null || g.dateRange.range.end == null)
     if (g.period.start == null || g.period.end == null) {
       data.error = StateError(msgEmptyRange);
       return data;
     }
 
     ProfileData baseProfile = null;
-    try {
-      g.basalPrecision = 0;
-      List<dynamic> src = json.decode(content);
-      for (dynamic entry in src) {
-        data.profiles.add(ProfileData.fromJson(entry, isFromNS: true));
-        g.basalPrecision = math.max(g.basalPrecision, data.profiles.last.maxPrecision);
-      }
-      data.profiles.sort((a, b) => a.startDate.compareTo(b.startDate));
-      baseProfile = data.profiles.first;
+
+    List<UrlData> list = g.findUrlDataFor(begDate, endDate);
+    for (UrlData urlData in list) {
+      url = urlData.fullUrl("profile.json");
+      displayLink("profile", url, type: "debug");
+      content = await g.request(url);
+
+      try {
+        g.basalPrecisionAuto = 0;
+        List<dynamic> src = json.decode(content);
+        for (dynamic entry in src) {
+          // don't add profiles that cannot be read
+          try {
+            ProfileData profile = ProfileData.fromJson(entry, isFromNS: true);
+            data.profiles.add(profile);
+          } catch (ex) {}
+          g.basalPrecisionAuto = math.max(g.basalPrecision, data.profiles.last.maxPrecision);
+        }
+        data.profiles.sort((a, b) => a.startDate.compareTo(b.startDate));
+        baseProfile = data.profiles.first;
 //        display("${ret.begDate.toString()} - ${ret.endDate.toString()}");
-    } catch (ex) {
-      if (isDebug) {
-        if (ex is Error)
-          display("${ex.toString()}\n${ex.stackTrace}");
-        else
-          display(ex.toString());
-      } else {
+      } catch (ex) {
+        if (isDebug) {
+          if (ex is Error)
+            display("${ex.toString()}\n${ex.stackTrace}");
+          else
+            display(ex.toString());
+        } else {
 /*
           display(msgProfileError, links: [ {
             "url": "https://github.com/zreptil/nightscout-reporter/issues/new?title=problem in profile-data&body=${msgProfileError}",
@@ -676,17 +759,17 @@ class AppComponent implements OnInit {
           }
           ]);
 // */
-        display(msgProfileError);
+          display(msgProfileError);
+        }
       }
-    }
 
-    // find profileswitches in treatments, create profiledata and mix it in the profiles
-    url =
-        "${data.user.apiUrl}treatments.json?find[created_at][\$gte]=${begDate.year - 1}-01-01T00:00:00.000Z&find[eventType]=Profile Switch";
-    displayLink("profileswitch", url, type: "debug");
-    content = await g.request(url);
-    try {
-      List<dynamic> src = json.decode(content);
+      // find profileswitches in treatments, create profiledata and mix it in the profiles
+      url = urlData.fullUrl("treatments.json",
+          params: "find[created_at][\$gte]=${begDate.year - 1}-01-01T00:00:00.000Z&find[eventType]=Profile Switch");
+      displayLink("profileswitch", url, type: "debug");
+      content = await g.request(url);
+      try {
+        List<dynamic> src = json.decode(content);
 /*
         if (g.isLocal)src.add({
           "_id": "fake",
@@ -702,44 +785,44 @@ class AppComponent implements OnInit {
           "insulin": null
         });
  // */
-      for (dynamic entry in src) {
-        DateTime check = JsonData.toDate(entry["created_at"]);
-        if (data.profiles.firstWhere((p) => p.createdAt == check, orElse: () => null) != null ||
-            entry["profile"] == null) continue;
-        List<String> parts = List<String>();
-        parts.add('{"_id":"${entry["_id"]}","defaultProfile":"${entry["profile"]}"');
-        // some uploaders (e.g. Minimed 600-series) don't save profileJson, so we need
-        // to find it here
-        ProfileStoreData store = null;
-        if (entry["profileJson"] == null) {
-          String key = entry["profile"];
-          ProfileData prof = data.profiles
-              .lastWhere((p) => p.startDate.isBefore(check) && p.store.containsKey(key), orElse: () => null);
-          if (prof != null) {
-            store = prof.store[key];
+        for (dynamic entry in src) {
+          DateTime check = JsonData.toDate(entry["created_at"]);
+          if (data.profiles.firstWhere((p) => p.createdAt == check, orElse: () => null) != null ||
+              entry["profile"] == null) continue;
+          List<String> parts = List<String>();
+          parts.add('{"_id":"${entry["_id"]}","defaultProfile":"${entry["profile"]}"');
+          // some uploaders (e.g. Minimed 600-series) don't save profileJson, so we need
+          // to find it here
+          ProfileStoreData store = null;
+          if (entry["profileJson"] == null) {
+            String key = entry["profile"];
+            ProfileData prof = data.profiles
+                .lastWhere((p) => p.startDate.isBefore(check) && p.store.containsKey(key), orElse: () => null);
+            if (prof != null) {
+              store = prof.store[key];
+            }
           }
-        }
-        parts.add('"store":{"${entry["profile"]}":${entry["profileJson"]}},"startDate":"${entry["created_at"]}"');
-        parts.add('"mills":"0","units":"mg/dl"');
-        parts.add('"percentage":"${entry["percentage"]}"');
-        parts.add('"duration":"${entry["duration"]}"');
-        parts.add('"timeshift":"${entry["timeshift"]}"');
-        parts.add('"created_at":"${entry["created_at"]}"}');
+          parts.add('"store":{"${entry["profile"]}":${entry["profileJson"]}},"startDate":"${entry["created_at"]}"');
+          parts.add('"mills":"0","units":"mg/dl"');
+          parts.add('"percentage":"${entry["percentage"]}"');
+          parts.add('"duration":"${entry["duration"]}"');
+          parts.add('"timeshift":"${entry["timeshift"]}"');
+          parts.add('"created_at":"${entry["created_at"]}"}');
 
-        data.profiles.add(ProfileData.fromJson(json.decode(parts.join(','))));
-        if (store != null) data.profiles.last.store[entry["profile"]] = store;
-      }
-    } catch (ex) {
-      if (isDebug) {
-        if (ex is Error)
-          display("${ex.toString()}\n${ex.stackTrace}");
-        else
-          display(ex.toString());
-      } else {
-        display(msgProfileError);
+          data.profiles.add(ProfileData.fromJson(json.decode(parts.join(','))));
+          if (store != null) data.profiles.last.store[entry["profile"]] = store;
+        }
+      } catch (ex) {
+        if (isDebug) {
+          if (ex is Error)
+            display("${ex.toString()}\n${ex.stackTrace}");
+          else
+            display(ex.toString());
+        } else {
+          display(msgProfileError);
+        }
       }
     }
-
     data.profiles.sort((a, b) => a.startDate.compareTo(b.startDate));
 
     // calculate the duration of the profiles
@@ -762,7 +845,7 @@ class AppComponent implements OnInit {
       i++;
     }
 
-    if (baseProfile != null) {
+    if (baseProfile != null && data.profiles.last.duration > 0) {
 //    if (last.duration > 0 && data.profiles.length > 1) {
       ProfileData temp = baseProfile.copy;
       temp.startDate = data.profiles.last.startDate.add(Duration(seconds: data.profiles.last.duration));
@@ -786,11 +869,11 @@ class AppComponent implements OnInit {
     TreatmentData lastTempBasal = null;
     // add the previous day of the period to have the daydata available in forms that need this information
     begDate = begDate.add(days: -1);
+    data.dayCount = -1;
     while (begDate <= endDate) {
       bool hasData = false;
       if (g.period.isDowActive(begDate.weekday - 1)) {
         DateTime beg = DateTime(begDate.year, begDate.month, begDate.day, 0, 0, 0, 0).toUtc();
-
         DateTime end = DateTime(begDate.year, begDate.month, begDate.day, 23, 59, 59, 999).toUtc();
 
         ProfileGlucData profile = data.profile(beg);
@@ -798,7 +881,9 @@ class AppComponent implements OnInit {
         DateTime profileEnd = end.add(Duration(hours: -profile.store.timezone.localDiff));
 
         progressText = msgLoadingDataFor(begDate.format(DateFormat(g.language.dateformat)));
-        String url = data.user.urlForData(beg, end);
+        String url = g.user.apiUrl(Date(begDate.year, begDate.month, begDate.day), "entries.json",
+            params:
+                "find[date][\$gte]=${beg.millisecondsSinceEpoch}&find[date][\$lte]=${end.millisecondsSinceEpoch}&count=100000");
         List<dynamic> src = json.decode(await g.request(url));
         displayLink("e${begDate.format(g.fmtDateForDisplay)} (${src.length})", url, type: "debug");
         for (dynamic entry in src) {
@@ -823,35 +908,74 @@ class AppComponent implements OnInit {
         String tmp;
         if (lastTempBasal == null) {
           // find last temp basal of treatments of day before current day.
-          url =
-              "${data.user.apiUrl}treatments.json?find[created_at][\$lt]=${profileBeg.toIso8601String()}&find[created_at][\$gt]=${profileBeg.add(Duration(days: -1)).toIso8601String()}&count=100&find[eventType][\$eq]=Temp%20Basal";
+          url = data.user.apiUrl(Date(begDate.year, begDate.month, begDate.day), "treatments.json",
+              params:
+                  "find[created_at][\$lt]=${profileBeg.toIso8601String()}&find[created_at][\$gt]=${profileBeg.add(Duration(days: -1)).toIso8601String()}&count=100&find[eventType][\$eq]=Temp%20Basal");
           tmp = await g.request(url);
           src = json.decode(tmp);
           List<TreatmentData> list = List<TreatmentData>();
-          for (dynamic treatment in src) list.add(TreatmentData.fromJson(treatment));
+          for (dynamic treatment in src) list.add(TreatmentData.fromJson(g, treatment));
           list.sort((a, b) => a.createdAt.compareTo(b.createdAt));
           if (list.length > 0) lastTempBasal = list.last;
         }
 
-        url =
-            "${data.user.apiUrl}treatments.json?find[created_at][\$gte]=${profileBeg.toIso8601String()}&find[created_at][\$lte]=${profileEnd.toIso8601String()}&count=100000";
+        url = data.user.apiUrl(Date(begDate.year, begDate.month, begDate.day), "treatments.json",
+            params:
+                "find[created_at][\$gte]=${profileBeg.toIso8601String()}&find[created_at][\$lte]=${profileEnd.toIso8601String()}&count=100000");
         tmp = await g.request(url);
         src = json.decode(tmp);
         displayLink("t${begDate.format(g.fmtDateForDisplay)} (${src.length})", url, type: "debug");
+        bool hasExercise = false;
         for (dynamic treatment in src) {
           hasData = true;
-          TreatmentData t = TreatmentData.fromJson(treatment);
-          data.ns.treatments.add(t);
-          if (t.eventType.toLowerCase() == "bg check") {
-            EntryData entry = EntryData();
-            entry.id = t.id;
-            entry.time = t.createdAt;
-            entry.device = t.enteredBy;
-            entry.type = "mbg";
-            entry.mbg = t.glucose * (g.glucMGDL ? 1 : 18.02);
-            entry.rawbg = t.glucose;
-            data.ns.bloody.add(entry);
+          TreatmentData t = TreatmentData.fromJson(g, treatment);
+          // duplicate Treatments are removed
+          if (data.ns.treatments.length > 0 && t.equals(data.ns.treatments.last)) {
+            data.ns.treatments.last.duplicates++;
+          } else {
+            data.ns.treatments.add(t);
+            switch (t.eventType.toLowerCase()) {
+              case "exercise":
+                hasExercise = true;
+                break;
+              case "bg check":
+                EntryData entry = EntryData();
+                entry.id = t.id;
+                entry.time = t.createdAt;
+                entry.device = t.enteredBy;
+                entry.type = "mbg";
+                entry.mbg = t.glucose * (g.glucMGDL ? 1 : 18.02);
+                entry.rawbg = t.glucose;
+                data.ns.bloody.add(entry);
+                break;
+            }
           }
+        }
+
+        if (g.isLocal && !hasExercise) {
+          TreatmentData t = TreatmentData();
+          t.createdAt = DateTime(begDate.year, begDate.month, begDate.day, 10, 0, 0);
+          t.duration = 60 * 60;
+          t.eventType = "exercise";
+          t.notes = "Bewegung (Testeintrag)";
+          t.enteredBy = "NR-Test";
+          t.microbolus = 0;
+          t.insulin = 0;
+          t.microbolus = 0;
+          t.isSMB = false;
+          data.ns.treatments.add(t);
+        }
+
+        url = data.user.apiUrl(Date(profileBeg.year, profileBeg.month, profileBeg.day), "devicestatus.json",
+            params:
+                "find[created_at][\$gte]=${profileBeg.toIso8601String()}&find[created_at][\$lte]=${profileEnd.toIso8601String()}&count=100000");
+        tmp = await g.request(url);
+        src = json.decode(tmp);
+        displayLink("ds${begDate.format(g.fmtDateForDisplay)} (${src.length})", url, type: "debug");
+        for (dynamic devicestatus in src) {
+          hasData = true;
+          DeviceStatusData ds = DeviceStatusData.fromJson(devicestatus);
+          data.ns.devicestatusList.add(ds);
         }
       }
       begDate = begDate.add(days: 1);
@@ -868,6 +992,7 @@ class AppComponent implements OnInit {
       data.ns.bloody.sort((a, b) => a.time.compareTo(b.time));
       data.ns.remaining.sort((a, b) => a.time.compareTo(b.time));
       data.ns.treatments.sort((a, b) => a.createdAt.compareTo(b.createdAt));
+      data.ns.devicestatusList.sort((a, b) => a.createdAt.compareTo(b.createdAt));
 
       int diffTime = 5;
       // gaps between entries that span more than the given minutes
@@ -927,6 +1052,7 @@ class AppComponent implements OnInit {
 
       data.ns.treatments.removeWhere((t) => filterTreatment(t));
       data.calc.treatments = data.ns.treatments;
+      data.calc.devicestatusList = data.ns.devicestatusList;
 
       data.calc.extractData(data, lastTempBasal);
       data.ns.extractData(data, lastTempBasal);
@@ -940,8 +1066,21 @@ class AppComponent implements OnInit {
     return false;
   }
 
+  void sendClick() {
+    drawerVisible = false;
+    switch (sendIcon) {
+      case "send":
+        currPage = 'printparams';
+        break;
+      case "close":
+        sendIcon = "send";
+        currPage = "normal";
+        break;
+    }
+  }
+
   void shiftClick(PeriodShift shift) {
-    g.currShiftIdx = shift.shift;
+    g.currPeriodShift = shift;
     _sendClick();
   }
 
@@ -968,6 +1107,12 @@ class AppComponent implements OnInit {
     }
 
     return def;
+  }
+
+  String userClass(UserData user) {
+    String ret = "selectItem";
+    if (!user.isReachable) ret = "$ret unreachable";
+    return ret;
   }
 
   int checkedIndex(cfg) {
@@ -1003,6 +1148,9 @@ class AppComponent implements OnInit {
     g.save(skipReload: isForThumbs);
     display("");
     pdfList.clear();
+    progressMax = 1;
+    progressValue = 0;
+    progressText = msgPreparingPDF;
     loadData(isForThumbs).then((ReportData src) async {
       progressText = msgCreatingPDF;
       if (src.error != null) {
@@ -1033,6 +1181,12 @@ class AppComponent implements OnInit {
             case "dayanalysis":
               cfg = FormConfig(PrintDailyAnalysis(), false);
               cfg.form.params[2].thumbValue = 1;
+              listConfig.add(cfg);
+              break;
+            case "percentile":
+              cfg = FormConfig(PrintPercentile(), false);
+              cfg.form.params[0].thumbValue = 0;
+              cfg.form.params[2].thumbValue = true;
               listConfig.add(cfg);
               break;
           }
@@ -1243,6 +1397,64 @@ class AppComponent implements OnInit {
       }
     });
     themePanelShown = !themePanelShown;
+  }
+
+  int menuIdx = 0;
+  String shortcutClass(ShortcutData data) {
+    String ret = "shortcut";
+    if (data.formData == convert.json.encode(g.currentFormsAsMap) && data.periodData == g.period.toString())
+      ret += " active";
+    return ret;
+  }
+
+  editShortcut(int shortcutIdx) {
+    g.currShortcutIdx = shortcutIdx;
+    if (shortcutIdx >= 0 && shortcutIdx < g.shortcutList.length)
+      g.currShortcut = g.shortcutList[shortcutIdx].copy;
+    else
+      g.currShortcut = ShortcutData(g);
+    currPage = 'shortcutedit';
+  }
+
+  activateShortcut([int shortcutIdx = null]) {
+    if (shortcutIdx != null) {
+      ShortcutData data = g.shortcutList[shortcutIdx];
+      g.period = DatepickerPeriod(src: data.periodData);
+      for (FormConfig cfg in g.listConfig) {
+        cfg.checked = data.forms.keys.contains(cfg.form.id);
+        if (cfg.checked) {
+          cfg.fillFromJson(data.forms[cfg.form.id]);
+        }
+      }
+      checkPrint();
+      g.refresh();
+    }
+  }
+
+  void shortcuteditResult(html.UIEvent evt) {
+    switch (evt.type) {
+      case "ok":
+        _currPage = _lastPage;
+        g.saveShortcuts();
+        break;
+      case "remove":
+        _currPage = _lastPage;
+        if (g.currShortcutIdx >= 0 && g.currShortcutIdx < g.shortcutList.length) {
+          g.shortcutList.removeAt(g.currShortcutIdx);
+          g.currShortcutIdx = null;
+          g.currShortcut = null;
+          g.saveShortcuts();
+        }
+        break;
+      case "cancel":
+        _currPage = _lastPage;
+        g.currShortcut = null;
+        break;
+      default:
+        _currPage = g.isConfigured ? _lastPage : "welcome";
+        break;
+    }
+    getCurrentGluc();
   }
 
   expansionPanelClicked(evt, FormConfig cfg) {

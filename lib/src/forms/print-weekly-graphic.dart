@@ -13,7 +13,7 @@ class PrintWeeklyGraphic extends BasePrint {
   @override
   String id = "weekgraph";
 
-  bool sortReverse, showDaysInGraphic = true, showCGP, useOwnTargetArea;
+  bool spareBool1, showDaysInGraphic = true, showCGP;
 
   @override
   List<ParamInfo> params = [
@@ -24,18 +24,17 @@ class PrintWeeklyGraphic extends BasePrint {
       Intl.message("Acht"),
       Intl.message("Sechzehn")
     ]),
-    ParamInfo(1, msgParam2, boolValue: true),
+    ParamInfo(1, "", boolValue: true, isDeprecated: true),
     ParamInfo(2, msgParam3, boolValue: true),
     ParamInfo(3, PrintDailyGraphic.msgParam19,
-        boolValue: false, thumbValue: true, subParams: [ParamInfo(0, BasePrint.msgOwnTargetArea, boolValue: false)]),
+        boolValue: false, thumbValue: true),
   ];
 
   @override
   extractParams() {
-    sortReverse = params[1].boolValue;
+    spareBool1 = params[1].boolValue;
     showDaysInGraphic = params[2].boolValue;
     showCGP = params[3].boolValue;
-    useOwnTargetArea = params[3].subParams[0].boolValue;
 
     switch (params[0].intValue) {
       case 1:
@@ -79,7 +78,7 @@ class PrintWeeklyGraphic extends BasePrint {
   @override
   String get title => _title;
 
-  static String get msgParam2 => Intl.message("Neueste Woche zuerst");
+//  static String get msgParam2 => Intl.message("Neueste Woche zuerst");
   static String get msgParam3 => Intl.message("Tagesnamen in Grafik anzeigen");
 
   @override
@@ -126,7 +125,7 @@ class PrintWeeklyGraphic extends BasePrint {
       lastDayInWeek = dayInWeek;
       list.last.add(day);
     }
-    if (sortReverse) list = list.reversed.toList();
+    if (g.ppLatestFirst) list = list.reversed.toList();
     int oldLength = pages.length;
     for (List<DayData> week in list) {
       graphWidth = 23.25;
@@ -134,7 +133,7 @@ class PrintWeeklyGraphic extends BasePrint {
       basalTop = 2.0;
       graphBottom = graphHeight;
       pages.add(_getPage(week, repData));
-      if (showCGP) pages.add(getCGPPage(week, useOwnTargetArea));
+      if (showCGP) pages.add(getCGPPage(week));
       if (g.showBothUnits) {
         g.glucMGDL = !g.glucMGDL;
         pages.add(_getPage(week, repData));
@@ -161,6 +160,8 @@ class PrintWeeklyGraphic extends BasePrint {
       for (EntryData entry in day.entries) glucMax = math.max(entry.gluc, glucMax);
       for (EntryData entry in day.bloody) glucMax = math.max(entry.mbg, glucMax);
     }
+
+    if (g.glucMaxValue != null) glucMax = g.glucMaxValues[g.ppGlucMaxIdx];
 
     var vertLines = {
       "relativePosition": {"x": cm(xo), "y": cm(yo)},
@@ -256,8 +257,8 @@ class PrintWeeklyGraphic extends BasePrint {
       addLegendEntry(legend, color, "${fmtDate(day.date, null, false, true)}", isArea: false, lineWidth: lw * 3);
     }
 
-    double yHigh = glucY(min(glucMax, src.status.settings.thresholds.bgTargetTop.toDouble()));
-    double yLow = glucY(src.status.settings.thresholds.bgTargetBottom.toDouble());
+    double yHigh = glucY(min(glucMax, targets(repData)["high"].toDouble()));
+    double yLow = glucY(targets(repData)["low"].toDouble());
 
     var limitLines = {
       "relativePosition": {"x": cm(xo), "y": cm(yo)},

@@ -148,7 +148,7 @@ class PrintProfile extends BaseProfile {
       listISF.last.forceText = fmtGluc(entry.value);
     }
     dynamic bodyISF = getFactorBody(page, date, listISF, msgFactorEntry,
-        precision: 0, sum: profile.store.isfSum / 24.0, sumTitle: msgISFSum);
+        precision: g.glucMGDL ? 0 : 1, sum: profile.store.isfSum / 24.0, sumTitle: msgISFSum);
 
     dynamic basalTargetBody = [];
     dynamic bodyBasal = getFactorBody(page, date, profile.store.listBasal, msgFactorEntry,
@@ -169,14 +169,14 @@ class PrintProfile extends BaseProfile {
 
     basalTargetBody.add([
       {"text": msgBasalProfile, "fontSize": fs(8), "color": "#606060", "alignment": "center"},
-      {"text": msgTarget(getGlucInfo()["unit"]), "fontSize": fs(8), "color": "#606060", "alignment": "center"}
+      {"text": msgTarget(g.getGlucInfo()["unit"]), "fontSize": fs(8), "color": "#606060", "alignment": "center"}
     ]);
 
     _fontSize = 9;
 
     icrIsfBody.add([
       {"text": msgICR, "fontSize": fs(8), "color": "#606060", "alignment": "center"},
-      {"text": msgISF(getGlucInfo()["unit"]), "fontSize": fs(8), "color": "#606060", "alignment": "center"}
+      {"text": msgISF(g.getGlucInfo()["unit"]), "fontSize": fs(8), "color": "#606060", "alignment": "center"}
     ]);
 
     dynamic tmp = [];

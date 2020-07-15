@@ -1,5 +1,5 @@
 {
-    "@@last_modified": "2020-02-17T15:55:38.766747",
+    "@@last_modified": "2020-07-15T07:41:34.148223",
     "Überprüfe Zugriff auf Nightscout ...": "Verifico acceso a Nightscout...",
     "@Überprüfe Zugriff auf Nightscout ...": {
         "type": "text",
@@ -45,6 +45,11 @@
     "Erzeuge PDF...": "Creando PDF...",
     "@Erzeuge PDF...": {
         "description": "text when pdf is being created",
+        "type": "text",
+        "placeholders": {}
+    },
+    "Lade die Basisdaten...": "Cargando los datos básicos...",
+    "@Lade die Basisdaten...": {
         "type": "text",
         "placeholders": {}
     },
@@ -103,6 +108,16 @@
     },
     "Vergleich": "Comparación",
     "@Vergleich": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "Bezeichnung": "Título",
+    "@Bezeichnung": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "Hinzufügen": "Añadir",
+    "@Hinzufügen": {
         "type": "text",
         "placeholders": {}
     },
@@ -187,46 +202,6 @@
         "type": "text",
         "placeholders": {}
     },
-    "Aktuelle Periode": "Período actual",
-    "@Aktuelle Periode": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "Vorherige Periode": "Período anterior",
-    "@Vorherige Periode": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "Vorletzte Periode": "Penúltimo período",
-    "@Vorletzte Periode": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "Die angegebene URL ist nicht erreichbar. Wenn die URL stimmt, dann kann es an den Nightscout-Einstellungen liegen. ": "La URL introducida no es accesible. Si la URL es correcta puede ser causado por los ajustes en Nightscout. ",
-    "@Die angegebene URL ist nicht erreichbar. Wenn die URL stimmt, dann kann es an den Nightscout-Einstellungen liegen. ": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "<br><br>Wenn diese URL geschützt ist, muss ausserdem der Zugriffsschlüssel korrekt definiert sein. Diesen erreicht man über \"Administrator-Werkzeuge\" auf der persönlichen Nightscout Seite.": "<br><br> si esta URL está protegida también es necesario definir la clave de acceso. Esta se encuentra en la parte \"herramientas administrativas\" en tu página personal de nightscout.",
-    "@<br><br>Wenn diese URL geschützt ist, muss ausserdem der Zugriffsschlüssel korrekt definiert sein. Diesen erreicht man über \"Administrator-Werkzeuge\" auf der persönlichen Nightscout Seite.": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "In der Variable ENABLE muss das Wort \"cors\" stehen, damit externe Tools wie dieses hier auf die Daten zugreifen dürfen.": "La variable ENABLE tiene que contener la palabra \"cors\" para que herramientas externas como esta puedan acceder a los datos.",
-    "@In der Variable ENABLE muss das Wort \"cors\" stehen, damit externe Tools wie dieses hier auf die Daten zugreifen dürfen.": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "Auf 10be muss beim Server in den Standardeinstellungen der Haken bei \"cors\" aktiviert werden, damit externe Tools wie dieses hier auf die Daten zugreifen dürfen.": "En 10be el proveedor tiene que tener activado \"cors\" en los ajustes generales para que herramientas externas puedan acceder a los datos.",
-    "@Auf 10be muss beim Server in den Standardeinstellungen der Haken bei \"cors\" aktiviert werden, damit externe Tools wie dieses hier auf die Daten zugreifen dürfen.": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "Die URL wurde noch nicht festgelegt.": "La URL aún no ha sido determinada.",
-    "@Die URL wurde noch nicht festgelegt.": {
-        "type": "text",
-        "placeholders": {}
-    },
     "Heute": "Hoy",
     "@Heute": {
         "type": "text",
@@ -267,6 +242,61 @@
         "type": "text",
         "placeholders": {}
     },
+    "Ausgewählter Zeitraum": "Período seleccionado",
+    "@Ausgewählter Zeitraum": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "Einen Monat vorher": "Un mes antes",
+    "@Einen Monat vorher": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "Drei Monate vorher": "Tres meses antes",
+    "@Drei Monate vorher": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "Sechs Monate vorher": "Seis meses antes",
+    "@Sechs Monate vorher": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "Ein Jahr vorher": "Un año antes",
+    "@Ein Jahr vorher": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "Die angegebene URL ist nicht erreichbar. Wenn die URL stimmt, dann kann es an den Nightscout-Einstellungen liegen. ": "La URL introducida no es accesible. Si la URL es correcta puede ser causado por los ajustes en Nightscout. ",
+    "@Die angegebene URL ist nicht erreichbar. Wenn die URL stimmt, dann kann es an den Nightscout-Einstellungen liegen. ": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "<br><br>Wenn diese URL geschützt ist, muss ausserdem der Zugriffsschlüssel korrekt definiert sein. Diesen erreicht man über \"Administrator-Werkzeuge\" auf der persönlichen Nightscout Seite.": "<br><br> si esta URL está protegida también es necesario definir la clave de acceso. Esta se encuentra en la parte \"herramientas administrativas\" en tu página personal de nightscout.",
+    "@<br><br>Wenn diese URL geschützt ist, muss ausserdem der Zugriffsschlüssel korrekt definiert sein. Diesen erreicht man über \"Administrator-Werkzeuge\" auf der persönlichen Nightscout Seite.": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "In der Variable ENABLE muss das Wort \"cors\" stehen, damit externe Tools wie dieses hier auf die Daten zugreifen dürfen.": "La variable ENABLE tiene que contener la palabra \"cors\" para que herramientas externas como esta puedan acceder a los datos.",
+    "@In der Variable ENABLE muss das Wort \"cors\" stehen, damit externe Tools wie dieses hier auf die Daten zugreifen dürfen.": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "Auf 10be muss beim Server in den Standardeinstellungen der Haken bei \"cors\" aktiviert werden, damit externe Tools wie dieses hier auf die Daten zugreifen dürfen. Wenn \"cors\" aktiviert wurde, muss auf dem Server eventuell noch ReDeploy gemacht werden, bevor es wirklich verfügbar ist.": "En el servidor 10be hay que activar \"cors\" en las configuraciónes generales para que aplicaciónes externas como esta tengan acceso a los datos. Si \"cors\" fue activado en el servidor probablemente hay que hacer un redeploy para activarlo.",
+    "@Auf 10be muss beim Server in den Standardeinstellungen der Haken bei \"cors\" aktiviert werden, damit externe Tools wie dieses hier auf die Daten zugreifen dürfen. Wenn \"cors\" aktiviert wurde, muss auf dem Server eventuell noch ReDeploy gemacht werden, bevor es wirklich verfügbar ist.": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "Die Url zur Nightscout-API muss mit https beginnen, da Nightscout Reporter auch auf https läuft. Ein Zugriff auf unsichere http-Resourcen ist nicht möglich.": "La URL para la Nightscout - API tiene que empezar con https ya que Nightscout Reporter también va por https. Un acceso a páginas no seguras con http no es posible.",
+    "@Die Url zur Nightscout-API muss mit https beginnen, da Nightscout Reporter auch auf https läuft. Ein Zugriff auf unsichere http-Resourcen ist nicht möglich.": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "Die URL wurde noch nicht festgelegt.": "La URL aún no ha sido determinada.",
+    "@Die URL wurde noch nicht festgelegt.": {
+        "type": "text",
+        "placeholders": {}
+    },
     "Die URL wurde noch nicht festgelegt": "La URL aún no ha sido determinada",
     "@Die URL wurde noch nicht festgelegt": {
         "type": "text",
@@ -292,6 +322,11 @@
         "type": "text",
         "placeholders": {}
     },
+    "Zeitraum festlegen": "Determinar periodo",
+    "@Zeitraum festlegen": {
+        "type": "text",
+        "placeholders": {}
+    },
     "Der Zeitraum enthält keine auswertbaren Tage": "El período no contiene días evaluables",
     "@Der Zeitraum enthält keine auswertbaren Tage": {
         "description": "title for datepicker dialog when period empty",
@@ -305,11 +340,6 @@
     },
     "Das Enddatum ist nicht korrekt": "La fecha final no es correcta",
     "@Das Enddatum ist nicht korrekt": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "Zeitraum festlegen": "Determinar periodo",
-    "@Zeitraum festlegen": {
         "type": "text",
         "placeholders": {}
     },
@@ -463,7 +493,7 @@
         "type": "text",
         "placeholders": {}
     },
-    "Verzögerter Bolus": "Bolo retardado",
+    "Verzögerter Bolus": "Bolo extendido",
     "@Verzögerter Bolus": {
         "type": "text",
         "placeholders": {}
@@ -550,7 +580,7 @@
         "type": "text",
         "placeholders": {}
     },
-    "KH": "HC",
+    "KH": "CH",
     "@KH": {
         "type": "text",
         "placeholders": {}
@@ -926,7 +956,7 @@
             "value": {}
         }
     },
-    "msgStdAbw": "(dev estándar {value})",
+    "msgStdAbw": "(dev h {value})",
     "@msgStdAbw": {
         "type": "text",
         "placeholders": {
@@ -1154,11 +1184,6 @@
         "type": "text",
         "placeholders": {}
     },
-    "Eigenen Zielbereich verwenden": "Usar objetivo personal",
-    "@Eigenen Zielbereich verwenden": {
-        "type": "text",
-        "placeholders": {}
-    },
     "msgGVINone": "no disponible (menor a {min})",
     "@msgGVINone": {
         "type": "text",
@@ -1226,17 +1251,17 @@
             "value": {}
         }
     },
-    "Tag (08:00 - 17:59)": "Tag (08:00 - 17:59)",
+    "Tag (08:00 - 17:59)": "Día (08:00 - 17:59)",
     "@Tag (08:00 - 17:59)": {
         "type": "text",
         "placeholders": {}
     },
-    "Dämmerung (06:00 - 07:59, 18:00 - 20:59)": "Dämmerung (06:00 - 07:59, 18:00 - 20:59)",
+    "Dämmerung (06:00 - 07:59, 18:00 - 20:59)": "Crepúsculo (06:00 - 07:59, 18:00 - 20:59)",
     "@Dämmerung (06:00 - 07:59, 18:00 - 20:59)": {
         "type": "text",
         "placeholders": {}
     },
-    "Nacht (21:00 - 05:59)": "Nacht (21:00 - 05:59)",
+    "Nacht (21:00 - 05:59)": "Noche (21:00 - 05:59)",
     "@Nacht (21:00 - 05:59)": {
         "type": "text",
         "placeholders": {}
@@ -1377,6 +1402,11 @@
         "type": "text",
         "placeholders": {}
     },
+    "Gelbe Kreise zeigen an, dass der entsprechende Wert die Skala überschreitet.": "Circulos amarillos indican que el valor correspondiente sobresale la escala.",
+    "@Gelbe Kreise zeigen an, dass der entsprechende Wert die Skala überschreitet.": {
+        "type": "text",
+        "placeholders": {}
+    },
     "msgTORInfo": "El tiempo en minutos en el que los valores se encuentran fuera del margen {min} a {max}.",
     "@msgTORInfo": {
         "type": "text",
@@ -1501,6 +1531,11 @@
         "type": "text",
         "placeholders": {}
     },
+    "Bolusspalte anzeigen": "Mostrar columna bolo",
+    "@Bolusspalte anzeigen": {
+        "type": "text",
+        "placeholders": {}
+    },
     "msgBasalInfo": "La tasa basal está activada desde {time} y no contiene cambios.",
     "@msgBasalInfo": {
         "type": "text",
@@ -1573,11 +1608,6 @@
         "type": "text",
         "placeholders": {}
     },
-    "Neuester Tag zuerst": "Empezando con el dia reciente",
-    "@Neuester Tag zuerst": {
-        "type": "text",
-        "placeholders": {}
-    },
     "Tabelle mit Glukosewerten": "Tabla con valores glucosa",
     "@Tabelle mit Glukosewerten": {
         "type": "text",
@@ -1598,12 +1628,12 @@
         "type": "text",
         "placeholders": {}
     },
-    "Training anzeigen": "Mostrar entrenamiento",
-    "@Training anzeigen": {
+    "Bewegung anzeigen": "Mostrar actividad",
+    "@Bewegung anzeigen": {
         "type": "text",
         "placeholders": {}
     },
-    "Berechnete IE für Kohlenhydrate anzeigen": "Mostrar UI calculadas para HC",
+    "Berechnete IE für Kohlenhydrate anzeigen": "Mostrar UI calculadas para CH",
     "@Berechnete IE für Kohlenhydrate anzeigen": {
         "type": "text",
         "placeholders": {}
@@ -1658,7 +1688,22 @@
         "type": "text",
         "placeholders": {}
     },
-    "Tagesstunden": "Tagesstunden",
+    "Bewegung": "Actividad",
+    "@Bewegung": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "Blutige Messung": "Prueba de glucosa en sangre",
+    "@Blutige Messung": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "Startstunde": "Hora de inicio",
+    "@Startstunde": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "Tagesstunden": "Horas de dia",
     "@Tagesstunden": {
         "type": "text",
         "placeholders": {}
@@ -1753,6 +1798,16 @@
         "type": "text",
         "placeholders": {}
     },
+    "Mehrfache Datensätze kennzeichnen": "Marcar múltiples registros",
+    "@Mehrfache Datensätze kennzeichnen": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "Nur mehrfache Datensätze anzeigen": "Solo mostrar multiples registros",
+    "@Nur mehrfache Datensätze anzeigen": {
+        "type": "text",
+        "placeholders": {}
+    },
     "msgLogTempTarget": "objetivo temporal {target} para {duration} min, razon: {reason}",
     "@msgLogTempTarget": {
         "type": "text",
@@ -1762,6 +1817,11 @@
             "reason": {}
         }
     },
+    "Aufhebung von temp. Ziel": "Anulación de objetivos temp",
+    "@Aufhebung von temp. Ziel": {
+        "type": "text",
+        "placeholders": {}
+    },
     "msgLogTempBasal": "basal temporal {percent}% / {duration} min",
     "@msgLogTempBasal": {
         "type": "text",
@@ -1770,8 +1830,24 @@
             "duration": {}
         }
     },
+    "msgLogTempBasalAbsolute": "basal temp. {value} / {duration} min",
+    "@msgLogTempBasalAbsolute": {
+        "type": "text",
+        "placeholders": {
+            "value": {},
+            "duration": {}
+        }
+    },
     "msgLogSMB": "SMB {insulin} {unit}",
     "@msgLogSMB": {
+        "type": "text",
+        "placeholders": {
+            "insulin": {},
+            "unit": {}
+        }
+    },
+    "msgLogMicroBolus": "Micro bolo {insulin} {unit}",
+    "@msgLogMicroBolus": {
         "type": "text",
         "placeholders": {
             "insulin": {},
@@ -1831,45 +1907,27 @@
         "type": "text",
         "placeholders": {}
     },
+    "Spalte TDD": "Columna TDD",
+    "@Spalte TDD": {
+        "type": "text",
+        "placeholders": {}
+    },
     "Tagesstatistik": "Estatistica diaria",
     "@Tagesstatistik": {
         "type": "text",
         "placeholders": {}
     },
-    "Automatisch": "Automatisch",
-    "@Automatisch": {
+    "Basalrate anzeigen": "Mostrar tasa basal",
+    "@Basalrate anzeigen": {
         "type": "text",
         "placeholders": {}
     },
-    "150": "150",
-    "@150": {
+    "msgBasalInfo1": "Esta tasa basal estaba activa {unit}.",
+    "@msgBasalInfo1": {
         "type": "text",
-        "placeholders": {}
-    },
-    "200": "200",
-    "@200": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "250": "250",
-    "@250": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "300": "300",
-    "@300": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "350": "350",
-    "@350": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "Maximum für die Skalierung": "Maximum für die Skalierung",
-    "@Maximum für die Skalierung": {
-        "type": "text",
-        "placeholders": {}
+        "placeholders": {
+            "unit": {}
+        }
     },
     "Spalten für 10% und 90% anzeigen": "Mostrar columnas para 10% y 90%",
     "@Spalten für 10% und 90% anzeigen": {
@@ -1891,18 +1949,47 @@
         "type": "text",
         "placeholders": {}
     },
+    "Es sind keine Daten vorhanden.": "No hay datos disponibles.",
+    "@Es sind keine Daten vorhanden.": {
+        "type": "text",
+        "placeholders": {}
+    },
     "Wochengrafik": "Grafico semanal",
     "@Wochengrafik": {
         "type": "text",
         "placeholders": {}
     },
-    "Neueste Woche zuerst": "Empezar con semana reciente",
-    "@Neueste Woche zuerst": {
+    "Tagesnamen in Grafik anzeigen": "Mostrar dias en el grafico",
+    "@Tagesnamen in Grafik anzeigen": {
         "type": "text",
         "placeholders": {}
     },
-    "Tagesnamen in Grafik anzeigen": "Mostrar dias en el grafico",
-    "@Tagesnamen in Grafik anzeigen": {
+    "msgStandardLimits": "Usar objetivo de glucemia estándar ({low} {unit} - {high} {unit})",
+    "@msgStandardLimits": {
+        "type": "text",
+        "placeholders": {
+            "low": {},
+            "high": {},
+            "unit": {}
+        }
+    },
+    "CGP immer mit Standard Zielbereich": "CGP siempre con objetivos de glucosa estándar",
+    "@CGP immer mit Standard Zielbereich": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "Automatisch": "Automático",
+    "@Automatisch": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "Neuester Tag zuerst": "Empezando con el dia reciente",
+    "@Neuester Tag zuerst": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "Aus den Profilen ermitteln": "Calculado por los perfiles",
+    "@Aus den Profilen ermitteln": {
         "type": "text",
         "placeholders": {}
     },
@@ -1921,10 +2008,26 @@
         "type": "text",
         "placeholders": {}
     },
-    "Der Zugriffsschlüssel wird nur benötigt, wenn der Zugriff in Nightscout über AUTH_DEFAULT_ROLES eingeschränkt wurde": "Solo se necesita la clave de acceso si se ha restringido el acceso a nightscout por AUTH_DEFAULT_ROLES",
-    "@Der Zugriffsschlüssel wird nur benötigt, wenn der Zugriff in Nightscout über AUTH_DEFAULT_ROLES eingeschränkt wurde": {
+    "msgAccessTokenHint": "Solo se necesita la clave de acceso si se ha restringido el acceso a nightscout por AUTH_DEFAULT_ROLES",
+    "@msgAccessTokenHint": {
         "type": "text",
-        "placeholders": {}
+        "placeholders": {
+            "isVisible": {}
+        }
+    },
+    "msgStartDateHint": "La fecha del primer día con datos",
+    "@msgStartDateHint": {
+        "type": "text",
+        "placeholders": {
+            "isVisible": {}
+        }
+    },
+    "msgEndDateHint": "La fecha del último día con datos completos",
+    "@msgEndDateHint": {
+        "type": "text",
+        "placeholders": {
+            "isVisible": {}
+        }
     },
     "msgCheckUser": "Compruebe el acceso a {url}...",
     "@msgCheckUser": {
@@ -1933,27 +2036,64 @@
             "url": {}
         }
     },
-    "Willkommen": "Bienvenido",
-    "@Willkommen": {
-        "description": "title of welcome screen",
+    "Daten von": "Datos de",
+    "@Daten von": {
         "type": "text",
         "placeholders": {}
     },
-    "Facebook Seite": "Página de Facebook",
-    "@Facebook Seite": {
-        "description": "title of facebook link",
+    "Daten bis": "Datos hasta",
+    "@Daten bis": {
         "type": "text",
         "placeholders": {}
     },
-    "Einstellungen": "Ajustes",
-    "@Einstellungen": {
-        "description": "title for settings dialog",
+    "Ermittle ersten Tag mit Daten": "Averigua el primer día con datos",
+    "@Ermittle ersten Tag mit Daten": {
         "type": "text",
         "placeholders": {}
     },
-    "Was bisher geschah...": "Lo que sucedió hasta ahora...",
-    "@Was bisher geschah...": {
-        "description": "title of whatsnew",
+    "Ermittle letzten Tag mit Daten": "Averigua el último día con datos",
+    "@Ermittle letzten Tag mit Daten": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "msgCalculatingDay": "Verifico {date} ...",
+    "@msgCalculatingDay": {
+        "type": "text",
+        "placeholders": {
+            "date": {}
+        }
+    },
+    "Bitte den Dateinamen für die Speicherung auswählen": "Por favor elige nombre de archivo para guardar",
+    "@Bitte den Dateinamen für die Speicherung auswählen": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "Shortcut anlegen": "Crear atajo",
+    "@Shortcut anlegen": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "Shortcut ändern": "Cambiar atajo",
+    "@Shortcut ändern": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "msgFormsText": "{count,plural, one {} =0{}=1{1 Formulario}other{{count} Formularios}}",
+    "@msgFormsText": {
+        "type": "text",
+        "placeholders": {
+            "count": {}
+        }
+    },
+    "Menü": "Menú",
+    "@Menü": {
+        "description": "tab title for menu",
+        "type": "text",
+        "placeholders": {}
+    },
+    "Shortcuts": "Shortcuts",
+    "@Shortcuts": {
+        "description": "tab title for shortcuts",
         "type": "text",
         "placeholders": {}
     },
@@ -2011,6 +2151,30 @@
         "type": "text",
         "placeholders": {}
     },
+    "Willkommen": "Bienvenido",
+    "@Willkommen": {
+        "description": "title of welcome screen",
+        "type": "text",
+        "placeholders": {}
+    },
+    "Facebook Seite": "Página de Facebook",
+    "@Facebook Seite": {
+        "description": "title of facebook link",
+        "type": "text",
+        "placeholders": {}
+    },
+    "Einstellungen": "Ajustes",
+    "@Einstellungen": {
+        "description": "title for settings dialog",
+        "type": "text",
+        "placeholders": {}
+    },
+    "Was bisher geschah...": "Lo que sucedió hasta ahora...",
+    "@Was bisher geschah...": {
+        "description": "title of whatsnew",
+        "type": "text",
+        "placeholders": {}
+    },
     "Zur Listenansicht": "Ir a vista de lista",
     "@Zur Listenansicht": {
         "description": "title of listview",
@@ -2020,6 +2184,12 @@
     "Zur Kachelansicht": "Ir a la vista de mosaico",
     "@Zur Kachelansicht": {
         "description": "title of tileview",
+        "type": "text",
+        "placeholders": {}
+    },
+    "Google Assistant": "Asistente Google",
+    "@Google Assistant": {
+        "description": "title of nightscout status",
         "type": "text",
         "placeholders": {}
     },
@@ -2089,21 +2259,33 @@
         "type": "text",
         "placeholders": {}
     },
-    "Anzeigeeinstellungen": "Configuración de pantalla",
-    "@Anzeigeeinstellungen": {
-        "description": "label of area for display setting",
+    "Ausgabe Parameter": "Edición parámetros",
+    "@Ausgabe Parameter": {
+        "description": "title for printparameter dialog",
         "type": "text",
         "placeholders": {}
     },
-    "Auf Kacheln Bilder statt Namen anzeigen": "Mostrar imágenes en vez de nombres en azulejos",
-    "@Auf Kacheln Bilder statt Namen anzeigen": {
-        "description": "label for checkbox to show images on tiles",
+    "Allgemeines": "General",
+    "@Allgemeines": {
+        "description": "label of area for section general in printparams",
         "type": "text",
         "placeholders": {}
     },
-    "Zusatzfunktionen": "Funciones adicionales",
-    "@Zusatzfunktionen": {
-        "description": "label of area for additional functions",
+    "zu Vergleichszwecken (z.B. Arzt)": "para comparaciónes (p.e. médicos)",
+    "@zu Vergleichszwecken (z.B. Arzt)": {
+        "description": "label for comparative purposes",
+        "type": "text",
+        "placeholders": {}
+    },
+    "Maximaler Glukosewert in Grafiken:": "Valor máximo de glucosa en gráfico:",
+    "@Maximaler Glukosewert in Grafiken:": {
+        "description": "label for max glucvalue in printparams",
+        "type": "text",
+        "placeholders": {}
+    },
+    "Genauigkeit der Basalangaben:": "Exactitud de los datos del perfil basal:",
+    "@Genauigkeit der Basalangaben:": {
+        "description": "label for max basalprecision in printparams",
         "type": "text",
         "placeholders": {}
     },
@@ -2122,6 +2304,54 @@
     "Hinweise auf Nightscout in der Kopf- und Fusszeile des PDFs ausblenden": "Esconder notas sobre Nightscout en el encabezado y el pie del PDF",
     "@Hinweise auf Nightscout in der Kopf- und Fusszeile des PDFs ausblenden": {
         "description": "label for checkbox to hide nightscout in footer",
+        "type": "text",
+        "placeholders": {}
+    },
+    "Nightscout Url in der Fusszeile des PDFs anzeigen": "Mostral Nightscout Url en el pie de la página PDF",
+    "@Nightscout Url in der Fusszeile des PDFs anzeigen": {
+        "description": "label for checkbox to show nightscout url in footer",
+        "type": "text",
+        "placeholders": {}
+    },
+    "Historische Daten": "Datos históricos",
+    "@Historische Daten": {
+        "description": "label of area for timeshift",
+        "type": "text",
+        "placeholders": {}
+    },
+    "Hiermit wird festgelegt, um wieviel der Zeitraum des PDFs verschoben werden soll, um Vergleichswerte zu erhalten.": "Aquí defines por cuanto tiempo se postpone el PDF para comparar valores y datos.",
+    "@Hiermit wird festgelegt, um wieviel der Zeitraum des PDFs verschoben werden soll, um Vergleichswerte zu erhalten.": {
+        "description": "description of timeshift",
+        "type": "text",
+        "placeholders": {}
+    },
+    "PDF erzeugen": "Generar PDF",
+    "@PDF erzeugen": {
+        "description": "buttonlabel for saving data",
+        "type": "text",
+        "placeholders": {}
+    },
+    "Loopenthüllende Daten verbergen (die Markierung der andersfarbigen Optionen ignorieren)": "Esconder datos que revelan el bucle cerrado (ignorar señal de las opciones en otro color)",
+    "@Loopenthüllende Daten verbergen (die Markierung der andersfarbigen Optionen ignorieren)": {
+        "description": "label for checkbox to hide loop data",
+        "type": "text",
+        "placeholders": {}
+    },
+    "Anzeigeeinstellungen": "Configuración de pantalla",
+    "@Anzeigeeinstellungen": {
+        "description": "label of area for display setting",
+        "type": "text",
+        "placeholders": {}
+    },
+    "Auf Kacheln Bilder statt Namen anzeigen": "Mostrar imágenes en vez de nombres en azulejos",
+    "@Auf Kacheln Bilder statt Namen anzeigen": {
+        "description": "label for checkbox to show images on tiles",
+        "type": "text",
+        "placeholders": {}
+    },
+    "Zusatzfunktionen": "Funciones adicionales",
+    "@Zusatzfunktionen": {
+        "description": "label of area for additional functions",
         "type": "text",
         "placeholders": {}
     },
@@ -2149,6 +2379,18 @@
         "type": "text",
         "placeholders": {}
     },
+    "Exportieren": "Exportar",
+    "@Exportieren": {
+        "description": "buttonlabel for exporting data",
+        "type": "text",
+        "placeholders": {}
+    },
+    "Importieren": "Importar",
+    "@Importieren": {
+        "description": "buttonlabel for importing data",
+        "type": "text",
+        "placeholders": {}
+    },
     "Speichern": "Guardar",
     "@Speichern": {
         "description": "buttonlabel for saving data",
@@ -2173,6 +2415,18 @@
         "type": "text",
         "placeholders": {}
     },
+    "Soll die URL": "URL debe",
+    "@Soll die URL": {
+        "description": "should the url of the user",
+        "type": "text",
+        "placeholders": {}
+    },
+    "vom Benutzer wirklich gelöscht werden?": "ser borrada por el usuario?",
+    "@vom Benutzer wirklich gelöscht werden?": {
+        "description": "of the user really be deleted",
+        "type": "text",
+        "placeholders": {}
+    },
     "Ja": "Sí",
     "@Ja": {
         "description": "buttonlabel for confirmation yes",
@@ -2182,6 +2436,66 @@
     "Nein": "No",
     "@Nein": {
         "description": "buttonlabel for confirmation no",
+        "type": "text",
+        "placeholders": {}
+    },
+    "Abbruch": "Descartar",
+    "@Abbruch": {
+        "description": "buttonlabel for cancel",
+        "type": "text",
+        "placeholders": {}
+    },
+    "Ein Shortcut beinhaltet den Zeitraum und die ausgewählten Formulare mit den jeweils gesetzten Optionen. Wenn ein Shortcut aktiviert wird, werden die darin gespeicherten Einstellungen geladen und aktiviert.": "Un atajo contiene el periodo y los formularios elegidos con las opciones seleccionadas. Si se activa un atajo, se cargarán y activarán los criterios elegidos.\ntexto informativo sobre atajos.",
+    "@Ein Shortcut beinhaltet den Zeitraum und die ausgewählten Formulare mit den jeweils gesetzten Optionen. Wenn ein Shortcut aktiviert wird, werden die darin gespeicherten Einstellungen geladen und aktiviert.": {
+        "description": "info text for shortcuts",
+        "type": "text",
+        "placeholders": {}
+    },
+    "Anzahl:": "Anzahl:",
+    "@Anzahl:": {
+        "description": "number of forms for shortcut",
+        "type": "text",
+        "placeholders": {}
+    },
+    "Zeitraum:": "Zeitraum:",
+    "@Zeitraum:": {
+        "description": "period for shortcuts",
+        "type": "text",
+        "placeholders": {}
+    },
+    "Löschen": "Borrar",
+    "@Löschen": {
+        "description": "buttonlabel for deleting data",
+        "type": "text",
+        "placeholders": {}
+    },
+    "Soll der Shortcut mit der Bezeichnung": "El atajo con el nombre se debe",
+    "@Soll der Shortcut mit der Bezeichnung": {
+        "description": "should the shortcut with name",
+        "type": "text",
+        "placeholders": {}
+    },
+    "Soll der Zeitraum": "El periodo se debe",
+    "@Soll der Zeitraum": {
+        "description": "should the period",
+        "type": "text",
+        "placeholders": {}
+    },
+    "mit dem Zeitraum": "con el periodo",
+    "@mit dem Zeitraum": {
+        "description": "with period",
+        "type": "text",
+        "placeholders": {}
+    },
+    "ersetzt werden?": "ser sustituido?",
+    "@ersetzt werden?": {
+        "description": "be replaced",
+        "type": "text",
+        "placeholders": {}
+    },
+    "Soll die Formularauswahl mit der aktuellen Auswahl ersetzt werden?": "Quieres sustituir la selección de formularios con la selección actual?",
+    "@Soll die Formularauswahl mit der aktuellen Auswahl ersetzt werden?": {
+        "description": "should the forms be replaced with current forms",
         "type": "text",
         "placeholders": {}
     },
@@ -2227,51 +2541,315 @@
         "type": "text",
         "placeholders": {}
     },
-    "1.3.9 - xx.2.2020": "1.3.9 - xx.2.2020",
-    "@1.3.9 - xx.2.2020": {
-        "description": "v139",
+    "2.0.0 - 15.7.2020": "2.0.0 - 15.7.2020",
+    "@2.0.0 - 15.7.2020": {
+        "description": "v200",
+        "type": "text",
+        "placeholders": {}
+    },
+    "Auf der Seite Protokoll werden jetzt auch Insulinabgaben angezeigt, die z.B. über xdrip eingegeben wurden.": "En la página del protocolo ahora también se muestran informaciónes sobre insulina que se inserten por ejemplo por xdrip.",
+    "@Auf der Seite Protokoll werden jetzt auch Insulinabgaben angezeigt, die z.B. über xdrip eingegeben wurden.": {
+        "description": "v200a1",
+        "type": "text",
+        "placeholders": {}
+    },
+    "Es gibt jetzt Shortcuts, mit denen man die aktuelle Auswahl der Formulare, deren Parameter und den ausgewählten Zeitraum speichern kann. Beim Aktivieren eines Shortcuts wird das alles wieder so eingestellt, wie es war, als der Shortcut gespeichert wurde.": "Ahora existen atajos con los que puedes guardar la selección actual de formularios, los parámetros y el periodo seleccionado. Al activar un atajo, todo se repone como seleccionado al guardar el atajo.",
+    "@Es gibt jetzt Shortcuts, mit denen man die aktuelle Auswahl der Formulare, deren Parameter und den ausgewählten Zeitraum speichern kann. Beim Aktivieren eines Shortcuts wird das alles wieder so eingestellt, wie es war, als der Shortcut gespeichert wurde.": {
+        "description": "v200a2",
+        "type": "text",
+        "placeholders": {}
+    },
+    "Bei Herokuapp und anderen Anbietern kostenloser Datenbankinstanzen ist der Speicherplatz der Instanz beschränkt, weshalb sie irgendwann voll ist. Dann kann man zwar eine neue Instanz anlegen, Nightscout Reporter benötigt aber für eine lückenlose Darstellung aller Tage Zugriff auf alle Instanzen, für die man eine Auswertung erhalten will. Deshalb können nun mehrere URLs für die Nightscout Instanzen eingegeben werden. Zusätzlich muss noch eingegeben werden, welches der erste und der letzte Tag mit Daten ist. Mit diesen Informationen ist es Nightscout Reporter dann möglich die benötigten Daten lückenlos auch über mehrere Instanzen hinweg auszuwerten.": "En Herokoapp y otros Servidores de Bases de Datos el espacio de almacenamiento esta restrigido, asi que a lo largo del tiempo se llena. Se puede crear una base nueva pero Nightscout Reporter necesita acceso a todas bases para poder mostrar los datos de todos los dias seguidos sin falta de datos. Por eso ahora se pueden usar varias URL para las bases de nightscout. Adicionalmente se debe indicar cual es el primer y cual es el último día con datos. Con estas informaciones Nightscout Reporter puede evaluar los datos completamente usando varias bases de datos.",
+    "@Bei Herokuapp und anderen Anbietern kostenloser Datenbankinstanzen ist der Speicherplatz der Instanz beschränkt, weshalb sie irgendwann voll ist. Dann kann man zwar eine neue Instanz anlegen, Nightscout Reporter benötigt aber für eine lückenlose Darstellung aller Tage Zugriff auf alle Instanzen, für die man eine Auswertung erhalten will. Deshalb können nun mehrere URLs für die Nightscout Instanzen eingegeben werden. Zusätzlich muss noch eingegeben werden, welches der erste und der letzte Tag mit Daten ist. Mit diesen Informationen ist es Nightscout Reporter dann möglich die benötigten Daten lückenlos auch über mehrere Instanzen hinweg auszuwerten.": {
+        "description": "v200a3",
+        "type": "text",
+        "placeholders": {}
+    },
+    "Wenn im CGP ein Wert den Maximalwert der Skala überschreitet, wird die entsprechende Ecke mit einem gelben Kreis markiert.": "Si se sale un valor en el CGP del máximo de la escala, la punta se indicará con un circulo amarillo.",
+    "@Wenn im CGP ein Wert den Maximalwert der Skala überschreitet, wird die entsprechende Ecke mit einem gelben Kreis markiert.": {
+        "description": "v200a4",
+        "type": "text",
+        "placeholders": {}
+    },
+    "Auf dem Einstellungen-Dialog gibt es neben den URL-Eingabefeldern jeweils einen Button, um die URL in einem neuen Browser-Fenster zu öffnen.": "En los ajustes ahora hay un botón para abrir URL en una nueva ventana.",
+    "@Auf dem Einstellungen-Dialog gibt es neben den URL-Eingabefeldern jeweils einen Button, um die URL in einem neuen Browser-Fenster zu öffnen.": {
+        "description": "v200a5",
+        "type": "text",
+        "placeholders": {}
+    },
+    "Die Eingabe des Zugriffsschlüssels auf dem Einstellungen-Dialog kann jetzt mit einem Button neben dem Eingabefeld lesbar gemacht werden.": "El código de acceso a los ajustes ahora se puede hacer visible con el botón al lado de la casilla.",
+    "@Die Eingabe des Zugriffsschlüssels auf dem Einstellungen-Dialog kann jetzt mit einem Button neben dem Eingabefeld lesbar gemacht werden.": {
+        "description": "v200a6",
+        "type": "text",
+        "placeholders": {}
+    },
+    "Im Einstellungen Dialog gibt es jetzt die Möglichkeit, die Einstellungen zu exportieren und zu importieren. Beim Export wird eine Datei mit den allgemeinen Einstellungen geschrieben, beim Import wird so eine Datei wieder eingelesen. Damit kann man auch ohne Google Drive Zugriff die Einstellungen über verschiedene Browser hinweg manuell synchronisieren.": "En el dialogo de los ajustes ahora existe la opción de exportar e importar los ajustes. Al exportar se crea un archivo con los ajustes basicos y al importar se leé este archivo. Asi se pueden sincronizar los ajustes sin necesidad de tener Google Drive.",
+    "@Im Einstellungen Dialog gibt es jetzt die Möglichkeit, die Einstellungen zu exportieren und zu importieren. Beim Export wird eine Datei mit den allgemeinen Einstellungen geschrieben, beim Import wird so eine Datei wieder eingelesen. Damit kann man auch ohne Google Drive Zugriff die Einstellungen über verschiedene Browser hinweg manuell synchronisieren.": {
+        "description": "v200a7",
+        "type": "text",
+        "placeholders": {}
+    },
+    "Im Protokoll gibt es jetzt die Möglichkeit, sich doppelte Datensätze markieren zu lassen. Sie werden von Nightscout Reporter zwar rausgefiltert, aber er kann anzeigen, wie oft ein bestimmter Datensatz in den Daten gefunden wurde. Man kann dort auch angeben, dass er nur mehrfach vorhandene Datensätze ausgeben soll. So kann man mögliche Diskrepanzen zwischen Nightscout Reporter und anderen Reporting Tools herausfinden.": "Im Protokoll gibt es jetzt die Möglichkeit, sich doppelte Datensätze markieren zu lassen. Sie werden von Nightscout Reporter zwar rausgefiltert, aber er kann anzeigen, wie oft ein bestimmter Datensatz in den Daten gefunden wurde. Man kann dort auch angeben, dass er nur mehrfach vorhandene Datensätze ausgeben soll. So kann man mögliche Diskrepanzen zwischen Nightscout Reporter und anderen Reporting Tools herausfinden.",
+    "@Im Protokoll gibt es jetzt die Möglichkeit, sich doppelte Datensätze markieren zu lassen. Sie werden von Nightscout Reporter zwar rausgefiltert, aber er kann anzeigen, wie oft ein bestimmter Datensatz in den Daten gefunden wurde. Man kann dort auch angeben, dass er nur mehrfach vorhandene Datensätze ausgeben soll. So kann man mögliche Diskrepanzen zwischen Nightscout Reporter und anderen Reporting Tools herausfinden.": {
+        "description": "v200a8",
+        "type": "text",
+        "placeholders": {}
+    },
+    "Das CGP wird jetzt auch bei extremen Werten korrekt erzeugt.": "El CGP ahora tambien se muestra correctamente con valores extremos.",
+    "@Das CGP wird jetzt auch bei extremen Werten korrekt erzeugt.": {
+        "description": "v200f1",
+        "type": "text",
+        "placeholders": {}
+    },
+    "Im CGP wurden die Skalenbeschriftungen korrigiert.": "Se ha corregido el etiquetado de la escala del CGP.",
+    "@Im CGP wurden die Skalenbeschriftungen korrigiert.": {
+        "description": "v200f2",
+        "type": "text",
+        "placeholders": {}
+    },
+    "1.4.9 - 16.6.2020": "1.4.9 - 16.6.2020",
+    "@1.4.9 - 16.6.2020": {
+        "description": "v149",
+        "type": "text",
+        "placeholders": {}
+    },
+    "Im Dialog der Ausgabe Parameter gibt es nun die Möglichkeit, das CGP immer mit dem Standard Zielbereich zu erzeugen. Diese Option ist anfangs eingeschaltet, da das CGP ein standardisiertes Formular ist, das gerne zu Vergleichszwecken herangezogen wird. Man kann es aber für seine eigenen Zwecke ausschalten. Diese Einstellung wird dann auch beibehalten.": "En el diálogo de parámetros de visualización ahora existe la posibilidad de crear el CGP con valores de objetivos de glucosa estándar. Esta opción está seleccionada desde el principio, por que se trata de un documento estándar que permite comparaciónes. Puedes desactivarlo para tu propio fin. Esta opción quedará seleccionada.",
+    "@Im Dialog der Ausgabe Parameter gibt es nun die Möglichkeit, das CGP immer mit dem Standard Zielbereich zu erzeugen. Diese Option ist anfangs eingeschaltet, da das CGP ein standardisiertes Formular ist, das gerne zu Vergleichszwecken herangezogen wird. Man kann es aber für seine eigenen Zwecke ausschalten. Diese Einstellung wird dann auch beibehalten.": {
+        "description": "v149a1",
+        "type": "text",
+        "placeholders": {}
+    },
+    "Bei der Profilermittlung wurde manchmal der letzte Profilwechsel ignoriert. Das ist nun behoben.": "Al recompilar los perfiles alguna vez se ha ignorado el último perfil. Esto ha sido corregido.",
+    "@Bei der Profilermittlung wurde manchmal der letzte Profilwechsel ignoriert. Das ist nun behoben.": {
+        "description": "v149f1",
+        "type": "text",
+        "placeholders": {}
+    },
+    "1.4.8 - 12.6.2020": "1.4.8 - 12.6.2020",
+    "@1.4.8 - 12.6.2020": {
+        "description": "v148",
+        "type": "text",
+        "placeholders": {}
+    },
+    "Im Dialog der Ausgabe Parameter wurde rechts oben der Schieberegler \"zu Vergleichszwecken\" hinzugefügt. Wenn dieser aktiviert ist, dann wird überall der Standard Zielbereich verwendet. Intern wird das auch noch für andere Anpassungen verwendet. Diese Option ist dafür gedacht, dass man seine Ausdrucke mit anderen Diabetikern vergleichen kann. Das ist zum Beispiel zur Vorlage bei Ärzten und Diabetesberatern sinnvoll.": "En el diálogo de expedición se ha añadido a la derecha el botón \"para comparación\". Acitivandolo se usan en todos los informes los valores estándar para los objetivos de glucosa. También se usa para ajustes internos. Esta opción quiere ayudar a comparar los datos con otros diabeticos. Esto es útil para médicos y sus consejeros.",
+    "@Im Dialog der Ausgabe Parameter wurde rechts oben der Schieberegler \"zu Vergleichszwecken\" hinzugefügt. Wenn dieser aktiviert ist, dann wird überall der Standard Zielbereich verwendet. Intern wird das auch noch für andere Anpassungen verwendet. Diese Option ist dafür gedacht, dass man seine Ausdrucke mit anderen Diabetikern vergleichen kann. Das ist zum Beispiel zur Vorlage bei Ärzten und Diabetesberatern sinnvoll.": {
+        "description": "v148a1",
+        "type": "text",
+        "placeholders": {}
+    },
+    "1.4.7 - 5.6.2020": "1.4.7 - 5.6.2020",
+    "@1.4.7 - 5.6.2020": {
+        "description": "v147",
+        "type": "text",
+        "placeholders": {}
+    },
+    "In den Ausgabe Parametern kann nun angegeben werden, ob immer der neueste Tag zuerst angezeigt wird. Das hat Auswirkungen auf die Tagesgrafik, die Tagesstatistik und die Wochengrafik. In den Formularoptionen wurde die entsprechende Option entfernt.": "En los parámetros de edición ahora se puede definir si siempre se muestra el actual día como primero. Esto efectúa el gráfico diario, los informes diarios y los informes semanales. En las opciones del formulario se han borrado las opciones correspondientes.",
+    "@In den Ausgabe Parametern kann nun angegeben werden, ob immer der neueste Tag zuerst angezeigt wird. Das hat Auswirkungen auf die Tagesgrafik, die Tagesstatistik und die Wochengrafik. In den Formularoptionen wurde die entsprechende Option entfernt.": {
+        "description": "v147c1",
+        "type": "text",
+        "placeholders": {}
+    },
+    "Die Einstellung für das Öffnen des PDF im gleichen Fenster, das Herunterladen des PDFs und den Hinweis auf Nightscout im PDF wurde aus den Einstellungen in die Ausgabe Parameter verschoben. Dadurch kann man das bei jedem Ausdruck schnell festlegen und ändern.": "Las opiniones para abrir el PDF en la misma ventana, para guardar el PDF y la referencia a Nightscout en el PDF hab sido integrados en los parámetros de edición. Así es posible cambiarlo rápidamente con cada impreso.",
+    "@Die Einstellung für das Öffnen des PDF im gleichen Fenster, das Herunterladen des PDFs und den Hinweis auf Nightscout im PDF wurde aus den Einstellungen in die Ausgabe Parameter verschoben. Dadurch kann man das bei jedem Ausdruck schnell festlegen und ändern.": {
+        "description": "v147c2",
+        "type": "text",
+        "placeholders": {}
+    },
+    "Die Überschrift über der Tabelle vom Glucose Perzentil Diagramm wurde korrigiert.": "El título de la tabla del percentil de glucosa ha sido corregido.",
+    "@Die Überschrift über der Tabelle vom Glucose Perzentil Diagramm wurde korrigiert.": {
+        "description": "v147f1",
+        "type": "text",
+        "placeholders": {}
+    },
+    "1.4.6 - 26.5.2020": "1.4.6 - 26.5.2020",
+    "@1.4.6 - 26.5.2020": {
+        "description": "v146",
+        "type": "text",
+        "placeholders": {}
+    },
+    "Die Legende der Tagesgrafik wurde um den Eintrag für blutige Messungen erweitert.": "En la leyenda del gráfico diario se ha añadido la información sobre medidas de glucosa en sangre.",
+    "@Die Legende der Tagesgrafik wurde um den Eintrag für blutige Messungen erweitert.": {
+        "description": "v146a1",
+        "type": "text",
+        "placeholders": {}
+    },
+    "Die Microboli vom Minimed 600 Uploader wurden aus der Ausgabe entfernt, da es sich dabei nur um Temporäre Basalraten handelt.": "Los micro bolos del Minimed 600 Uploader se han borrado de la emisión, pou que se trata sólo de bases basales temporales.",
+    "@Die Microboli vom Minimed 600 Uploader wurden aus der Ausgabe entfernt, da es sich dabei nur um Temporäre Basalraten handelt.": {
+        "description": "v146f1",
+        "type": "text",
+        "placeholders": {}
+    },
+    "Ein möglicher Absturz bei der Ausgabe des CGP bei der Tagesgrafik wurde korrigiert.": "Un posible error al crear el CGP en el gráfico diario se ha corregido.",
+    "@Ein möglicher Absturz bei der Ausgabe des CGP bei der Tagesgrafik wurde korrigiert.": {
+        "description": "v146f2",
+        "type": "text",
+        "placeholders": {}
+    },
+    "1.4.5 - 20.4.2020": "1.4.5 - 20.4.2020",
+    "@1.4.5 - 20.4.2020": {
+        "description": "v145",
+        "type": "text",
+        "placeholders": {}
+    },
+    "In dem Dialog mit den Ausgabe Parametern wurde die Option hinzugefügt, die Genauigkeit der Ausgabe von Basalangaben festzulegen. Diese wird normalerweise aus den Angaben zur Basalrate in den Profilen ermittelt. Das wird auch weiterhin getan, wenn der erste Eintrag in der Liste ausgewählt wird. Ansonsten werden alle Basalangaben mit der Genauigkeit ausgegeben, die bei dieser Option ausgewählt wurde.": "In dem Dialog mit den Ausgabe Parametern wurde die Option hinzugefügt, die Genauigkeit der Ausgabe von Basalangaben festzulegen. Diese wird normalerweise aus den Angaben zur Basalrate in den Profilen ermittelt. Das wird auch weiterhin getan, wenn der erste Eintrag in der Liste ausgewählt wird. Ansonsten werden alle Basalangaben mit der Genauigkeit ausgegeben, die bei dieser Option ausgewählt wurde.",
+    "@In dem Dialog mit den Ausgabe Parametern wurde die Option hinzugefügt, die Genauigkeit der Ausgabe von Basalangaben festzulegen. Diese wird normalerweise aus den Angaben zur Basalrate in den Profilen ermittelt. Das wird auch weiterhin getan, wenn der erste Eintrag in der Liste ausgewählt wird. Ansonsten werden alle Basalangaben mit der Genauigkeit ausgegeben, die bei dieser Option ausgewählt wurde.": {
+        "description": "v145a1",
+        "type": "text",
+        "placeholders": {}
+    },
+    "Die Genauigkeit der ISF Angaben im Profil wurde korrigiert.": "La exactitud de los datos ISF en el perfil ha sido corregido.",
+    "@Die Genauigkeit der ISF Angaben im Profil wurde korrigiert.": {
+        "description": "v145f1",
+        "type": "text",
+        "placeholders": {}
+    },
+    "Im Protokoll werden die Angaben, die ein temporäres Ziel von 0 IE für 0 Minuten setzen als \"Aufhebung von temp. Ziel\" ausgegeben.": "En el protocolo un perfil temporal de 0 UI por 0 minutos se declararán como \"cancelación de perfil temporal\".",
+    "@Im Protokoll werden die Angaben, die ein temporäres Ziel von 0 IE für 0 Minuten setzen als \"Aufhebung von temp. Ziel\" ausgegeben.": {
+        "description": "v145f2",
+        "type": "text",
+        "placeholders": {}
+    },
+    "Im CGP wurden verschiedene Berechnungen korrigiert, die sich vor allem in Differenzen bei ToR und Mittelwerten zeigten.": "En el CGP se han corregido varias cálculos que se han mostrado sobre todo en diferencias en ToR y en promedios.",
+    "@Im CGP wurden verschiedene Berechnungen korrigiert, die sich vor allem in Differenzen bei ToR und Mittelwerten zeigten.": {
+        "description": "v145f3",
+        "type": "text",
+        "placeholders": {}
+    },
+    "1.4.4 - 6.4.2020": "1.4.4 - 6.4.2020",
+    "@1.4.4 - 6.4.2020": {
+        "description": "v144",
+        "type": "text",
+        "placeholders": {}
+    },
+    "Die Legende der Tagesgrafik wurde um den Eintrag für Bewegung erweitert.": "En la leyenda del gráfico diario se ha añadido la información sobre actividad.",
+    "@Die Legende der Tagesgrafik wurde um den Eintrag für Bewegung erweitert.": {
+        "description": "v144a1",
+        "type": "text",
+        "placeholders": {}
+    },
+    "In der Tagesgrafik wurde \"Training\" in \"Bewegung\" umbenannt. Das passt besser zu den Einträgen in AAPS.": "En el gráfico diario se ha cambiado \"entrenamiento\" por \"actividad\". Esto va mejor con los datos en AAPS.",
+    "@In der Tagesgrafik wurde \"Training\" in \"Bewegung\" umbenannt. Das passt besser zu den Einträgen in AAPS.": {
+        "description": "v144c1",
+        "type": "text",
+        "placeholders": {}
+    },
+    "Die Farbe für Bewegung in der Tagesgrafik wurde geändert.": "El color para mostrar las actividades en el gráfico diario ha sido cambiado.",
+    "@Die Farbe für Bewegung in der Tagesgrafik wurde geändert.": {
+        "description": "v144c2",
+        "type": "text",
+        "placeholders": {}
+    },
+    "1.4.3 - 26.3.2020": "1.4.3 - 26.3.2020",
+    "@1.4.3 - 26.3.2020": {
+        "description": "v143",
+        "type": "text",
+        "placeholders": {}
+    },
+    "Die Analysewerte wurden nicht ganz korrekt ermittelt. Das wurde korrigiert und nun sollten die statistischen Daten über den Zeitraum richtig ausgewertet werden.": "Los datos de la analítica no fueron calculadas correctamente. Esto se ha corregido y ahora los datos estatisticos deben ser calculados correspondiendo al periodo elegido.",
+    "@Die Analysewerte wurden nicht ganz korrekt ermittelt. Das wurde korrigiert und nun sollten die statistischen Daten über den Zeitraum richtig ausgewertet werden.": {
+        "description": "v143f1",
+        "type": "text",
+        "placeholders": {}
+    },
+    "1.4.2 - 16.3.2020": "1.4.2 - 16.3.2020",
+    "@1.4.2 - 16.3.2020": {
+        "description": "v142",
+        "type": "text",
+        "placeholders": {}
+    },
+    "Beim Laden der Behandlungsdaten werden doppelte Datensätze herausgefiltert.": "Al cargar los datos de tratamientos se eliminaran duplicados.",
+    "@Beim Laden der Behandlungsdaten werden doppelte Datensätze herausgefiltert.": {
+        "description": "v142c1",
+        "type": "text",
+        "placeholders": {}
+    },
+    "Die berechneten IE für Kohlenhydrate in der Tagesgrafik wurden teilweise mit falschen Faktoren ermittelt. Der Fehler wurde behoben.": "Las UI para los carbohidratos en el gráfico diario se han calculado con factores erróneos. Esto ha sido corregido.",
+    "@Die berechneten IE für Kohlenhydrate in der Tagesgrafik wurden teilweise mit falschen Faktoren ermittelt. Der Fehler wurde behoben.": {
+        "description": "v142f1",
+        "type": "text",
+        "placeholders": {}
+    },
+    "1.4.1 - 13.3.2020": "1.4.1 - 13.3.2020",
+    "@1.4.1 - 13.3.2020": {
+        "description": "v141",
+        "type": "text",
+        "placeholders": {}
+    },
+    "Beim Perzentil Diagramm gibt es eine neue Option, mit der man die Basalrate unter dem Diagramm anzeigen lassen kann. Da das Diagramm normalerweise einen grösseren Zeitraum umspannt, wird dort die Basalrate angezeigt, die zu Beginn des Zeitraums aktiv war.": "En el gráfico del percentil hay una nueva opción para mostrar la tasa basal debajo del gráfico. Como el gráfico suele mostrar un período más amplio, aquí se mostrará la tasa basal estando activa al principio del periodo.",
+    "@Beim Perzentil Diagramm gibt es eine neue Option, mit der man die Basalrate unter dem Diagramm anzeigen lassen kann. Da das Diagramm normalerweise einen grösseren Zeitraum umspannt, wird dort die Basalrate angezeigt, die zu Beginn des Zeitraums aktiv war.": {
+        "description": "v141a1",
+        "type": "text",
+        "placeholders": {}
+    },
+    "Fehler behoben, der bei der Kachelansicht teilweise verhindert hat, dass die Parameter für die Kacheln aufgerufen werden konnten.": "Arreglado problema con visualización en pantalla de azilejos.",
+    "@Fehler behoben, der bei der Kachelansicht teilweise verhindert hat, dass die Parameter für die Kacheln aufgerufen werden konnten.": {
+        "description": "v141f1",
+        "type": "text",
+        "placeholders": {}
+    },
+    "1.4 - 28.2.2020": "1.4 - 28.2.2020",
+    "@1.4 - 28.2.2020": {
+        "description": "v14",
         "type": "text",
         "placeholders": {}
     },
     "Es gibt ein neues PDF namens Tagestrend. Dieses zeigt die Werte eines Tages zusammen mit dem Trend zu jeder vollen Stunde, sowie der eingestellten Basalrate aus dem Profil. Das ist eine gute Übersicht für Basalratentests, um zu erkennen, wo etwas anzupassen ist.": "Hay un nuevo PDF \"tendencia diaria\". Este muestra los valores diarios por hora y el perfil actual. Esto es un buen resumen para verificar tasas basales.",
     "@Es gibt ein neues PDF namens Tagestrend. Dieses zeigt die Werte eines Tages zusammen mit dem Trend zu jeder vollen Stunde, sowie der eingestellten Basalrate aus dem Profil. Das ist eine gute Übersicht für Basalratentests, um zu erkennen, wo etwas anzupassen ist.": {
-        "description": "v139a1",
+        "description": "v14a1",
         "type": "text",
         "placeholders": {}
     },
     "In der Tagesgrafik gibt es eine neue Option, um die Rundung der Insulinwerte auf die maximale Genauigkeit im Profil zu unterbinden. Das macht da Sinn, wo entweder kein Profil vorhanden ist, oder wo Werte mit höherer Genauigkeit als im Profil eingegeben werden.": "En el gráfico diario hay una nueva opción para evitar el redondeo máximo de los valores de insulina a la máxima exactitud. Esto se necesita donde no existe perfil o donde los valores insertados son más exactos que los del perfil.",
     "@In der Tagesgrafik gibt es eine neue Option, um die Rundung der Insulinwerte auf die maximale Genauigkeit im Profil zu unterbinden. Das macht da Sinn, wo entweder kein Profil vorhanden ist, oder wo Werte mit höherer Genauigkeit als im Profil eingegeben werden.": {
-        "description": "v139a2",
+        "description": "v14a2",
         "type": "text",
         "placeholders": {}
     },
     "In der Tagesgrafik kann man nun die IOB (Insulin On Board) und COB (Carbs On Board) anzeigen lassen. Die IOB werden am oberen Rand angezeigt, wo auch die Bolusabgaben dargestellt werden, die COB am unteren Rand, wo auch die Kohlenhydrate dargestellt werden.": "En el gráfico diario ahora también se muestran IOB (insulina a bordo) y COB (carbohidratos a bordo). IOB se muestran en la parte superior donde también se muestran los bolos, COB se muestran en la parte de abajo donde también se muestran los carbohidratos.",
     "@In der Tagesgrafik kann man nun die IOB (Insulin On Board) und COB (Carbs On Board) anzeigen lassen. Die IOB werden am oberen Rand angezeigt, wo auch die Bolusabgaben dargestellt werden, die COB am unteren Rand, wo auch die Kohlenhydrate dargestellt werden.": {
-        "description": "v139a3",
+        "description": "v14a3",
         "type": "text",
         "placeholders": {}
     },
-    "Nightscout Reporter kann nun auch auf Portugiesisch verwendet werden.": "Nightscout Reporter kann nun auch auf Portugiesisch verwendet werden.",
+    "Nightscout Reporter kann nun auch auf Portugiesisch verwendet werden.": "Nightscout Reporter ahora puede ser usado en portugués.",
     "@Nightscout Reporter kann nun auch auf Portugiesisch verwendet werden.": {
-        "description": "v139a4",
+        "description": "v14a4",
         "type": "text",
         "placeholders": {}
     },
-    "Es gibt ein neues PDF namens Tagesstunden. Dieses zeigt die Durchschnittswerte eines Tages in jedem Stundenintervall an und färbt die Zellen entsprechend des Glukosewertes ein. So hat man eine gut Übersicht über die Werteverteilung im ausgewählten Zeitraum.": "Es gibt ein neues PDF namens Tagesstunden. Dieses zeigt die Durchschnittswerte eines Tages in jedem Stundenintervall an und färbt die Zellen entsprechend des Glukosewertes ein. So hat man eine gut Übersicht über die Werteverteilung im ausgewählten Zeitraum.",
+    "Es gibt ein neues PDF namens Tagesstunden. Dieses zeigt die Durchschnittswerte eines Tages in jedem Stundenintervall an und färbt die Zellen entsprechend des Glukosewertes ein. So hat man eine gut Übersicht über die Werteverteilung im ausgewählten Zeitraum.": "Hay un PDF nuevo llamado horas de día. Este muestra el medio diario por cada hora y color cada célula según el valor de la glucosa. Así se optiene un buen resumen sobre la distribución de los valores en el periodo elegido.",
     "@Es gibt ein neues PDF namens Tagesstunden. Dieses zeigt die Durchschnittswerte eines Tages in jedem Stundenintervall an und färbt die Zellen entsprechend des Glukosewertes ein. So hat man eine gut Übersicht über die Werteverteilung im ausgewählten Zeitraum.": {
-        "description": "v139a5",
+        "description": "v14a5",
+        "type": "text",
+        "placeholders": {}
+    },
+    "Beim Glukose Perzentil Diagramm kann man nun ein Maximum für die Skalierung festlegen. Wenn es auf \"Automatisch\" gesetzt wird, wird das Maximum wie bisher auch ermittelt. Bei einem anderen Wert wird die Obergrenze für das Diagramm auf diesen Wert festgesetzt. Damit ist es leichter möglich zwei Diagramme miteinander zu vergleichen, deren Obergrenze unterschiedlich ist.": "En el percentil de glucosa ahora se puede definir un máximo para la escala. Si seleccionas \"automático\" el máximo será mostrado como antes. Si eliges otro valor este será utilizado como máximo en el gráfico. Así es más fácil comprar diferentes gráficos con diferentes máximos.",
+    "@Beim Glukose Perzentil Diagramm kann man nun ein Maximum für die Skalierung festlegen. Wenn es auf \"Automatisch\" gesetzt wird, wird das Maximum wie bisher auch ermittelt. Bei einem anderen Wert wird die Obergrenze für das Diagramm auf diesen Wert festgesetzt. Damit ist es leichter möglich zwei Diagramme miteinander zu vergleichen, deren Obergrenze unterschiedlich ist.": {
+        "description": "v14a6",
+        "type": "text",
+        "placeholders": {}
+    },
+    "Vor der Erzeugung eines PDFs wird noch ein Dialog angezeigt, auf dem man Parameter für alle erzeugten PDFs eingeben kann. Man kann dort den Zielbereich auf den Standardbereich festlegen, den Ärzte gerne sehen. Das hat Auswirkungen auf alle Darstellungen des Zielbereichs, sowie auf die Verteilung der Werte innerhalb und ausserhalb des Zielbereichs. Man kann dort auch den Maximalwert für Glukose in Grafiken festlegen. Dieser Wert wird in der Tagesgrafik, dem Perzentil Diagramm und der Wochengrafik verwendet. Wenn er auf \"Automatisch\" gesetzt wird, wird der Maximalwert wie bisher auch aus den vorhandenen Daten ermittelt. Ausserdem kann man hier angeben, ob man den aktuellen Zeitraum erzeugen möchte oder einen Vergleichszeitraum. Das ist nützlich, um dem Arzt die Gegenüberstellung von Werten der Vergangenheit und jetzt zu zeigen.": "Antes de crear el PDF se muestra un diálogo para elegir los parámetros para los PDF. Se puede definir el rango de los valores estándar como lo quieren ver los médicos. Esto se aplica a todos los gráficos que muestran estos valores, también afecta a la distribución de los valores dentro y fuera del rango. Aquí también se puede definir un valor de glucosa máximo para los gráficos. Este será usado en el gráfico diario, en el gráfico del percentil y en el gráfico semanal. Si se usa el valor automático este será calculado a base de los datos. Además aquí puedes elegir si quieres usar el periodo actual o un periodo de comparación. Esto es práctico para comparar con el médico valores de periodos actuales y pasados.",
+    "@Vor der Erzeugung eines PDFs wird noch ein Dialog angezeigt, auf dem man Parameter für alle erzeugten PDFs eingeben kann. Man kann dort den Zielbereich auf den Standardbereich festlegen, den Ärzte gerne sehen. Das hat Auswirkungen auf alle Darstellungen des Zielbereichs, sowie auf die Verteilung der Werte innerhalb und ausserhalb des Zielbereichs. Man kann dort auch den Maximalwert für Glukose in Grafiken festlegen. Dieser Wert wird in der Tagesgrafik, dem Perzentil Diagramm und der Wochengrafik verwendet. Wenn er auf \"Automatisch\" gesetzt wird, wird der Maximalwert wie bisher auch aus den vorhandenen Daten ermittelt. Ausserdem kann man hier angeben, ob man den aktuellen Zeitraum erzeugen möchte oder einen Vergleichszeitraum. Das ist nützlich, um dem Arzt die Gegenüberstellung von Werten der Vergangenheit und jetzt zu zeigen.": {
+        "description": "v14a7",
+        "type": "text",
+        "placeholders": {}
+    },
+    "Die Buttons für die Erzeugung vergangener Zeiträume wurden entfernt. Das kann jetzt im neuen PDF-Dialog eingestellt werden.": "Los botones para crear periodos pasados han sido borrados. Esto ahora es crea en la nueva ventana.",
+    "@Die Buttons für die Erzeugung vergangener Zeiträume wurden entfernt. Das kann jetzt im neuen PDF-Dialog eingestellt werden.": {
+        "description": "v14r1",
         "type": "text",
         "placeholders": {}
     },
     "Wenn auf der Profilseite leere Spalten vorkommen, führt das nicht mehr zu einer leeren Seite.": "Si en la página del perfil existen columnas vacias ya no se producen páginas vacias.",
     "@Wenn auf der Profilseite leere Spalten vorkommen, führt das nicht mehr zu einer leeren Seite.": {
-        "description": "v139f1",
+        "description": "v14f1",
         "type": "text",
         "placeholders": {}
     },
     "Die Werte VarK und ToR im CGP werden bei Tages- und Wochengrafiken in der Legende und in der Grafik korrekt ausgegeben.": "Los valores VarK y TeR en el CGP serán mostrados correctamente en el gráfico yen la leyenda.",
     "@Die Werte VarK und ToR im CGP werden bei Tages- und Wochengrafiken in der Legende und in der Grafik korrekt ausgegeben.": {
-        "description": "v139f2",
+        "description": "v14f2",
         "type": "text",
         "placeholders": {}
     },
@@ -2371,7 +2949,7 @@
         "type": "text",
         "placeholders": {}
     },
-    "Es gibt eine neue PDF-Seite für die Tagesprofile. Darauf ist eine Tabelle zu sehen, die die tatsächliche Basalrate für den Tag zeigt, inklusive aller temporären Anpassungen. Ich brauchte das für Debugzwecke, aber vielleicht findet das der eine oder andere Benutzer auch interessant. Das Profil, das dort angezeigt wird entspricht dem Tagesprofil auf der Seite Tagesgrafik. Beim Loopen können das sehr viele Seiten werden, da dort normalerweise alle paar Minuten Anpassungen an der Basalrate vorgenommen werden. Deswegen wird die Tabelle auch abhängig von der Datenmenge in maximal drei Spalten dargestellt, um die Anzahl an Seiten zu reduzieren.": "Hay una página para el perfil diario. Ahí se muestra una tabla con la tasa basal actual incluyendo los ajustes temporales. Lo necesitaba para trabajos de programación, pero quizás a alguien le resulta interesante. El perfil que se muestra corresponde al perfil en la página del gráfico diario. En modo del bucle cerrado pueden ser muchas páginas por que cada pocos minutos se ajusta la tasa basal. Por esto la tabla contiene como máximo tres columnas para reducir la cantidad de páginas.",
+    "Es gibt eine neue PDF-Seite für die Tagesprofile. Darauf ist eine Tabelle zu sehen, die die tatsächliche Basalrate für den Tag zeigt, inklusive aller temporären Anpassungen. Ich brauchte das für Debugzwecke, aber vielleicht findet das der eine oder andere Benutzer auch interessant. Das Profil, das dort angezeigt wird entspricht dem Tagesprofil auf der Seite Tagesgrafik. Beim Loopen können das sehr viele Seiten werden, da dort normalerweise alle paar Minuten Anpassungen an der Basalrate vorgenommen werden. Deswegen wird die Tabelle auch abhängig von der Datenmenge in maximal drei Spalten dargestellt, um die Anzahl an Seiten zu reduzieren.": "Hay una página para el perfil diario. Ahí se muestra una tabla con la tasa basal actual incluyendo los ajustes temporales. Lo necesitaba para trabajos de programación, pero quizás a alguien le resulta interesante. El perfil que se muestra corresponde al perfil en la página del gráfico diario. En modo del lazo cerrado pueden ser muchas páginas por que cada pocos minutos se ajusta la tasa basal. Por esto la tabla contiene como máximo tres columnas para reducir la cantidad de páginas.",
     "@Es gibt eine neue PDF-Seite für die Tagesprofile. Darauf ist eine Tabelle zu sehen, die die tatsächliche Basalrate für den Tag zeigt, inklusive aller temporären Anpassungen. Ich brauchte das für Debugzwecke, aber vielleicht findet das der eine oder andere Benutzer auch interessant. Das Profil, das dort angezeigt wird entspricht dem Tagesprofil auf der Seite Tagesgrafik. Beim Loopen können das sehr viele Seiten werden, da dort normalerweise alle paar Minuten Anpassungen an der Basalrate vorgenommen werden. Deswegen wird die Tabelle auch abhängig von der Datenmenge in maximal drei Spalten dargestellt, um die Anzahl an Seiten zu reduzieren.": {
         "description": "v136a4",
         "type": "text",
@@ -2617,7 +3195,7 @@
         "type": "text",
         "placeholders": {}
     },
-    "Optionen für die PDFs, die eine eindeutige Beziehung zu einem laufenden Loop haben, werden nun in Blau dargestellt. Das vereinfacht es, PDFs zu erstellen, denen man nicht ohne Weiteres entnehmen kann, dass ein Loop vorliegt. Dazu müssen nur die Haken bei den blauen Optionen entfernt werden.": "Opciónes del PDF relacionadas con el bucle en marcha ahora son mostradas en azul. Esto simplifica crear PDFs, en los que no se nota desde el principio que se trata de un bucle cerrado. Para esto solo hay que quitar las opciones marcadas en azul.",
+    "Optionen für die PDFs, die eine eindeutige Beziehung zu einem laufenden Loop haben, werden nun in Blau dargestellt. Das vereinfacht es, PDFs zu erstellen, denen man nicht ohne Weiteres entnehmen kann, dass ein Loop vorliegt. Dazu müssen nur die Haken bei den blauen Optionen entfernt werden.": "Opciónes del PDF relacionadas con el lazo en marcha ahora son mostradas en azul. Esto simplifica crear PDFs, en los que no se nota desde el principio que se trata de un bucle cerrado. Para esto solo hay que quitar las opciones marcadas en azul.",
     "@Optionen für die PDFs, die eine eindeutige Beziehung zu einem laufenden Loop haben, werden nun in Blau dargestellt. Das vereinfacht es, PDFs zu erstellen, denen man nicht ohne Weiteres entnehmen kann, dass ein Loop vorliegt. Dazu müssen nur die Haken bei den blauen Optionen entfernt werden.": {
         "description": "v130a8",
         "type": "text",

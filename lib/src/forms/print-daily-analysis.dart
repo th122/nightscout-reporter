@@ -11,7 +11,7 @@ class PrintDailyAnalysis extends BaseDaily {
   @override
   String id = "dayanalysis";
 
-  bool sortReverse;
+  bool spareBool1;
   bool _isPortrait = true;
 
   @override
@@ -19,7 +19,7 @@ class PrintDailyAnalysis extends BaseDaily {
 
   @override
   List<ParamInfo> params = [
-    ParamInfo(0, PrintDailyGraphic.msgParam10, boolValue: false),
+    ParamInfo(0, "", boolValue: false, isDeprecated: true),
     ParamInfo(1, BaseDaily.msgDaily1,
         boolValue: true,
         subParams: [ParamInfo(0, BaseDaily.msgDaily2, boolValue: true, isLoopValue: true)],
@@ -29,7 +29,7 @@ class PrintDailyAnalysis extends BaseDaily {
 
   @override
   extractParams() {
-    sortReverse = params[0].boolValue;
+    spareBool1 = params[0].boolValue;
     showSMB = params[1].boolValue;
     showSMBAtGluc = params[1].subParams[0].boolValue;
     switch (params[2].intValue) {
@@ -101,7 +101,7 @@ class PrintDailyAnalysis extends BaseDaily {
     lineWidth = cm(0.03);
 
     for (int i = 0; i < data.days.length; i++) {
-      DayData day = data.days[sortReverse ? data.days.length - 1 - i : i];
+      DayData day = data.days[g.ppLatestFirst ? data.days.length - 1 - i : i];
       if (day.entries.length != 0 || day.treatments.length != 0) {
         pages.add(getPage(day));
         if (repData.isForThumbs) i = data.days.length;
@@ -257,7 +257,7 @@ class PrintDailyAnalysis extends BaseDaily {
 
       if (i > 0) {
 //        String text = "${glucFromData(g.fmtNumber(i * 50, 0))}\n${getGlucInfo()["unit"]}";
-        String text = "${glucFromData(g.fmtNumber(i * glucScale, 0))}";
+        String text = "${g.glucFromData(g.fmtNumber(i * glucScale, 0))}";
         _vertStack.add({
           "relativePosition": {"x": cm(xo - 1.1), "y": cm(yo + (gridLines - i) * lineHeight - 0.25)},
           "text": text,
@@ -269,7 +269,7 @@ class PrintDailyAnalysis extends BaseDaily {
           "fontSize": fs(8)
         });
       } else {
-        String text = "${getGlucInfo()["unit"]}";
+        String text = "${g.getGlucInfo()["unit"]}";
         _vertStack.add({
           "relativePosition": {"x": cm(xo - 1.5), "y": cm(yo + (gridLines - i) * lineHeight - 0.25)},
           "columns": [

@@ -3,8 +3,7 @@ import 'package:nightscout_reporter/src/jsonData.dart';
 
 import 'base-print.dart';
 
-class PrintAnalysis extends BasePrint
-{
+class PrintAnalysis extends BasePrint {
   @override
   String id = "analysis";
 
@@ -12,10 +11,8 @@ class PrintAnalysis extends BasePrint
   String get title => Intl.message("Auswertung");
 
   bool isPreciseMaterial, isPreciseTarget, showStdAbw, showHypoGlucs;
-  int get _precisionMaterial
-  => isPreciseMaterial ? 2 : 0;
-  int get _precisionTarget
-  => isPreciseTarget ? 1 : 0;
+  int get _precisionMaterial => isPreciseMaterial ? 2 : 0;
+  int get _precisionTarget => isPreciseTarget ? 1 : 0;
 
   bool useFineLimits;
 
@@ -29,17 +26,14 @@ class PrintAnalysis extends BasePrint
   ];
 
   @override
-  bool get isPortrait
-  => true;
+  bool get isPortrait => true;
 
-  PrintAnalysis()
-  {
+  PrintAnalysis() {
     init();
   }
 
   @override
-  extractParams()
-  {
+  extractParams() {
     isPreciseMaterial = params[0].boolValue;
     isPreciseTarget = params[1].boolValue;
     showStdAbw = params[2].boolValue;
@@ -48,40 +42,28 @@ class PrintAnalysis extends BasePrint
   }
 
   @override
-  dynamic get estimatePageCount
-  => {"count": 1, "isEstimated": false};
+  dynamic get estimatePageCount => {"count": 1, "isEstimated": false};
 
-  static String get msgParam1
-  => Intl.message("Material mit Nachkommastellen");
+  static String get msgParam1 => Intl.message("Material mit Nachkommastellen");
 
-  static String get msgParam2
-  => Intl.message("Zielbereich mit Nachkommastellen");
+  static String get msgParam2 => Intl.message("Zielbereich mit Nachkommastellen");
 
-  static String get msgParam3
-  => Intl.message("Standardabweichung statt Anzahl");
+  static String get msgParam3 => Intl.message("Standardabweichung statt Anzahl");
 
-  static String get msgParam4
-  => Intl.message("Standardbereich mit feinerer Abstufung");
+  static String get msgParam4 => Intl.message("Standardbereich mit feinerer Abstufung");
 
-  static String get msgParam5
-  => Intl.message("Unterzuckerungen anzeigen");
+  static String get msgParam5 => Intl.message("Unterzuckerungen anzeigen");
 
-  String msgHypoTitle(value)
-  {
+  String msgHypoTitle(value) {
     return Intl.message("Unterzuckerungen (< $value)", args: [value], name: "msgHypoTitle");
   }
 
-  String get msgHypoCount
-  => Intl.message("Anzahl Unterzuckerungen");
-  String get msgHypoDate
-  => Intl.message("Letzte Unterzuckerung");
-  String get msgNoHypo
-  => Intl.message("Keine");
+  String get msgHypoCount => Intl.message("Anzahl Unterzuckerungen");
+  String get msgHypoDate => Intl.message("Letzte Unterzuckerung");
+  String get msgNoHypo => Intl.message("Keine");
 
-  addBodyArea(List body, String title, List lines, {showLine: true})
-  {
-    if (showLine)
-    {
+  addBodyArea(List body, String title, List lines, {showLine: true}) {
+    if (showLine) {
       body.add([
         {
           "canvas": [
@@ -93,16 +75,17 @@ class PrintAnalysis extends BasePrint
     }
     body.add([
       {
-        "columns": [{"width": cm(13.5), "text": title, "fontSize": fs(8), "color": "#606060", "alignment": "center"}],
+        "columns": [
+          {"width": cm(13.5), "text": title, "fontSize": fs(8), "color": "#606060", "alignment": "center"}
+        ],
         "colSpan": 6,
       }
     ]);
 
-    for (dynamic line in lines)
-    {
-      if (line[0]["@"] != null)
-      {
-        if (line[0]["@"] == false)continue;
+    for (dynamic line in lines) {
+      if (line[0]["@"] != null) {
+        if (line[0]["@"] == false)
+          continue;
         else
           line.removeAt(0);
       }
@@ -127,19 +110,16 @@ class PrintAnalysis extends BasePrint
     return ret;
   }
 */
-  String fillLimitInfo(var stat)
-  {
+  String fillLimitInfo(var stat) {
     if (showStdAbw) return msgStdAbw(stat.stdAbw);
 
     return msgCount(stat.values.length);
   }
 
   @override
-  void fillPages(List<Page> pages)
-  {
+  void fillPages(List<Page> pages) {
     pages.add(getPage());
-    if (g.showBothUnits)
-    {
+    if (g.showBothUnits) {
       g.glucMGDL = !g.glucMGDL;
       pages.add(getPage());
       g.glucMGDL = !g.glucMGDL;
@@ -147,8 +127,7 @@ class PrintAnalysis extends BasePrint
 //    if (showInfoSheet)pages.add(getInfoPage(src));
   }
 
-  Page getPage()
-  {
+  Page getPage() {
     titleInfo = titleInfoBegEnd();
     var data = repData.data;
 
@@ -156,11 +135,19 @@ class PrintAnalysis extends BasePrint
     var glucWarnColor = colNorm;
     var glucWarnText = "";
 //    if (hba1c > 7)glucWarnColor = blendColor("ffffff", "ff0000", (hba1c - 7) / 2);
-    if (avgGluc >= repData.status.settings.thresholds.bgTargetTop && avgGluc < repData.status.settings.thresholds.bgTargetTop)
-      glucWarnColor = blendColor(glucWarnColor, colHigh,
-        (avgGluc - repData.status.settings.thresholds.bgTargetTop) / (180 - repData.status.settings.thresholds.bgTargetTop));
-    else if (avgGluc < repData.status.settings.thresholds.bgTargetBottom) glucWarnColor = blendColor(glucWarnColor, colHigh,
-      (repData.status.settings.thresholds.bgTargetBottom - avgGluc) / (repData.status.settings.thresholds.bgTargetBottom));
+    if (avgGluc >= repData.status.settings.thresholds.bgTargetTop &&
+        avgGluc < repData.status.settings.thresholds.bgTargetTop)
+      glucWarnColor = blendColor(
+          glucWarnColor,
+          colHigh,
+          (avgGluc - repData.status.settings.thresholds.bgTargetTop) /
+              (180 - repData.status.settings.thresholds.bgTargetTop));
+    else if (avgGluc < repData.status.settings.thresholds.bgTargetBottom)
+      glucWarnColor = blendColor(
+          glucWarnColor,
+          colHigh,
+          (repData.status.settings.thresholds.bgTargetBottom - avgGluc) /
+              (repData.status.settings.thresholds.bgTargetBottom));
     else if (avgGluc > repData.status.settings.thresholds.bgTargetTop) glucWarnColor = colHigh;
 /*
     var pumpList = [];
@@ -172,14 +159,12 @@ class PrintAnalysis extends BasePrint
     }
 
 */
-    var cntp = repData.dayCount > 0 ? (data.count / repData.dayCount) : 0;
+    var cntp = repData.dayCount > 0 ? (data.countValid / repData.dayCount) : 0;
     String countPeriod = msgReadingsPerDay(cntp.toInt(), g.fmtNumber(cntp));
-    if (cntp > 24)
-    {
+    if (cntp > 24) {
       cntp /= 24;
       countPeriod = msgReadingsPerHour(cntp.toInt(), g.fmtNumber(cntp));
-      if (cntp > 6)
-      {
+      if (cntp > 6) {
         cntp = 60 / cntp;
         countPeriod = msgReadingsInMinutes(cntp.toInt(), g.fmtNumber(cntp, 1));
       }
@@ -192,7 +177,7 @@ class PrintAnalysis extends BasePrint
     totalDay.entries.addAll(data.entries);
     totalDay.init();
 
-    int count = data.fullCount;
+    int count = data.validCount;
 
     double tgHigh = data.stat["high"].values.length / count * f;
     double tgNorm = data.stat["norm"].values.length / count * f;
@@ -222,9 +207,8 @@ class PrintAnalysis extends BasePrint
     in70180 = above250;
 */
     String txt = g.fmtNumber(repData.dayCount / data.ampulleCount, _precisionMaterial, 0, "", true);
-    String ampulleCount = data.ampulleCount > 1
-      ? msgReservoirDays((repData.dayCount / data.ampulleCount).round(), txt)
-      : "";
+    String ampulleCount =
+        data.ampulleCount > 1 ? msgReservoirDays((repData.dayCount / data.ampulleCount).round(), txt) : "";
     var tableBody = [
       [
         {"text": "", "style": "infotitle"},
@@ -252,8 +236,10 @@ class PrintAnalysis extends BasePrint
         {"text": msgCatheterCount, "style": "infotitle"},
         {"text": g.fmtNumber(data.catheterCount), "style": "infodata"},
         {
-          "text": data.catheterCount > 1 ? msgCatheterDays((repData.dayCount / data.catheterCount).round(),
-            g.fmtNumber(repData.dayCount / data.catheterCount, _precisionMaterial, 0, "", true)) : "",
+          "text": data.catheterCount > 1
+              ? msgCatheterDays((repData.dayCount / data.catheterCount).round(),
+                  g.fmtNumber(repData.dayCount / data.catheterCount, _precisionMaterial, 0, "", true))
+              : "",
           "style": "infounit",
           "colSpan": 3
         },
@@ -264,8 +250,10 @@ class PrintAnalysis extends BasePrint
         {"text": msgSensorCount, "style": "infotitle"},
         {"text": g.fmtNumber(data.sensorCount), "style": "infodata"},
         {
-          "text": data.sensorCount > 1 ? msgSensorDays((repData.dayCount / data.sensorCount).round(),
-            g.fmtNumber(repData.dayCount / data.sensorCount, _precisionMaterial, 0, "", true)) : "",
+          "text": data.sensorCount > 1
+              ? msgSensorDays((repData.dayCount / data.sensorCount).round(),
+                  g.fmtNumber(repData.dayCount / data.sensorCount, _precisionMaterial, 0, "", true))
+              : "",
           "style": "infounit",
           "colSpan": 3
         },
@@ -275,14 +263,15 @@ class PrintAnalysis extends BasePrint
 
     double cvsLeft = -0.5;
     double cvsWidth = 0.8;
-    if (repData.status.settings.thresholds.bgTargetBottom != 70 || repData.status.settings.thresholds.bgTargetTop != 180)
-    {
+    if ((repData.status.settings.thresholds.bgTargetBottom != 70 ||
+            repData.status.settings.thresholds.bgTargetTop != 180) &&
+        !g.ppComparable) {
       addBodyArea(tableBody, msgOwnLimits, [
         [
           {"text": "", "style": "infotitle"},
           {
             "text": msgValuesAbove(
-              "${glucFromData(repData.status.settings.thresholds.bgTargetTop)} ${getGlucInfo()["unit"]}"),
+                "${g.glucFromData(repData.status.settings.thresholds.bgTargetTop)} ${g.getGlucInfo()["unit"]}"),
             "style": "infotitle"
           },
           {
@@ -311,8 +300,8 @@ class PrintAnalysis extends BasePrint
           {"text": "", "style": "infotitle"},
           {
             "text": msgValuesIn(
-              "${glucFromData(repData.status.settings.thresholds.bgTargetBottom)} ${getGlucInfo()["unit"]}",
-              "${glucFromData(repData.status.settings.thresholds.bgTargetTop)} ${getGlucInfo()["unit"]}"),
+                "${g.glucFromData(repData.status.settings.thresholds.bgTargetBottom)} ${g.getGlucInfo()["unit"]}",
+                "${g.glucFromData(repData.status.settings.thresholds.bgTargetTop)} ${g.getGlucInfo()["unit"]}"),
             "style": "infotitle"
           },
           {
@@ -327,7 +316,7 @@ class PrintAnalysis extends BasePrint
           {"text": "", "style": "infotitle"},
           {
             "text": msgValuesBelow(
-              "${glucFromData(repData.status.settings.thresholds.bgTargetBottom)} ${getGlucInfo()["unit"]}"),
+                "${g.glucFromData(repData.status.settings.thresholds.bgTargetBottom)} ${g.getGlucInfo()["unit"]}"),
             "style": "infotitle"
           },
           {
@@ -341,12 +330,11 @@ class PrintAnalysis extends BasePrint
       ]);
     }
 
-    if (useFineLimits)
-    {
+    if (useFineLimits) {
       addBodyArea(tableBody, msgStandardLimits, [
         [
           {"text": "", "style": "infotitle"},
-          {"text": msgValuesVeryHigh("${glucFromData(250)} ${getGlucInfo()["unit"]}"), "style": "infotitle"},
+          {"text": msgValuesVeryHigh("${g.glucFromData(250)} ${g.getGlucInfo()["unit"]}"), "style": "infotitle"},
           {
             "text": "${g.fmtNumber(data.stat["stdVeryHigh"].values.length / count * 100, _precisionTarget)} %",
             "style": "infodata"
@@ -396,7 +384,7 @@ class PrintAnalysis extends BasePrint
           {"text": "", "style": "infotitle"},
           {
             "text": msgValuesNormHigh(
-              "${glucFromData(180)} ${getGlucInfo()["unit"]} - ${glucFromData(250)} ${getGlucInfo()["unit"]}"),
+                "${g.glucFromData(180)} ${g.getGlucInfo()["unit"]} - ${g.glucFromData(250)} ${g.getGlucInfo()["unit"]}"),
             "style": "infotitle"
           },
           {
@@ -410,8 +398,8 @@ class PrintAnalysis extends BasePrint
         [
           {"text": "", "style": "infotitle"},
           {
-            "text": msgValuesNorm(
-              "${glucFromData(70)} ${getGlucInfo()["unit"]}", "${glucFromData(180)} ${getGlucInfo()["unit"]}"),
+            "text": msgValuesNorm("${g.glucFromData(70)} ${g.getGlucInfo()["unit"]}",
+                "${g.glucFromData(180)} ${g.getGlucInfo()["unit"]}"),
             "style": "infotitle"
           },
           {
@@ -426,7 +414,7 @@ class PrintAnalysis extends BasePrint
           {"text": "", "style": "infotitle"},
           {
             "text": msgValuesNormLow(
-              "${glucFromData(54)} ${getGlucInfo()["unit"]} - ${glucFromData(70)} ${getGlucInfo()["unit"]}"),
+                "${g.glucFromData(54)} ${g.getGlucInfo()["unit"]} - ${g.glucFromData(70)} ${g.getGlucInfo()["unit"]}"),
             "style": "infotitle"
           },
           {
@@ -439,7 +427,7 @@ class PrintAnalysis extends BasePrint
         ],
         [
           {"text": "", "style": "infotitle"},
-          {"text": msgValuesVeryLow("${glucFromData(54)} ${getGlucInfo()["unit"]}"), "style": "infotitle"},
+          {"text": msgValuesVeryLow("${g.glucFromData(54)} ${g.getGlucInfo()["unit"]}"), "style": "infotitle"},
           {
             "text": "${g.fmtNumber(data.stat["stdVeryLow"].values.length / count * 100, _precisionTarget)} %",
             "style": "infodata"
@@ -449,13 +437,11 @@ class PrintAnalysis extends BasePrint
           {"text": "", "style": "infounit"},
         ],
       ]);
-    }
-    else
-    {
+    } else {
       addBodyArea(tableBody, msgStandardLimits, [
         [
           {"text": "", "style": "infotitle"},
-          {"text": msgValuesAbove("${glucFromData(180)} ${getGlucInfo()["unit"]}"), "style": "infotitle"},
+          {"text": msgValuesAbove("${g.glucFromData(180)} ${g.getGlucInfo()["unit"]}"), "style": "infotitle"},
           {
             "text": "${g.fmtNumber(data.stat["stdHigh"].values.length / count * 100, _precisionTarget)} %",
             "style": "infodata"
@@ -488,8 +474,8 @@ class PrintAnalysis extends BasePrint
         [
           {"text": "", "style": "infotitle"},
           {
-            "text": msgValuesIn(
-              "${glucFromData(70)} ${getGlucInfo()["unit"]}", "${glucFromData(180)} ${getGlucInfo()["unit"]}"),
+            "text": msgValuesIn("${g.glucFromData(70)} ${g.getGlucInfo()["unit"]}",
+                "${g.glucFromData(180)} ${g.getGlucInfo()["unit"]}"),
             "style": "infotitle"
           },
           {
@@ -502,7 +488,7 @@ class PrintAnalysis extends BasePrint
         ],
         [
           {"text": "", "style": "infotitle"},
-          {"text": msgValuesBelow("${glucFromData(70)} ${getGlucInfo()["unit"]}"), "style": "infotitle"},
+          {"text": msgValuesBelow("${g.glucFromData(70)} ${g.getGlucInfo()["unit"]}"), "style": "infotitle"},
           {
             "text": "${g.fmtNumber(data.stat["stdLow"].values.length / count * 100, _precisionTarget)} %",
             "style": "infodata"
@@ -514,22 +500,17 @@ class PrintAnalysis extends BasePrint
       ]);
     }
 
-    if (showHypoGlucs)
-    {
+    if (showHypoGlucs) {
       int uzCount = 0;
       EntryData lastEntry = null;
-      for (EntryData entry in data.stat["stdVeryLow"].entries)
-      {
-        if (lastEntry == null || entry.time
-          .difference(lastEntry.time)
-          .inMinutes > 30)
-        {
+      for (EntryData entry in data.stat["stdVeryLow"].entries) {
+        if (lastEntry == null || entry.time.difference(lastEntry.time).inMinutes > 30) {
           uzCount++;
           lastEntry = entry;
         }
       }
 
-      addBodyArea(tableBody, msgHypoTitle("${glucFromData(54)} ${getGlucInfo()["unit"]}"), [
+      addBodyArea(tableBody, msgHypoTitle("${g.glucFromData(54)} ${g.getGlucInfo()["unit"]}"), [
         [
           {"text": "", "style": "infotitle"},
           {"text": msgHypoCount, "style": "infotitle"},
@@ -553,16 +534,16 @@ class PrintAnalysis extends BasePrint
       [
         {"text": "", "style": "infotitle"},
         {"text": msgLowestValue, "style": "infotitle"},
-        {"text": "${glucFromData(data.min)}", "style": "infodata"},
-        {"text": getGlucInfo()["unit"], "style": "infounit"},
+        {"text": "${g.glucFromData(data.min)}", "style": "infodata"},
+        {"text": g.getGlucInfo()["unit"], "style": "infounit"},
         {"text": "", "style": "infotitle"},
         {"text": "", "style": "infounit"},
       ],
       [
         {"text": "", "style": "infotitle"},
         {"text": msgHighestValue, "style": "infotitle"},
-        {"text": "${glucFromData(data.max)}", "style": "infodata"},
-        {"text": getGlucInfo()["unit"], "style": "infounit", "colSpan": 2},
+        {"text": "${g.glucFromData(data.max)}", "style": "infodata"},
+        {"text": g.getGlucInfo()["unit"], "style": "infounit", "colSpan": 2},
         {"text": "", "style": "infotitle"},
         {"text": "", "style": "infounit"},
       ],
@@ -570,7 +551,7 @@ class PrintAnalysis extends BasePrint
         {"text": "", "style": "infotitle"},
         {"text": msgStandardDeviation, "style": "infotitle"},
         {"text": g.fmtNumber(totalDay.stdAbw(g.glucMGDL), 1), "style": "infodata"},
-        {"text": getGlucInfo()["unit"], "style": "infounit", "colSpan": 2},
+        {"text": g.getGlucInfo()["unit"], "style": "infounit", "colSpan": 2},
         {"text": "", "style": "infotitle"},
         {"text": "", "style": "infounit"},
       ],
@@ -593,8 +574,8 @@ class PrintAnalysis extends BasePrint
       [
         {"text": "", "style": "infotitle"},
         {"text": "${msgGlucoseValue}${glucWarnText}", "style": "infotitle"},
-        {"text": glucFromData(avgGluc), "style": "infodata"},
-        {"text": "${getGlucInfo()["unit"]}", "style": "infounit", "colSpan": 2},
+        {"text": g.glucFromData(avgGluc), "style": "infodata"},
+        {"text": "${g.getGlucInfo()["unit"]}", "style": "infounit", "colSpan": 2},
         {"text": "", "style": "infotitle"},
         {
           "canvas": [
@@ -606,8 +587,15 @@ class PrintAnalysis extends BasePrint
       [
         {"text": "", "style": "infotitle"},
         {"text": msgHbA1CLong, "style": "infotitle"},
-        {"text": hba1c(avgGluc), "style": ["infodata", "hba1c"]},
-        {"text": "%", "style": ["hba1c", "infounit"], "colSpan": 2},
+        {
+          "text": hba1c(avgGluc),
+          "style": ["infodata", "hba1c"]
+        },
+        {
+          "text": "%",
+          "style": ["hba1c", "infounit"],
+          "colSpan": 2
+        },
         {"text": "", "style": "infotitle"},
         {"text": "", "style": "infounit"},
       ],
@@ -625,7 +613,7 @@ class PrintAnalysis extends BasePrint
       [
         {"text": "", "style": "infotitle"},
         {"text": msgInsulinPerDay, "style": "infotitle"},
-        {"text": "${g.fmtNumber((data.ieBolusSum + data.ieBasalSum) / repData.dayCount, 1)}", "style": "infodata"},
+        {"text": "${g.fmtNumber(data.TDD / repData.dayCount, 1)}", "style": "infodata"},
         {"text": "${msgInsulinUnit}", "style": "infounit", "colSpan": 2},
         {"text": "", "style": "infotitle"},
         {"text": "", "style": "infounit"},
@@ -647,7 +635,7 @@ class PrintAnalysis extends BasePrint
         {"text": "", "style": "infounit"},
       ],
       [
-        {"@": data.ieMicroBolusSum > 0.0},
+        {"@": data.ieMicroBolusSum > 0.0 && false},
         {"text": "", "style": "infotitle"},
         {"text": msgMicroBolusPerDay, "style": "infotitle"},
         {"text": "${g.fmtNumber(data.ieMicroBolusSum / repData.dayCount, 1)}", "style": "infodata"},
@@ -660,7 +648,9 @@ class PrintAnalysis extends BasePrint
       headerFooter(),
       {
         "margin": [cm(0), cm(yorg), cm(0), cm(0)],
-        "columns": [{"width": cm(width), "text": "${repData.user.name}", "fontSize": fs(20), "alignment": "center"}]
+        "columns": [
+          {"width": cm(width), "text": "${repData.user.name}", "fontSize": fs(20), "alignment": "center"}
+        ]
       },
       {
         "margin": [cm(5.5), cm(0.5), cm(0), cm(0)],
@@ -669,12 +659,18 @@ class PrintAnalysis extends BasePrint
           "headerRows": 0,
           "widths": [cm(5), cm(8)],
           "body": [
-            [{"text": msgBirthday, "style": "perstitle"}, {"text": repData.user.birthDate, "style": "persdata"}],
+            [
+              {"text": msgBirthday, "style": "perstitle"},
+              {"text": repData.user.birthDate, "style": "persdata"}
+            ],
             [
               {"text": msgDiabSince, "style": "perstitle"},
               {"text": repData.user.diaStartDate, "style": "persdata"}
             ],
-            [{"text": msgInsulin, "style": "perstitle"}, {"text": repData.user.insulin, "style": "persdata"}]
+            [
+              {"text": msgInsulin, "style": "perstitle"},
+              {"text": repData.user.insulin, "style": "persdata"}
+            ]
           ]
         }
       },
@@ -682,31 +678,38 @@ class PrintAnalysis extends BasePrint
         "margin": [cm(3.7), cm(0.5), cm(0), cm(0)],
         "layout": "noBorders",
         "fontSize": fs(10),
-        "table": {"headerRows": 0, "widths": [cm(0), cm(7.3), cm(1.5), cm(1.5), cm(1.5), cm(4.5)], "body": tableBody}
+        "table": {
+          "headerRows": 0,
+          "widths": [cm(0), cm(7.3), cm(1.5), cm(1.5), cm(1.5), cm(4.5)],
+          "body": tableBody
+        }
       }
     ];
     return Page(isPortrait, ret);
   }
 
-  getInfoPage(ReportData src)
-  {
+  getInfoPage(ReportData src) {
     titleInfo = null;
     subtitle = "Erklärungen";
     var ret = [
       headerFooter(),
       {
         "margin": [cm(0), cm(yorg), cm(0), cm(0)],
-        "columns": [{"width": cm(width), "text": "Hinweise", "fontSize": fs(20), "alignment": "center"}]
+        "columns": [
+          {"width": cm(width), "text": "Hinweise", "fontSize": fs(20), "alignment": "center"}
+        ]
       },
       {
         "margin": [cm(2.2), cm(0.5), cm(2.2), cm(0)],
-        "text": "Der DVI ist ein Wert, der einem Wert gleicht, der ein Wert sein soll, der hoffentlich zu einem Zeilenumbruch führt, was aber nicht klar ist. Nun ist es klar und wir sind sowas von froh, dass es funktioniert. Einfach Toll :)",
+        "text":
+            "Der DVI ist ein Wert, der einem Wert gleicht, der ein Wert sein soll, der hoffentlich zu einem Zeilenumbruch führt, was aber nicht klar ist. Nun ist es klar und wir sind sowas von froh, dass es funktioniert. Einfach Toll :)",
         "fontSize": fs(12),
         "alignment": "justify"
       },
       {
         "margin": [cm(2.2), cm(0.2), cm(2.2), cm(0)],
-        "text": "Der DVI ist ein Wert, der einem Wert gleicht, der ein Wert sein soll, der hoffentlich zu einem Zeilenumbruch führt, was aber nicht klar ist. Nun ist es klar und wir sind sowas von froh, dass es funktioniert. Einfach Toll :)",
+        "text":
+            "Der DVI ist ein Wert, der einem Wert gleicht, der ein Wert sein soll, der hoffentlich zu einem Zeilenumbruch führt, was aber nicht klar ist. Nun ist es klar und wir sind sowas von froh, dass es funktioniert. Einfach Toll :)",
         "fontSize": fs(12),
         "alignment": "justify",
         "color": "red"

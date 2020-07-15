@@ -66,6 +66,14 @@ header.material-header .material-header-row {
   flex-direction: column;
 }
 
+.icon-menu{
+
+}
+
+.icon-shortcut{
+  color: var(--shortcutBodyBack);
+}
+
 material-content.main {
   min-height: unset !important;
   display: flex !important;
@@ -173,18 +181,6 @@ material-button svg {
 
 .iconButton img, .iconButton svg, ::ng-deep .iconButton material-icon {
   margin-right: 1em;
-}
-
-material-drawer {
-}
-
-.drawer-root {
-  display: flex;
-  flex: 1;
-  flex-direction: column;
-  background-color: var(--primaryBack);
-  justify-content: space-between;
-  color: var(--primaryFore);
 }
 
 .formlist {
@@ -336,6 +332,14 @@ material-drawer {
   z-index: 10001;
   width: 100%;
   display: flex;
+
+  ::-webkit-scrollbar-track {
+    background-color: $mat-black;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: $mat-gray-700;
+  }
 }
 
 #message {
@@ -443,31 +447,63 @@ material-fab.debug-trigger {
 }
 
 @keyframes showthemes {
-  0% {width: 0em;}
-  10% {width: 0em;}
-  90% {width: 10.5em;}
-  100% {width: 9.5em;}
+  0% {
+    width: 0em;
+  }
+  10% {
+    width: 0em;
+  }
+  90% {
+    width: 10.5em;
+  }
+  100% {
+    width: 9.5em;
+  }
 }
 
 @keyframes hidethemes {
-  0% {width: 9.5em;}
-  10% {width: 10.5em;}
-  90% {width: 0em;}
-  100% {width: 0em;}
+  0% {
+    width: 9.5em;
+  }
+  10% {
+    width: 10.5em;
+  }
+  90% {
+    width: 0em;
+  }
+  100% {
+    width: 0em;
+  }
 }
 
 @keyframes showthemeslogo {
-  0% {transform: rotate(0deg);}
-  10% {transform: rotate(-30deg);}
-  90% {transform: rotate(390deg);}
-  100% {transform: rotate(360deg);}
+  0% {
+    transform: rotate(0deg);
+  }
+  10% {
+    transform: rotate(-30deg);
+  }
+  90% {
+    transform: rotate(390deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 @keyframes hidethemeslogo {
-  0% {transform: rotate(360deg);}
-  10% {transform: rotate(390deg);}
-  90% {transform: rotate(-30deg);}
-  100% {transform: rotate(0deg);}
+  0% {
+    transform: rotate(360deg);
+  }
+  10% {
+    transform: rotate(390deg);
+  }
+  90% {
+    transform: rotate(-30deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
 }
 
 .owllogo {
@@ -477,6 +513,134 @@ material-fab.debug-trigger {
 
   img {
     height: 90%;
+  }
+}
+
+material-drawer {
+  .tabs{
+    display: flex;
+    flex-direction: row;
+    material-button{
+      display: flex;
+      flex: 1;
+      justify-content: center;
+      margin: 0;
+      border-radius: 0;
+    }
+
+    material-button.menu{
+      background-color: var(--primaryBack);
+      color: var(--primaryFore);
+    }
+    material-button.shortcuts{
+      background-color: var(--shortcutHeaderBack);
+      color: var(--shortcutHeaderFore);
+    }
+
+  }
+}
+
+.drawer-root {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  background-color: var(--primaryBack);
+  justify-content: space-between;
+  color: var(--primaryFore);
+  overflow-y: auto;
+}
+
+.shortcut-root {
+  display: flex;
+  overflow: hidden;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  background: var(--shortcutHeaderBack);
+  color: var(--shortcutHeaderFore);
+
+  .header{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5em;
+  }
+
+  .content {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 0.5em;
+    overflow-y: auto;
+    height: 100%;
+
+    ::-webkit-scrollbar-track {
+      background-color: var(--secondaryBack);
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background-color: var(--primaryBack);
+    }
+
+    material-button.add {
+      border-radius: 20px;
+    }
+
+    .shortcut:not(:hover) {
+      border: 1px solid transparent;
+    }
+
+    .shortcut:hover {
+      border: 1px solid rgba(0, 0, 0, 0.12);
+      border-radius: 20px;
+    }
+
+    .active > material-button{
+      background: var(--shortcutHeaderFore) !important;
+      color: var(--shortcutHeaderBack) !important;
+    }
+
+    .shortcut {
+      display: flex;
+      flex-direction: row;
+      width: 100%;
+
+      material-button {
+        display: flex;
+        min-width: initial;
+        margin: 0;
+        background: var(--shortcutBodyBack);
+        color: var(--shortcutBodyFore);
+        border-radius: 0;
+      }
+
+      material-button:first-child {
+        flex: 1;
+        border-top-left-radius: 20px;
+        border-bottom-left-radius: 20px;
+      }
+
+      material-button:not(:first-child) {
+        border-top-right-radius: 20px;
+        border-bottom-right-radius: 20px;
+      }
+
+      material-button.add {
+        border-radius: 20px;
+      }
+    }
+  }
+
+  material-fab {
+    white-space: nowrap;
+  }
+
+  material-button {
+    text-transform: none;
+  }
+
+  material-button:first-child material-icon {
+    margin-right: 0.5em;
   }
 }
 
@@ -563,6 +727,11 @@ nav a {
       .selected-accent {
         background-color: var(--primaryBack);
       }
+    }
+
+    material-select-item.unreachable {
+      color: var(--primaryBack);
+      background-color: silver;
     }
   }
 }
@@ -710,7 +879,8 @@ material-expansionpanel.checked {
 }
 
 material-button.is-local, div.is-local {
-  background: var(--localBack);
+  color: var(--localFore);
+  background-color: var(--localBack);
 }
 
 material-expansionpanel.is-local.checked {
@@ -963,9 +1133,9 @@ datepicker {
 
   [number], [numberimg] {
     position: absolute;
-    top: 0;
+    top: 50%;
+    transform: translateY(-50%);
     opacity: 0.1;
-    width: 100%;
     align-items: center;
     justify-content: center;
     font-size: 5em;
@@ -1032,7 +1202,7 @@ datepicker {
   align-items: center;
   justify-content: center;
   flex: 1;
-  min-width: 15%;
+  min-width: 20%;
   max-height: 80%;
 }
 
@@ -1148,5 +1318,13 @@ datepicker {
 
   ::-webkit-scrollbar-thumb {
     background-color: var(--debugFirst);
+  }
+}
+
+.loop {
+  color: var(--loopMarked);
+
+  ::ng-deep .icon.filled {
+    color: var(--loopMarked) !important;
   }
 }

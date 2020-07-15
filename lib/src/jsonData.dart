@@ -227,16 +227,19 @@ class StatusData extends JsonData {
   factory StatusData.fromJson(Map<String, dynamic> json) {
     StatusData ret = StatusData();
     ret.raw = json;
+    ret.settings = SettingsData();
+    ret.extendedSettings = ExtendedSettingsData();
     if (json == null) return ret;
-    ret.status = json["status"];
-    ret.name = json["name"];
-    ret.version = json["version"];
+    ret.status = JsonData.toText(json["status"]);
+    if (ret.status == "401") return ret;
+    ret.name = JsonData.toText(json["name"]);
+    ret.version = JsonData.toText(json["version"]);
     ret.serverTime = JsonData.toDate(json["serverTime"]);
     ret.serverTimeEpoch = JsonData.toInt(json["serverTimeEpoch"]);
     ret.apiEnabled = JsonData.toBool("apiEnabled");
     ret.careportalEnabled = JsonData.toBool("careportalEnabled");
     ret.boluscalcEnabled = JsonData.toBool("boluscalcEnabled");
-    ret.head = json["head"];
+    ret.head = JsonData.toText(json["head"]);
     if (json["settings"] != null) ret.settings = SettingsData.fromJson(json["settings"]);
     if (json["extendedSettings"] != null)
       ret.extendedSettings = ExtendedSettingsData.fromJson(json["extendedSettings"]);
@@ -291,12 +294,14 @@ class ProfileEntryData extends JsonData {
   double _absoluteRate = null;
   set percentAdjust(double value) => _percentAdjust = value;
   set absoluteRate(double value) => _absoluteRate = value;
-  double get tempAdjusted => orgValue == null || orgValue == 0 ? 0 : (value - orgValue) / orgValue;
+  double get tempAdjusted =>
+      _absoluteRate != null ? 0 : (orgValue == null || orgValue == 0 ? 0 : (value - orgValue) / orgValue);
   int duration = 3600; // duration in seconds
   double orgValue;
   int timeAsSeconds;
   ProfileTimezone _timezone;
   int get localDiff => _timezone.localDiff;
+  Uploader from = Uploader.Unknown;
 
   String get hash => "${_time.hour}:${_time.minute}=${value}";
 
@@ -338,7 +343,8 @@ class ProfileEntryData extends JsonData {
     .._time = _time
     ..forceText = forceText
     ..orgValue = orgValue
-    .._timezone = _timezone;
+    .._timezone = _timezone
+    ..from = from;
 
   ProfileEntryData clone(DateTime time) {
     ProfileEntryData ret = copy;
@@ -360,7 +366,12 @@ class ProfileEntryData extends JsonData {
 
   double adjustedValue(double v) {
     if (_percentAdjust != null) return v + (v * _percentAdjust) / 100.0;
-    if (_absoluteRate != null) return _absoluteRate;
+    if (_absoluteRate != null) {
+      // spike needs a special handling, since the value seems to be the amount given over
+      // the duration, not the amount given in one hour.
+      if (from == Uploader.Spike) return _absoluteRate / (duration / 3600);
+      return _absoluteRate;
+    }
     return v;
   }
 
@@ -370,7 +381,11 @@ class ProfileEntryData extends JsonData {
       ret.percentAdjust = src._percent.toDouble();
     else if (src._rate != null) ret.absoluteRate = src._rate;
 
-    if ((src.from == Uploader.Minimed600 || src.from == Uploader.Tidepool || src.from == Uploader.Spike) &&
+    ret.from = src.from;
+    if ((src.from == Uploader.Minimed600 ||
+            src.from == Uploader.Tidepool ||
+            src.from == Uploader.Spike ||
+            src.from == Uploader.Unknown) &&
         src._absolute != null) ret.absoluteRate = src._absolute;
     ret.duration = src.duration;
 
@@ -419,7 +434,7 @@ class ProfileStoreData extends JsonData {
   double get ieBasalSum => _listSum(listBasal);
   double get icrSum => _listSum(listCarbratio);
   double get isfSum => _listSum(listSens);
-  int get carbRatioPerHour => carbsHr > 0 ? carbsHr : 12;
+  int get carbRatioPerHour => (carbsHr ?? 0) > 0 ? carbsHr : 12;
 
   double _listSum(List<ProfileEntryData> list) {
     double ret = 0.0;
@@ -666,7 +681,7 @@ class ProfileData extends JsonData {
     Map<String, dynamic> src = json["store"];
     ret.maxPrecision = 0;
     for (String key in src.keys) {
-      dynamic temp = src.entries.firstWhere((e) => e.key == key);
+      dynamic temp = src.entries.firstWhere((e) => e.key == key, orElse: () => null);
       if (temp != null) {
         double percentage = JsonData.toDouble(json["percentage"]);
         if (percentage == null || percentage == 0.0)
@@ -893,6 +908,25 @@ class BoluscalcData extends JsonData {
   }
 }
 
+class InsulinInjectionData extends JsonData {
+  String insulin;
+  double units;
+
+  InsulinInjectionData();
+
+  InsulinInjectionData get copy => InsulinInjectionData()
+    ..insulin = insulin
+    ..units = units;
+
+  factory InsulinInjectionData.fromJson(Globals g, Map<String, dynamic> json) {
+    InsulinInjectionData ret = InsulinInjectionData();
+    if (json == null) return ret;
+    ret.insulin = JsonData.toText(json["insulin"]);
+    ret.units = JsonData.toDouble(json["units"]);
+    return ret;
+  }
+}
+
 class TreatmentData extends JsonData {
   dynamic raw;
   String id;
@@ -908,9 +942,12 @@ class TreatmentData extends JsonData {
   double _carbs;
   double insulin;
   double microbolus;
+  List<InsulinInjectionData> insulinInjections = List<InsulinInjectionData>();
+
   int splitExt;
   int splitNow;
   bool isSMB;
+  int duplicates = 1;
   String pumpId;
   double glucose;
   String glucoseType;
@@ -941,6 +978,8 @@ class TreatmentData extends JsonData {
   }
 
   bool isECarb = false;
+
+  double get absoluteTempBasal => _absolute;
 
   double adjustedValue(double v) {
     if (_percent != null) return v + (v * _percent) / 100.0;
@@ -990,37 +1029,52 @@ class TreatmentData extends JsonData {
 
   TreatmentData();
 
-  TreatmentData get copy => TreatmentData()
-    ..id = id
-    ..eventType = eventType
-    ..duration = duration
-    ..timeshift = timeshift
-    .._percent = _percent
-    .._absolute = _absolute
-    .._rate = _rate
-    ..createdAt = createdAt.add(Duration(minutes: 0))
-    ..enteredBy = enteredBy
-    ..NSClientId = NSClientId
-    .._carbs = _carbs
-    ..insulin = insulin
-    ..splitExt = splitExt
-    ..splitNow = splitNow
-    ..microbolus = microbolus
-    ..isSMB = isSMB
-    ..pumpId = pumpId
-    ..glucose = glucose
-    ..glucoseType = glucoseType
-    ..boluscalc = boluscalc == null ? null : boluscalc.copy
-    ..notes = notes
-    ..reason = reason
-    ..targetTop = targetTop
-    ..targetBottom = targetBottom
-    .._from = _from
-    .._key600 = _key600
-    ..isECarb = isECarb
-    ..raw = raw;
+  TreatmentData get copy {
+    TreatmentData ret = TreatmentData()
+      ..id = id
+      ..eventType = eventType
+      ..duration = duration
+      ..timeshift = timeshift
+      .._percent = _percent
+      .._absolute = _absolute
+      .._rate = _rate
+      ..createdAt = createdAt.add(Duration(minutes: 0))
+      ..enteredBy = enteredBy
+      ..NSClientId = NSClientId
+      .._carbs = _carbs
+      ..insulin = insulin
+      ..splitExt = splitExt
+      ..splitNow = splitNow
+      ..microbolus = microbolus
+      ..isSMB = isSMB
+      ..pumpId = pumpId
+      ..glucose = glucose
+      ..glucoseType = glucoseType
+      ..boluscalc = boluscalc == null ? null : boluscalc.copy
+      ..notes = notes
+      ..reason = reason
+      ..targetTop = targetTop
+      ..targetBottom = targetBottom
+      .._from = _from
+      .._key600 = _key600
+      ..isECarb = isECarb
+      ..raw = raw;
+    ret.insulinInjections = List<InsulinInjectionData>();
+    for (InsulinInjectionData entry in insulinInjections) ret.insulinInjections.add(entry.copy);
+    return ret;
+  }
 
-  factory TreatmentData.fromJson(Map<String, dynamic> json) {
+  bool equals(TreatmentData t) {
+    return NSClientId == t.NSClientId;
+/*
+    return createdAt.millisecondsSinceEpoch == t.createdAt.millisecondsSinceEpoch &&
+        eventType == t.eventType &&
+        duration == t.duration &&
+        notes == t.notes;
+ */
+  }
+
+  factory TreatmentData.fromJson(Globals g, Map<String, dynamic> json) {
     TreatmentData ret = TreatmentData();
     if (json == null) return ret;
     ret.raw = json;
@@ -1041,7 +1095,6 @@ class TreatmentData extends JsonData {
     ret.splitNow = JsonData.toInt(json["splitNow"]);
     ret.isSMB = JsonData.toBool(json["isSMB"]);
     ret.pumpId = JsonData.toText(json["pumpId"]);
-    ret.glucose = JsonData.toDouble(json["glucose"]);
     ret.glucoseType = JsonData.toText(json["glucoseType"]);
     if (json["boluscalc"] != null) ret.boluscalc = BoluscalcData.fromJson(json["boluscalc"]);
     ret.notes = JsonData.toText(json["notes"]);
@@ -1049,14 +1102,35 @@ class TreatmentData extends JsonData {
     ret.targetTop = JsonData.toDouble(json["targetTop"]);
     ret.targetBottom = JsonData.toDouble(json["targetBottom"]);
     ret.microbolus = 0.0;
+    String temp = JsonData.toText(json["insulinInjections"]);
+    List<dynamic> list = [];
+    try {
+      list = convert.json.decode(temp);
+    } catch (ex) {}
+    for (dynamic entry in list) ret.insulinInjections.add(InsulinInjectionData.fromJson(g, entry));
 
-    // Specialhandling for Uploader for Minimed 600-series
+    ret.glucose = JsonData.toDouble(json["glucose"]);
+    if (json["units"] != null) {
+      if (json["units"].toLowerCase() == g.msgUnitMGDL.toLowerCase() && g.getGlucInfo()["unit"] == g.msgUnitMMOL)
+        ret.glucose = ret.glucose / 18.02;
+      else if (json["units"].toLowerCase() == g.msgUnitMMOL.toLowerCase() && g.getGlucInfo()["unit"] == g.msgUnitMGDL)
+        ret.glucose = ret.glucose * 18.02;
+    }
+
+    // Specialhandling for strange datamanagement of Uploader for Minimed 600-series
     if (json["key600"] != null) {
       ret._from = Uploader.Minimed600;
       ret._key600 = JsonData.toText(json["key600"]);
       RegExp reg = RegExp(r"microbolus (.*)U");
       Match m = reg.firstMatch(ret.notes);
-      if (m != null && m.groupCount == 1) ret.microbolus = double.tryParse(m.group(1)) ?? 0.0;
+      if (m != null && m.groupCount == 1) {
+        if ((ret._absolute ?? 0) > 0)
+          ret.microbolus = ret._absolute / 3600 * ret.duration;
+        else
+          ret.microbolus = double.tryParse(m.group(1)) ?? 0.0;
+//        if(ret.microbolus > 0 && ret.eventType.toLowerCase() == "temp basal")
+//          ret.eventType = "microbolus";
+      }
     }
 
     return ret;
@@ -1068,19 +1142,19 @@ class TreatmentData extends JsonData {
     if (boluscalc != null) boluscalc.slice(src.boluscalc, dst.boluscalc, f);
   }
 
-  IOBData calcIOB(ProfileGlucData profile, DateTime time) {
+  CalcIOBData calcIOB(ProfileGlucData profile, DateTime time) {
     double dia = 3.0;
     double sens = 0.0;
     int check = time.hour * 3600 + time.minute * 60 + time.second;
 
     if (profile != null) {
-      dia = profile.store.dia ?? dia;
-      sens = profile.store?.listSens?.lastWhere((e) => e.timeForCalc <= check)?.value ?? sens;
+      dia = profile.store?.dia ?? dia;
+      sens = profile.store?.listSens?.lastWhere((e) => e.timeForCalc <= check, orElse: () => null)?.value ?? sens;
     }
 
     double scaleFactor = 3.0 / dia;
     double peak = 75.0;
-    IOBData ret = IOBData(0.0, 0.0, this);
+    CalcIOBData ret = CalcIOBData(0.0, 0.0, this);
 
     if (insulin != null) {
       var bolusTime = createdAt.millisecondsSinceEpoch;
@@ -1089,10 +1163,10 @@ class TreatmentData extends JsonData {
       if (minAgo < peak) {
         var x1 = minAgo / 5 + 1;
         ret.iob = insulin * (1 - 0.001852 * x1 * x1 + 0.001852 * x1);
-        // units: BG (mg/dL)  = (BG/U) *    U insulin     * scalar
+        // units: BG (mg/dl)  = (BG/U) *    U insulin     * scalar
         ret.activity = sens * insulin * (2 / dia / 60 / peak) * minAgo;
       } else if (minAgo < 180) {
-        var x2 = (minAgo - 75) / 5;
+        var x2 = (minAgo - peak) / 5;
         ret.iob = insulin * (0.001323 * x2 * x2 - 0.054233 * x2 + 0.55556);
         ret.activity = sens * insulin * (2 / dia / 60 - (minAgo - peak) * 2 / dia / 60 / (60 * 3 - peak));
       }
@@ -1135,8 +1209,10 @@ class TreatmentData extends JsonData {
   calcTotalCOB(ReportData data, DayData yesterday, dynamic ret, ProfileGlucData profile, DateTime time, var iob) {
     // TODO: figure out the liverSensRatio that gives the most accurate purple line predictions
     double liverSensRatio = 8.0;
-    double sens = profile.store.listSens.lastWhere((e) => e.timeForCalc <= timeForCalc)?.value ?? 0.0;
-    double carbRatio = profile.store.listCarbratio.lastWhere((e) => e.timeForCalc <= timeForCalc)?.value ?? 0.0;
+    double sens =
+        profile.store.listSens.lastWhere((e) => e.timeForCalc <= timeForCalc, orElse: () => null)?.value ?? 0.0;
+    double carbRatio =
+        profile.store.listCarbratio.lastWhere((e) => e.timeForCalc <= timeForCalc, orElse: () => null)?.value ?? 0.0;
     var cCalc = calcCOB(profile, time, ret["lastDecayedBy"]?.millisecondsSinceEpoch ?? 0);
     if (cCalc != null) {
       double decaysin_hr = (cCalc["decayedBy"].millisecondsSinceEpoch - time.millisecondsSinceEpoch) / 1000 / 60 / 60;
@@ -1187,6 +1263,7 @@ class EntryData extends JsonData {
   bool isCopy = false;
   bool get isInvalid => false; //type != "mbg" && direction != null && direction.toLowerCase() == "none";
   bool get isInvalidOrGluc0 => isInvalid || gluc == null || gluc == 0;
+  bool get isGlucInvalid => gluc == null || gluc <= 0;
   double get gluc {
     return isGap ? -1 : (type == "sgv" ? sgv : rawbg) ?? 0;
   }
@@ -1249,14 +1326,255 @@ class EntryData extends JsonData {
   }
 }
 
-class IOBData {
+class PumpStatusData extends JsonData {
+  String status;
+  bool bolusing;
+  bool suspended;
+  DateTime timestamp;
+
+  PumpStatusData get copy => PumpStatusData()
+    ..status = status
+    ..bolusing = bolusing
+    ..suspended = suspended
+    ..timestamp = timestamp.add(Duration(days: 0));
+
+  PumpStatusData();
+
+  factory PumpStatusData.fromJson(Map<String, dynamic> json) {
+    PumpStatusData ret = PumpStatusData();
+    if (json == null) return ret;
+    ret.status = JsonData.toText(json["status"]);
+    ret.bolusing = JsonData.toBool(json["bolusing"]);
+    ret.suspended = JsonData.toBool(json["suspended"]);
+    ret.timestamp = JsonData.toDate(json["timestamp"]);
+    return ret;
+  }
+}
+
+class PumpBatteryData extends JsonData {
+  String status;
+  double voltage;
+
+  PumpBatteryData get copy => PumpBatteryData()
+    ..status = status
+    ..voltage = voltage;
+
+  PumpBatteryData();
+
+  factory PumpBatteryData.fromJson(Map<String, dynamic> json) {
+    PumpBatteryData ret = PumpBatteryData();
+    if (json == null) return ret;
+    ret.status = JsonData.toText(json["status"]);
+    ret.voltage = JsonData.toDouble(json["voltage"]);
+    return ret;
+  }
+}
+
+class PumpData extends JsonData {
+  DateTime clock;
+  PumpBatteryData pumpBattery;
+  double reservoir;
+  PumpStatusData pumpStatus;
+
+  PumpData get copy => PumpData()
+    ..clock = clock.add(Duration(days: 0))
+    ..pumpBattery = pumpBattery.copy
+    ..reservoir = reservoir
+    ..pumpStatus = pumpStatus.copy;
+
+  PumpData();
+
+  factory PumpData.fromJson(Map<String, dynamic> json) {
+    PumpData ret = PumpData();
+    if (json == null) return ret;
+    ret.clock = JsonData.toDate(json["clock"]);
+    ret.pumpBattery = PumpBatteryData.fromJson(json["pumpbattery"]);
+    ret.reservoir = JsonData.toDouble(json["reservoir"]);
+    ret.pumpStatus = PumpStatusData.fromJson(json["pumpstatus"]);
+    return ret;
+  }
+}
+
+class UploaderData extends JsonData {
+  double batteryVoltage;
+  double batteryPercentageRemaining;
+
+  UploaderData get copy => UploaderData()
+    ..batteryVoltage = batteryVoltage
+    ..batteryPercentageRemaining = batteryPercentageRemaining;
+
+  UploaderData();
+
+  factory UploaderData.fromJson(Map<String, dynamic> json) {
+    UploaderData ret = UploaderData();
+    if (json == null) return ret;
+    ret.batteryVoltage = JsonData.toDouble(json["batteryVoltage"]);
+    ret.batteryPercentageRemaining = JsonData.toDouble(json["battery"]);
+    return ret;
+  }
+}
+
+class XDripJSData extends JsonData {
+  int state;
+  String stateString;
+  String stateStringShort;
+  String txId;
+  int txStatus;
+  String txStatusString;
+  String txStatusStringShort;
+  DateTime txActivation;
+  String mode;
+  DateTime timestamp;
+  double rssi;
+  double unfiltered;
+  double filtered;
+  double noise;
+  double noiseString;
+  double slope;
+  double intercept;
+  String calType;
+  DateTime lastCalibrationDate;
+  DateTime sessionStart;
+  DateTime batteryTimestamp;
+  double voltageA;
+  double voltageB;
+  double temperature;
+  double resistance;
+
+  XDripJSData get copy => XDripJSData()
+    ..state = state
+    ..stateString = stateString
+    ..stateStringShort = stateStringShort
+    ..txId = txId
+    ..txStatus = txStatus
+    ..txStatusString = txStatusString
+    ..txStatusStringShort = txStatusStringShort
+    ..txActivation = txActivation.add(Duration(days: 0))
+    ..mode = mode
+    ..timestamp = timestamp.add(Duration(days: 0))
+    ..rssi = rssi
+    ..unfiltered = unfiltered
+    ..filtered = filtered
+    ..noise = noise
+    ..noiseString = noiseString
+    ..slope = slope
+    ..intercept = intercept
+    ..calType = calType
+    ..lastCalibrationDate = lastCalibrationDate.add(Duration(days: 0))
+    ..sessionStart = sessionStart.add(Duration(days: 0))
+    ..batteryTimestamp = batteryTimestamp.add(Duration(days: 0))
+    ..voltageA = voltageA
+    ..voltageB = voltageB
+    ..temperature = temperature
+    ..resistance = resistance;
+
+  XDripJSData();
+
+  factory XDripJSData.fromJson(Map<String, dynamic> json) {
+    XDripJSData ret = XDripJSData();
+    if (json == null) return ret;
+    ret.state = JsonData.toInt(json["state"]);
+    ret.stateString = JsonData.toText(json["stateString"]);
+    ret.stateStringShort = JsonData.toText(json["stateStringShort"]);
+    ret.txId = JsonData.toText(json["txId"]);
+    ret.txStatus = JsonData.toInt(json["txStatus"]);
+    ret.txStatusString = JsonData.toText(json["txStatusString"]);
+    ret.txStatusStringShort = JsonData.toText(json["txStatusStringShort"]);
+    ret.txActivation = JsonData.toDate(json["txActivation"]);
+    ret.mode = JsonData.toText(json["mode"]);
+    ret.timestamp = JsonData.toDate(json["timestamp"]);
+    ret.rssi = JsonData.toDouble(json["rssi"]);
+    ret.unfiltered = JsonData.toDouble(json["unfiltered"]);
+    ret.filtered = JsonData.toDouble(json["filtered"]);
+    ret.noise = JsonData.toDouble(json["noise"]);
+    ret.noiseString = JsonData.toDouble(json["noiseString"]);
+    ret.slope = JsonData.toDouble(json["slope"]);
+    ret.intercept = JsonData.toDouble(json["intercept"]);
+    ret.calType = JsonData.toText(json["calType"]);
+    ret.lastCalibrationDate = JsonData.toDate(json["lastCalibrationDate"]);
+    ret.sessionStart = JsonData.toDate(json["sessionStart"]);
+    ret.batteryTimestamp = JsonData.toDate(json["batteryTimestamp"]);
+    ret.voltageA = JsonData.toDouble(json["voltagea"]);
+    ret.voltageB = JsonData.toDouble(json["voltageb"]);
+    ret.temperature = JsonData.toDouble(json["temperature"]);
+    ret.resistance = JsonData.toDouble(json["resistance"]);
+    return ret;
+  }
+}
+
+class IOBData extends JsonData {
+  double iob;
+  double basalIob;
+  double activity;
+  DateTime time;
+
+  IOBData get copy => IOBData()
+    ..iob = iob
+    ..basalIob = basalIob
+    ..activity = activity
+    ..time = time.add(Duration(days: 0));
+
+  IOBData();
+
+  factory IOBData.fromJson(Map<String, dynamic> json) {
+    IOBData ret = IOBData();
+    if (json == null) return ret;
+    ret.iob = JsonData.toDouble(json["iob"]);
+    ret.basalIob = JsonData.toDouble(json["basaliob"]);
+    ret.activity = JsonData.toDouble(json["activity"]);
+    ret.time = JsonData.toDate(json["time"]);
+    return ret;
+  }
+}
+
+class LoopData extends JsonData {
+  IOBData iob;
+
+  LoopData get copy => LoopData()..iob = iob;
+
+  LoopData();
+
+  factory LoopData.fromJson(Map<String, dynamic> json) {
+    LoopData ret = LoopData();
+    if (json == null) return ret;
+    ret.iob = IOBData.fromJson(json["iob"]);
+    return ret;
+  }
+}
+
+class DeviceStatusData extends JsonData {
+  String device;
+  DateTime createdAt;
+  LoopData openAPS;
+  LoopData loop;
+  PumpData pump;
+  UploaderData uploader;
+  XDripJSData xdripjs;
+
+  DeviceStatusData();
+
+  factory DeviceStatusData.fromJson(Map<String, dynamic> json) {
+    DeviceStatusData ret = DeviceStatusData();
+    if (json == null) return ret;
+    ret.device = JsonData.toText(json["device"]);
+    ret.createdAt = JsonData.toDate(json["created_at"]);
+    ret.openAPS = LoopData.fromJson(json["openaps"]);
+    ret.loop = LoopData.fromJson(json["loop"]);
+    ret.pump = PumpData.fromJson(json["pump"]);
+    ret.uploader = UploaderData.fromJson(json["uploader"]);
+    ret.xdripjs = XDripJSData.fromJson(json["xdripjs"]);
+    return ret;
+  }
+}
+
+class CalcIOBData {
   double iob, activity;
   TreatmentData lastBolus;
 
-  IOBData(this.iob, this.activity, this.lastBolus);
+  CalcIOBData(this.iob, this.activity, this.lastBolus);
 }
 
-class COBData {
+class CalcCOBData {
   DateTime decayedBy;
   bool isDecaying;
   int carbs_hr;
@@ -1264,7 +1582,7 @@ class COBData {
   double cob;
   TreatmentData lastCarbs;
 
-  COBData(this.decayedBy, this.isDecaying, this.carbs_hr, this.rawCarbImpact, this.cob, this.lastCarbs);
+  CalcCOBData(this.decayedBy, this.isDecaying, this.carbs_hr, this.rawCarbImpact, this.cob, this.lastCarbs);
 }
 
 class DayData {
@@ -1274,7 +1592,11 @@ class DayData {
   int lowCount = 0;
   int normCount = 0;
   int highCount = 0;
-  int entryCount = 0;
+  int stdLowCount = 0;
+  int stdNormCount = 0;
+  int stdHighCount = 0;
+  int entryCountValid = 0;
+  int entryCountInvalid = 0;
   int carbCount = 0;
   double carbs = 0;
   double min;
@@ -1293,7 +1615,7 @@ class DayData {
     double ret = 0.0;
     int count = 0;
     for (var entry in entries) {
-      if (entry.gluc > 0) {
+      if (!entry.isGlucInvalid) {
         ret += entry.gluc;
         count++;
       }
@@ -1302,9 +1624,12 @@ class DayData {
   }
 
   double get varK => (mid ?? 0) != 0 ? stdAbw(true) / mid * 100 : 0;
-  double get lowPrz => entryCount == 0 ? 0 : lowCount / entryCount * 100;
-  double get normPrz => entryCount == 0 ? 0 : normCount / entryCount * 100;
-  double get highPrz => entryCount == 0 ? 0 : highCount / entryCount * 100;
+  double lowPrz(Globals g) =>
+      entryCountValid == 0 ? 0 : (g.ppStandardLimits ? stdLowCount : lowCount) / entryCountValid * 100;
+  double normPrz(Globals g) =>
+      entryCountValid == 0 ? 0 : (g.ppStandardLimits ? stdNormCount : normCount) / entryCountValid * 100;
+  double highPrz(Globals g) =>
+      entryCountValid == 0 ? 0 : (g.ppStandardLimits ? stdHighCount : highCount) / entryCountValid * 100;
   double get avgCarbs => carbCount > 0 ? carbs / carbCount : 0;
   bool isSameDay(DateTime time) {
     if (date.year != time.year) return false;
@@ -1328,7 +1653,10 @@ class DayData {
 
   double get ieSMBSum {
     double ret = 0.0;
-    for (TreatmentData entry in treatments) if (entry.isSMB) ret += entry.bolusInsulin;
+    for (TreatmentData entry in treatments) {
+      if (entry.isSMB) ret += entry.bolusInsulin;
+//      if (entry.microbolus > 0) ret += entry.microbolus;
+    }
     return ret;
   }
 
@@ -1342,7 +1670,10 @@ class DayData {
 
   double get ieBolusSum {
     double ret = 0.0;
-    for (TreatmentData entry in treatments) ret += (entry.bolusInsulin ?? 0);
+    for (TreatmentData entry in treatments) {
+      ret += (entry.bolusInsulin ?? 0);
+//      ret += (entry.microbolus ?? 0);
+    }
     return ret;
   }
 
@@ -1377,6 +1708,7 @@ class DayData {
   List<EntryData> _bloody = List<EntryData>();
   List<EntryData> get bloody => _bloody;
   List<TreatmentData> treatments = List<TreatmentData>();
+  List<DeviceStatusData> devicestatusList = List<DeviceStatusData>();
   List<ProfileEntryData> _profile = null;
   List<ProfileEntryData> get profile {
     if (_profile != null) return _profile;
@@ -1511,15 +1843,19 @@ class DayData {
     min = 10000.0;
     max = -10000.0;
     mid = 0.0;
-    entryCount = 0;
+    entryCountValid = 0;
+    entryCountInvalid = 0;
     normCount = 0;
     highCount = 0;
     lowCount = 0;
+    stdNormCount = 0;
+    stdHighCount = 0;
+    stdLowCount = 0;
     carbCount = 0;
     carbs = 0;
     for (EntryData entry in entries) {
-      if (entry.gluc >= 0) {
-        entryCount++;
+      if (!entry.isGlucInvalid) {
+        entryCountValid++;
         if (entry.gluc < basalData.targetLow)
           lowCount++;
         else if (entry.gluc > basalData.targetHigh)
@@ -1527,20 +1863,26 @@ class DayData {
         else
           normCount++;
 
-        if (entry.gluc > 0) {
-          mid += entry.gluc;
-          min = math.min(min, entry.gluc);
-          max = math.max(max, entry.gluc);
-        }
+        if (entry.gluc < Globals.stdLow)
+          stdLowCount++;
+        else if (entry.gluc > Globals.stdHigh)
+          stdHighCount++;
+        else
+          stdNormCount++;
+        mid += entry.gluc;
+        min = math.min(min, entry.gluc);
+        max = math.max(max, entry.gluc);
+      } else {
+        entryCountInvalid++;
       }
     }
 
-    mid = entryCount == 0 ? 0 : mid / entryCount;
+    mid = entryCountValid == 0 ? 0 : mid / entryCountValid;
     varianz = 0.0;
     for (EntryData entry in entries) {
-      if (entry.gluc != 0) varianz += math.pow(entry.gluc - mid, 2);
+      if (!entry.isGlucInvalid) varianz += math.pow(entry.gluc - mid, 2);
     }
-    varianz /= entryCount;
+    varianz /= entryCountValid;
 
     for (TreatmentData t in treatments) {
       if (t.carbs > 0) {
@@ -1585,19 +1927,19 @@ class DayData {
     return ret;
   }
 
-  IOBData iob(ReportData data, DateTime time, DayData yesterday) {
+  CalcIOBData iob(ReportData data, DateTime time, DayData yesterday) {
     double totalIOB = 0.0;
     double totalActivity = 0.0;
     TreatmentData lastBolus = null;
 
-    if (time == null) return IOBData(0, 0, null); //time = DateTime(0);
+    if (time == null) return CalcIOBData(0, 0, null); //time = DateTime(0);
 
     int check = time.millisecondsSinceEpoch;
     ProfileGlucData profile = data.profile(time);
 
     List<TreatmentData> list = List<TreatmentData>();
     if (yesterday != null) {
-      IOBData temp = yesterday.iob(
+      CalcIOBData temp = yesterday.iob(
           data, DateTime(yesterday.date.year, yesterday.date.month, yesterday.date.day, 23, 59, 59), null);
       TreatmentData t = TreatmentData();
       t.insulin = temp.iob;
@@ -1606,6 +1948,7 @@ class DayData {
     }
     list.addAll(treatments);
 
+    double totalSave = totalIOB;
     for (TreatmentData t in list) {
       if (!isSameDay_(t.createdAt, time) || t.createdAt.millisecondsSinceEpoch > check) continue;
       var tIOB = t.calcIOB(profile, time);
@@ -1614,20 +1957,24 @@ class DayData {
         totalIOB += tIOB.iob;
       }
 
-      // units: BG (mg/dL or mmol/L)
+      // units: BG (mg/dl or mmol/l)
       if (tIOB != null && tIOB.activity != null) totalActivity += tIOB.activity;
     }
 
-    return IOBData(totalIOB, totalActivity, lastBolus);
+    if (totalIOB == totalSave) {
+//        totalIOB = 20;
+    }
+
+    return CalcIOBData(totalIOB, totalActivity, lastBolus);
   }
 
-  IOBData calcIobTotal(ReportData data, DateTime time, DayData yesterday) {
+  CalcIOBData calcIobTotal(ReportData data, DateTime time, DayData yesterday) {
     if (time == null) time = DateTime.now();
 
     return iob(data, time, yesterday);
   }
 
-  COBData cob(ReportData data, DateTime time, DayData yesterday) {
+  CalcCOBData cob(ReportData data, DateTime time, DayData yesterday) {
     double totalCOB = 0.0;
     TreatmentData lastCarbs = null;
 
@@ -1639,7 +1986,7 @@ class DayData {
 
     List<TreatmentData> list = List<TreatmentData>();
     if (yesterday != null) {
-      COBData prev = yesterday.cob(
+      CalcCOBData prev = yesterday.cob(
           data, DateTime(yesterday.date.year, yesterday.date.month, yesterday.date.day, 23, 59, 59), null);
       lastCarbs = prev.lastCarbs;
       TreatmentData t = TreatmentData();
@@ -1671,11 +2018,12 @@ class DayData {
     isDecaying = temp["isDecaying"];
     lastDecayedBy = temp["lastDecayedBy"];
 
-    double sens = profile.store.listSens.lastWhere((e) => e.timeForCalc <= check)?.value ?? 0.0;
-    double carbRatio = profile.store.listCarbratio.lastWhere((e) => e.timeForCalc <= check)?.value ?? 0.0;
+    double sens = profile.store.listSens.lastWhere((e) => e.timeForCalc <= check, orElse: () => null)?.value ?? 0.0;
+    double carbRatio =
+        profile.store.listCarbratio.lastWhere((e) => e.timeForCalc <= check, orElse: () => null)?.value ?? 0.0;
     var rawCarbImpact = (isDecaying ? 1 : 0) * sens / carbRatio * profile.store.carbRatioPerHour / 60;
 
-    return COBData(lastDecayedBy, isDecaying, profile.store.carbRatioPerHour, rawCarbImpact, totalCOB, lastCarbs);
+    return CalcCOBData(lastDecayedBy, isDecaying, profile.store.carbRatioPerHour, rawCarbImpact, totalCOB, lastCarbs);
   }
 }
 
@@ -1703,6 +2051,7 @@ class ListData {
   List<EntryData> bloody = List<EntryData>();
   List<EntryData> remaining = List<EntryData>();
   List<TreatmentData> treatments = List<TreatmentData>();
+  List<DeviceStatusData> devicestatusList = List<DeviceStatusData>();
   int catheterCount = 0;
   int ampulleCount = 0;
   int sensorCount = 0;
@@ -1729,25 +2078,21 @@ class ListData {
   double gviTotal = 0.0;
   double rms = 0.0;
   double pgs = 0.0;
-  double get ieBolusPrz => ieBolusSum + ieBasalSum + ieMicroBolusSum > 0
-      ? ieBolusSum / (ieBolusSum + ieBasalSum + ieMicroBolusSum) * 100
-      : 0.0;
-  double get ieBasalPrz => ieBolusSum + ieBasalSum + ieMicroBolusSum > 0
-      ? ieBasalSum / (ieBolusSum + ieBasalSum + ieMicroBolusSum) * 100
-      : 0.0;
-  double get ieMicroBolusPrz => ieBolusSum + ieBasalSum + ieMicroBolusSum > 0
-      ? ieMicroBolusSum / (ieBolusSum + ieBasalSum + ieMicroBolusSum) * 100
-      : 0.0;
-  int get count => entries.where((entry) => !entry.isInvalidOrGluc0).length;
+  double get TDD => ieBolusSum + ieBasalSum; // + ieMicroBolusSum;
+  double get ieBolusPrz => ieBolusSum + ieBasalSum > 0 ? ieBolusSum / (ieBolusSum + ieBasalSum) * 100 : 0.0;
+  double get ieBasalPrz => ieBolusSum + ieBasalSum > 0 ? ieBasalSum / (ieBolusSum + ieBasalSum) * 100 : 0.0;
+  double get ieMicroBolusPrz => ieBolusSum + ieBasalSum > 0 ? ieMicroBolusSum / (ieBolusSum + ieBasalSum) * 100 : 0.0;
+  int get countValid => entries.where((entry) => !entry.isGlucInvalid).length;
+  int get countInvalid => entries.where((entry) => entry.isGlucInvalid).length;
   int entriesIn(int min, int max) =>
-      entries.where((entry) => !entry.isInvalidOrGluc0 && entry.gluc >= min && entry.gluc <= max).length;
-  int entriesBelow(int min) => entries.where((entry) => !entry.isInvalidOrGluc0 && entry.gluc < min).length;
-  int entriesAbove(int min) => entries.where((entry) => !entry.isInvalidOrGluc0 && entry.gluc > min).length;
+      entries.where((entry) => !entry.isGlucInvalid && entry.gluc >= min && entry.gluc <= max).length;
+  int entriesBelow(int min) => entries.where((entry) => !entry.isGlucInvalid && entry.gluc < min).length;
+  int entriesAbove(int min) => entries.where((entry) => !entry.isGlucInvalid && entry.gluc > min).length;
   double get avgGluc {
     double ret = 0.0;
     int count = 0;
     for (var entry in entries) {
-      if (entry.gluc > 0) {
+      if (!entry.isGlucInvalid) {
         ret += entry.gluc;
         count++;
       }
@@ -1757,7 +2102,7 @@ class ListData {
 
   double min;
   double max;
-  int fullCount;
+  int validCount;
   List<TreatmentData> addList = List<TreatmentData>();
   void extractData(ReportData data, TreatmentData lastTempBasal) {
     stat["norm"].values.clear();
@@ -1770,6 +2115,7 @@ class ListData {
     allEntries.addAll(entries);
     allEntries.addAll(bloody);
     allEntries.addAll(remaining);
+
     allEntries.sort((a, b) => a.time.compareTo(b.time));
 /*
     allEntries.removeWhere((e)
@@ -1780,6 +2126,8 @@ class ListData {
     // https://github.com/nightscout/cgm-remote-monitor/blob/master/lib/report_plugins/glucosedistribution.js#L150
     double glucTotal = 0.0;
     double rmsTotal = 0.0;
+    double firstGluc = null;
+    double lastGluc = null;
     int usedRecords = 0;
 //    double deltaTotal = 0.0;
 //    double total = 0.0;
@@ -1787,7 +2135,7 @@ class ListData {
 //    double t2 = 11;
 //    int t1Count = 0;
 //    int t2Count = 0;
-    fullCount = 0;
+    validCount = 0;
     if (allEntries.length == 0) return;
 
     for (var entry in allEntries) {
@@ -1809,43 +2157,53 @@ class ListData {
         days.last.entries.add(entry);
         if (glucData != null) {
           double gluc = entry.gluc;
-          if (gluc > 0) {
+          // first day must be ignored for statistics
+          if (gluc > 0 && days.length > 1) {
             for (String key in stat.keys) {
               if (gluc >= stat[key].min && gluc < stat[key].max) stat[key].add(entry, gluc);
             }
-            fullCount++;
+            validCount++;
             if (gluc < min) min = entry.gluc;
             if (gluc > max) max = entry.gluc;
           }
         }
       }
 
-      if (last == null) {
-        glucTotal += entry.gluc;
-      } else {
-        int timeDelta = entry.time.difference(last.time).inMilliseconds;
+      if (data.isInPeriod(entry.time)) {
+        if (firstGluc == null) firstGluc = entry.gluc;
+        lastGluc = entry.gluc;
+        if (last == null) {
+          glucTotal += entry.gluc;
+        } else {
+          int timeDelta = entry.time.difference(last.time).inMilliseconds;
 
-        if (timeDelta <= 6 * 60000 && entry.gluc > 0 && last.gluc > 0) {
-          usedRecords++;
-          double delta = entry.gluc - last.gluc;
+          if (timeDelta <= 6 * 60000 && entry.gluc > 0 && last.gluc > 0) {
+            usedRecords++;
+            double delta = entry.gluc - last.gluc;
 //          deltaTotal += delta;
 //          total += delta;
 //          if (delta >= t1)t1Count++;
 //          if (delta >= t2)t2Count++;
-          gviTotal += math.sqrt(25 + math.pow(delta, 2));
-          glucTotal += entry.gluc;
-          if (entry.gluc < glucData.targetLow) rmsTotal += math.pow(glucData.targetLow - entry.gluc, 2);
-          if (entry.gluc > glucData.targetHigh) rmsTotal += math.pow(entry.gluc - glucData.targetHigh, 2);
+            gviTotal += math.sqrt(25 + math.pow(delta, 2));
+            glucTotal += entry.gluc;
+            if (entry.gluc < glucData.targetLow) rmsTotal += math.pow(glucData.targetLow - entry.gluc, 2);
+            if (entry.gluc > glucData.targetHigh) rmsTotal += math.pow(entry.gluc - glucData.targetHigh, 2);
+          }
         }
       }
       last = entry;
     }
 
-    double gviDelta = allEntries.last.gluc - allEntries.first.gluc;
+    DateTime check = DateTime(days.first.date.year, days.first.date.month, days.first.date.day + 1);
+    entries.removeWhere((e) => e.time.isBefore(check));
+    bloody.removeWhere((e) => e.time.isBefore(check));
+    remaining.removeWhere((e) => e.time.isBefore(check));
+
+    double gviDelta = lastGluc - firstGluc;
     gviIdeal = math.sqrt(math.pow(usedRecords * 5, 2) + math.pow(gviDelta, 2));
     gvi = gviIdeal != 0 ? gviTotal / gviIdeal : 0.0;
     rms = math.sqrt(rmsTotal / usedRecords);
-    double tirMultiplier = fullCount == 0 ? 0.0 : stat["norm"].values.length / fullCount;
+    double tirMultiplier = validCount == 0 ? 0.0 : stat["stdNorm"].values.length / validCount;
     pgs = gvi * (glucTotal / usedRecords) * (1.0 - tirMultiplier);
 
     for (String key in stat.keys) {
@@ -1932,19 +2290,23 @@ class ListData {
       int idx = days.indexWhere((d) => d.isSameDay(t.createdAt.toLocal()));
       if (idx >= 0) days[idx].treatments.add(t);
 
+      if (!data.isInPeriod(t.createdAt)) continue;
+
       khCount += t.carbs;
       ieBolusSum += t.bolusInsulin;
-      ieMicroBolusSum += t.microbolus / 60 * t.duration;
+      ieMicroBolusSum += t.microbolus; // / 3600 * t.duration;
     }
     ieBasalSum = 0.0;
-    for (int i = 0; i < days.length; i++) {
+    for (int i = 1; i < days.length; i++) {
       DayData day = days[i];
       day.prevDay = i > 0 ? days[i - 1] : null;
       day.init(i < days.length - 1 ? days[i + 1] : null);
       ieBasalSum += day.ieBasalSum;
+      day.devicestatusList.clear();
+      day.devicestatusList.addAll(devicestatusList.where((ds) => day.isSameDay(ds.createdAt.toLocal())));
     }
     // the last day before the period was added at the beginning. Now it has to be removed.
-    if (days.length > 0) days.removeAt(0);
+    if (days.length > 0 && days[0].date.isBefore(data.begDate)) days.removeAt(0);
   }
 }
 
@@ -1952,7 +2314,7 @@ class ReportData {
   Error error = null;
   Date begDate;
   Date endDate;
-  int dayCount = 0;
+  int dayCount = -1;
   List<ProfileData> profiles = List<ProfileData>();
   UserData user = null;
   ListData ns = ListData();
@@ -1961,6 +2323,11 @@ class ReportData {
   StatusData status;
   Globals globals;
   bool isForThumbs = false;
+
+  bool isInPeriod(DateTime check) {
+    if (check.isBefore(DateTime(begDate.year, begDate.month, begDate.day))) return false;
+    return check.isBefore(DateTime(endDate.year, endDate.month, endDate.day + 1));
+  }
 
   // get profile for a specific time
   ProfileGlucData profile(DateTime time, [List<TreatmentData> treatments = null, bool doMix = true]) {

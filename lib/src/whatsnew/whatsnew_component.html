@@ -10,35 +10,214 @@
       </material-button>
     </div>
     <div class="root">
-      <h2><span @i18n="version">Version</span><span @i18n="v139">1.3.9 - xx.2.2020</span></h2>
+      <h2><span @i18n="version">Version</span><span @i18n="v200">2.0.0 - 15.7.2020</span></h2>
       <ul>
-        <li class="added" @i18n="v139a1">
+        <li class="added" @i18n="v200a1">
+          Auf der Seite Protokoll werden jetzt auch Insulinabgaben angezeigt, die z.B. über xdrip eingegeben wurden.
+        </li>
+        <li class="added" @i18n="v200a2">
+          Es gibt jetzt Shortcuts, mit denen man die aktuelle Auswahl der Formulare, deren Parameter und den ausgewählten Zeitraum
+          speichern kann. Beim Aktivieren eines Shortcuts wird das alles wieder so eingestellt, wie es war, als der Shortcut
+          gespeichert wurde.
+        </li>
+        <li class="added" @i18n="v200a3">
+          Bei Herokuapp und anderen Anbietern kostenloser Datenbankinstanzen ist der Speicherplatz der Instanz beschränkt, weshalb
+          sie irgendwann voll ist. Dann kann man zwar eine neue Instanz anlegen, Nightscout Reporter benötigt aber für eine lückenlose
+          Darstellung aller Tage Zugriff auf alle Instanzen, für die man eine Auswertung erhalten will. Deshalb können nun mehrere
+          URLs für die Nightscout Instanzen eingegeben werden. Zusätzlich muss noch eingegeben werden, welches der erste und der
+          letzte Tag mit Daten ist. Mit diesen Informationen ist es Nightscout Reporter dann möglich die benötigten Daten lückenlos
+          auch über mehrere Instanzen hinweg auszuwerten.
+        </li>
+        <li class="added" @i18n="v200a4">
+          Wenn im CGP ein Wert den Maximalwert der Skala überschreitet, wird die entsprechende Ecke mit einem gelben Kreis markiert.
+        </li>
+        <li class="added" @i18n="v200a5">
+          Auf dem Einstellungen-Dialog gibt es neben den URL-Eingabefeldern jeweils einen Button, um die URL in einem neuen
+          Browser-Fenster zu öffnen.
+        </li>
+        <li class="added" @i18n="v200a6">
+          Die Eingabe des Zugriffsschlüssels auf dem Einstellungen-Dialog kann jetzt mit einem Button neben dem Eingabefeld lesbar
+          gemacht werden.
+        </li>
+        <li class="added" @i18n="v200a7">
+          Im Einstellungen Dialog gibt es jetzt die Möglichkeit, die Einstellungen zu exportieren und zu importieren. Beim Export wird
+          eine Datei mit den allgemeinen Einstellungen geschrieben, beim Import wird so eine Datei wieder eingelesen. Damit kann man
+          auch ohne Google Drive Zugriff die Einstellungen über verschiedene Browser hinweg manuell synchronisieren.
+        </li>
+        <li class="added" @i18n="v200a8">
+          Im Protokoll gibt es jetzt die Möglichkeit, sich doppelte Datensätze markieren zu lassen. Sie werden von Nightscout Reporter
+          zwar rausgefiltert, aber er kann anzeigen, wie oft ein bestimmter Datensatz in den Daten gefunden wurde. Man kann dort auch
+          angeben, dass er nur mehrfach vorhandene Datensätze ausgeben soll. So kann man mögliche Diskrepanzen zwischen Nightscout
+          Reporter und anderen Reporting Tools herausfinden.
+        </li>
+        <li class="fixed" @i18n="v200f1">
+          Das CGP wird jetzt auch bei extremen Werten korrekt erzeugt.
+        </li>
+        <li class="fixed" @i18n="v200f2">
+          Im CGP wurden die Skalenbeschriftungen korrigiert.
+        </li>
+      </ul>
+      <h2><span @i18n="version">Version</span><span @i18n="v149">1.4.9 - 16.6.2020</span></h2>
+      <ul>
+        <li class="added" @i18n="v149a1">
+          Im Dialog der Ausgabe Parameter gibt es nun die Möglichkeit, das CGP immer mit dem Standard Zielbereich zu
+          erzeugen. Diese Option ist anfangs eingeschaltet, da das CGP ein standardisiertes Formular ist, das gerne
+          zu Vergleichszwecken herangezogen wird. Man kann es aber für seine eigenen Zwecke ausschalten. Diese
+          Einstellung wird dann auch beibehalten.
+        </li>
+        <li class="fixed" @i18n="v149f1">
+          Bei der Profilermittlung wurde manchmal der letzte Profilwechsel ignoriert. Das ist nun behoben.
+        </li>
+      </ul>
+      <h2><span @i18n="version">Version</span><span @i18n="v148">1.4.8 - 12.6.2020</span></h2>
+      <ul>
+        <li class="added" @i18n="v148a1">
+          Im Dialog der Ausgabe Parameter wurde rechts oben der Schieberegler "zu Vergleichszwecken" hinzugefügt. Wenn dieser
+          aktiviert ist, dann wird überall der Standard Zielbereich verwendet. Intern wird das auch noch für andere Anpassungen
+          verwendet. Diese Option ist dafür gedacht, dass man seine Ausdrucke mit anderen Diabetikern vergleichen kann. Das ist
+          zum Beispiel zur Vorlage bei Ärzten und Diabetesberatern sinnvoll.
+        </li>
+      </ul>
+      <h2><span @i18n="version">Version</span><span @i18n="v147">1.4.7 - 5.6.2020</span></h2>
+      <ul>
+        <li class="changed" @i18n="v147c1">
+          In den Ausgabe Parametern kann nun angegeben werden, ob immer der neueste Tag zuerst
+          angezeigt wird. Das hat Auswirkungen auf die Tagesgrafik, die Tagesstatistik und die
+          Wochengrafik. In den Formularoptionen wurde die entsprechende Option entfernt.
+        </li>
+        <li class="changed" @i18n="v147c2">
+          Die Einstellung für das Öffnen des PDF im gleichen Fenster, das Herunterladen des PDFs und
+          den Hinweis auf Nightscout im PDF wurde aus den Einstellungen in die Ausgabe Parameter
+          verschoben. Dadurch kann man das bei jedem Ausdruck schnell festlegen und ändern.
+        </li>
+        <li class="fixed" @i18n="v147f1">
+          Die Überschrift über der Tabelle vom Glucose Perzentil Diagramm wurde korrigiert.
+        </li>
+      </ul>
+      <h2><span @i18n="version">Version</span><span @i18n="v146">1.4.6 - 26.5.2020</span></h2>
+      <ul>
+        <li class="added" @i18n="v146a1">
+          Die Legende der Tagesgrafik wurde um den Eintrag für blutige Messungen erweitert.
+        </li>
+        <li class="fixed" @i18n="v146f1">
+          Die Microboli vom Minimed 600 Uploader wurden aus der Ausgabe entfernt, da es sich
+          dabei nur um Temporäre Basalraten handelt.
+        </li>
+        <li class="fixed" @i18n="v146f2">
+          Ein möglicher Absturz bei der Ausgabe des CGP bei der Tagesgrafik wurde korrigiert.
+        </li>
+      </ul>
+      <h2><span @i18n="version">Version</span><span @i18n="v145">1.4.5 - 20.4.2020</span></h2>
+      <ul>
+        <li class="added" @i18n="v145a1">
+          In dem Dialog mit den Ausgabe Parametern wurde die Option hinzugefügt, die Genauigkeit der Ausgabe von
+          Basalangaben festzulegen. Diese wird normalerweise aus den Angaben zur Basalrate in den Profilen
+          ermittelt. Das wird auch weiterhin getan, wenn der erste Eintrag in der Liste ausgewählt wird. Ansonsten
+          werden alle Basalangaben mit der Genauigkeit ausgegeben, die bei dieser Option ausgewählt wurde.
+        </li>
+        <li class="fixed" @i18n="v145f1">
+          Die Genauigkeit der ISF Angaben im Profil wurde korrigiert.
+        </li>
+        <li class="fixed" @i18n="v145f2">
+          Im Protokoll werden die Angaben, die ein temporäres Ziel von 0 IE für 0 Minuten setzen als
+          "Aufhebung von temp. Ziel" ausgegeben.
+        </li>
+        <li class="fixed" @i18n="v145f3">
+          Im CGP wurden verschiedene Berechnungen korrigiert, die sich vor allem in Differenzen bei ToR und
+          Mittelwerten zeigten.
+        </li>
+      </ul>
+      <h2><span @i18n="version">Version</span><span @i18n="v144">1.4.4 - 6.4.2020</span></h2>
+      <ul>
+        <li class="added" @i18n="v144a1">
+          Die Legende der Tagesgrafik wurde um den Eintrag für Bewegung erweitert.
+        </li>
+        <li class="changed" @i18n="v144c1">
+          In der Tagesgrafik wurde "Training" in "Bewegung" umbenannt. Das passt besser zu den Einträgen in AAPS.
+        </li>
+        <li class="changed" @i18n="v144c2">
+          Die Farbe für Bewegung in der Tagesgrafik wurde geändert.
+        </li>
+      </ul>
+      <h2><span @i18n="version">Version</span><span @i18n="v143">1.4.3 - 26.3.2020</span></h2>
+      <ul>
+        <li class="fixed" @i18n="v143f1">
+          Die Analysewerte wurden nicht ganz korrekt ermittelt. Das wurde korrigiert und nun sollten die
+          statistischen Daten über den Zeitraum richtig ausgewertet werden.
+        </li>
+      </ul>
+      <h2><span @i18n="version">Version</span><span @i18n="v142">1.4.2 - 16.3.2020</span></h2>
+      <ul>
+        <li class="changed" @i18n="v142c1">
+          Beim Laden der Behandlungsdaten werden doppelte Datensätze herausgefiltert.
+        </li>
+        <li class="fixed" @i18n="v142f1">
+          Die berechneten IE für Kohlenhydrate in der Tagesgrafik wurden teilweise mit falschen Faktoren ermittelt.
+          Der Fehler wurde behoben.
+        </li>
+      </ul>
+      <h2><span @i18n="version">Version</span><span @i18n="v141">1.4.1 - 13.3.2020</span></h2>
+      <ul>
+        <li class="added" @i18n="v141a1">
+          Beim Perzentil Diagramm gibt es eine neue Option, mit der man die Basalrate unter dem Diagramm
+          anzeigen lassen kann. Da das Diagramm normalerweise einen grösseren Zeitraum umspannt, wird dort
+          die Basalrate angezeigt, die zu Beginn des Zeitraums aktiv war.
+        </li>
+        <li class="fixed" @i18n="v141f1">
+          Fehler behoben, der bei der Kachelansicht teilweise verhindert hat, dass die Parameter für die Kacheln
+          aufgerufen werden konnten.
+        </li>
+      </ul>
+      <h2><span @i18n="version">Version</span><span @i18n="v14">1.4 - 28.2.2020</span></h2>
+      <ul>
+        <li class="added" @i18n="v14a1">
           Es gibt ein neues PDF namens Tagestrend. Dieses zeigt die Werte eines Tages zusammen mit dem Trend zu jeder
           vollen Stunde, sowie der eingestellten Basalrate aus dem Profil. Das ist eine gute Übersicht für
           Basalratentests, um zu erkennen, wo etwas anzupassen ist.
         </li>
-        <li class="added" @i18n="v139a2">
+        <li class="added" @i18n="v14a2">
           In der Tagesgrafik gibt es eine neue Option, um die Rundung der Insulinwerte auf die maximale Genauigkeit
           im Profil zu unterbinden. Das macht da Sinn, wo entweder kein Profil vorhanden ist, oder wo Werte mit
           höherer Genauigkeit als im Profil eingegeben werden.
         </li>
-        <li class="added" @i18n="v139a3">
+        <li class="added" @i18n="v14a3">
           In der Tagesgrafik kann man nun die IOB (Insulin On Board) und COB (Carbs On Board) anzeigen lassen. Die
           IOB werden am oberen Rand angezeigt, wo auch die Bolusabgaben dargestellt werden, die COB am unteren Rand,
           wo auch die Kohlenhydrate dargestellt werden.
         </li>
-        <li class="added" @i18n="v139a4">
+        <li class="added" @i18n="v14a4">
           Nightscout Reporter kann nun auch auf Portugiesisch verwendet werden.
         </li>
-        <li class="added" @i18n="v139a5">
+        <li class="added" @i18n="v14a5">
           Es gibt ein neues PDF namens Tagesstunden. Dieses zeigt die Durchschnittswerte eines Tages in jedem
           Stundenintervall an und färbt die Zellen entsprechend des Glukosewertes ein. So hat man eine gut
           Übersicht über die Werteverteilung im ausgewählten Zeitraum.
         </li>
-        <li class="fixed" @i18n="v139f1">
+        <li class="added" @i18n="v14a6">
+          Beim Glukose Perzentil Diagramm kann man nun ein Maximum für die Skalierung festlegen. Wenn es auf
+          "Automatisch" gesetzt wird, wird das Maximum wie bisher auch ermittelt. Bei einem anderen Wert wird
+          die Obergrenze für das Diagramm auf diesen Wert festgesetzt. Damit ist es leichter möglich zwei
+          Diagramme miteinander zu vergleichen, deren Obergrenze unterschiedlich ist.
+        </li>
+        <li class="added" @i18n="v14a7">
+          Vor der Erzeugung eines PDFs wird noch ein Dialog angezeigt, auf dem man Parameter für alle erzeugten
+          PDFs eingeben kann. Man kann dort den Zielbereich auf den Standardbereich festlegen, den
+          Ärzte gerne sehen. Das hat Auswirkungen auf alle Darstellungen des Zielbereichs, sowie auf die
+          Verteilung der Werte innerhalb und ausserhalb des Zielbereichs. Man kann dort auch den Maximalwert
+          für Glukose in Grafiken festlegen. Dieser Wert wird in der Tagesgrafik, dem Perzentil Diagramm und
+          der Wochengrafik verwendet. Wenn er auf "Automatisch" gesetzt wird, wird der Maximalwert wie bisher
+          auch aus den vorhandenen Daten ermittelt. Ausserdem kann man hier angeben, ob man den aktuellen Zeitraum
+          erzeugen möchte oder einen Vergleichszeitraum. Das ist nützlich, um dem Arzt die Gegenüberstellung von
+          Werten der Vergangenheit und jetzt zu zeigen.
+        </li>
+        <li class="removed" @i18n="v14r1">
+          Die Buttons für die Erzeugung vergangener Zeiträume wurden entfernt. Das kann jetzt im neuen
+          PDF-Dialog eingestellt werden.
+        </li>
+        <li class="fixed" @i18n="v14f1">
           Wenn auf der Profilseite leere Spalten vorkommen, führt das nicht mehr zu einer leeren Seite.
         </li>
-        <li class="fixed" @i18n="v139f2">
+        <li class="fixed" @i18n="v14f2">
           Die Werte VarK und ToR im CGP werden bei Tages- und Wochengrafiken in der Legende und in der Grafik
           korrekt ausgegeben.
         </li>
